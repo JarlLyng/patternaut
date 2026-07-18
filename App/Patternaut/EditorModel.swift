@@ -16,6 +16,9 @@ final class EditorModel {
     var issues: [ValidationIssue] = []
     var lastExportPath: String?
 
+    /// Diagnostics log (unified logging + in-app panel).
+    let diagnostics = Diagnostics()
+
     /// Loaded sample instruments (written as `.pti` on export). Their order is
     /// the sample-instrument slot: index 0 = instrument 0 in the pattern grid.
     var instruments: [LoadedInstrument] = []
@@ -75,24 +78,38 @@ final class EditorModel {
     var midiStatus: String?
 
     func refreshMIDIDestinations() {
+        if midi == nil { diagnostics.log("CoreMIDI unavailable (client/port not created).", level: .error, category: "midi") }
         midiDestinations = midi?.destinations() ?? []
         if selectedDestinationID == nil || !midiDestinations.contains(where: { $0.id == selectedDestinationID }) {
             selectedDestinationID = midiDestinations.first?.id
         }
+        let names = midiDestinations.isEmpty ? "none" : midiDestinations.map(\.name).joined(separator: ", ")
+        diagnostics.log("MIDI destinations: \(names)", category: "midi")
     }
 
     /// Sends the current pattern as live MIDI to the selected destination — e.g.
     /// into a Tracker armed with `[Rec]+[Play]`.
     func sendLive() {
-        guard let midi else { midiStatus = "MIDI unavailable."; return }
+        guard let midi else {
+            midiStatus = "MIDI unavailable."
+            diagnostics.log("Send aborted: CoreMIDI unavailable.", level: .error, category: "midi")
+            return
+        }
         guard let id = selectedDestinationID, let dest = midiDestinations.first(where: { $0.id == id }) else {
             midiStatus = "Choose a MIDI destination first."
+            diagnostics.log("Send aborted: no destination selected.", level: .warning, category: "midi")
             return
         }
         let events = MIDISequencer.events(for: pattern, channelMode: .perTrack)
-        guard !events.isEmpty else { midiStatus = "Pattern has no notes to send."; return }
-        midi.send(events, tempo: tempo, to: dest.endpoint)
+        guard !events.isEmpty else {
+            midiStatus = "Pattern has no notes to send."
+            diagnostics.log("Send skipped: pattern has no notes.", level: .warning, category: "midi")
+            return
+        }
+        let errors = midi.send(events, tempo: tempo, to: dest.endpoint)
         midiStatus = "Sent \(events.count) MIDI events to \(dest.name)."
+        diagnostics.log("Sent \(events.count) events to \"\(dest.name)\" at \(Int(tempo)) BPM\(errors > 0 ? "; \(errors) send errors" : "").",
+                        level: errors > 0 ? .error : .info, category: "midi")
     }
 
     private var mutationCounter: UInt64 = 0
@@ -121,10 +138,13 @@ final class EditorModel {
             let instrument = try Instrument.new(wav: data, filename: String(name.prefix(31)))
             instruments.append(LoadedInstrument(name: name, instrument: instrument))
             sampleError = nil
+            diagnostics.log("Loaded sample \"\(name)\" (\(instrument.sample.channels == 2 ? "stereo" : "mono"), \(instrument.sample.length) frames).", category: "samples")
         } catch let error as WavFile.WavError {
             sampleError = "\(url.lastPathComponent): not a supported WAV (\(error)). Use 16-bit PCM."
+            diagnostics.log("Sample load failed: \(url.lastPathComponent) — \(error).", level: .error, category: "samples")
         } catch {
             sampleError = "Couldn't load \(url.lastPathComponent)."
+            diagnostics.log("Sample load failed: \(url.lastPathComponent) — \(error.localizedDescription)", level: .error, category: "samples")
         }
     }
 
@@ -136,15 +156,21 @@ final class EditorModel {
     /// `directory`.
     func export(to directory: URL) {
         issues = device.profile.validate(pattern)
-        guard device.profile.isExportable(pattern) else { return }
+        let errorCount = issues.filter { $0.severity == .error }.count
+        guard device.profile.isExportable(pattern) else {
+            diagnostics.log("Export blocked: \(errorCount) validation error(s).", level: .error, category: "export")
+            return
+        }
         do {
             let result = try ProjectBundleWriter.write(
                 patterns: [pattern], projectName: pattern.metadata.name, device: device,
                 tempo: Float(tempo), instruments: namedInstruments(), to: directory
             )
             lastExportPath = result.projectDirectory.path
+            diagnostics.log("Exported \"\(pattern.metadata.name)\" (\(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]
+            diagnostics.log("Export failed: \(error.localizedDescription)", level: .error, category: "export")
         }
     }
 

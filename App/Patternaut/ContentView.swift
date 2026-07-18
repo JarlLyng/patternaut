@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 struct ContentView: View {
     @State private var model = EditorModel()
     @FocusState private var gridFocused: Bool
+    @State private var showingLog = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -31,6 +32,9 @@ struct ContentView: View {
         .onAppear {
             gridFocused = true
             model.refreshMIDIDestinations()
+        }
+        .sheet(isPresented: $showingLog) {
+            DiagnosticsView(diagnostics: model.diagnostics)
         }
     }
 
@@ -83,6 +87,7 @@ struct ContentView: View {
                     .help("Play the pattern as live MIDI (e.g. into a Tracker in Rec)")
             }
             Button("Export…") { exportBundle() }
+            Button("Log") { showingLog = true }
         }
         .padding(8)
     }

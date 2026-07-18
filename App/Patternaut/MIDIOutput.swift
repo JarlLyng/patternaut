@@ -36,8 +36,11 @@ final class MIDIOutput {
     }
 
     /// Schedules `events` for delivery to `endpoint`, timed from now via `tempo`.
-    func send(_ events: [MIDIEvent], tempo: Double, to endpoint: MIDIEndpointRef) {
+    /// Returns how many `MIDISend` calls returned an error status.
+    @discardableResult
+    func send(_ events: [MIDIEvent], tempo: Double, to endpoint: MIDIEndpointRef) -> Int {
         let start = mach_absolute_time()
+        var errors = 0
         for event in events {
             let seconds = event.beat * 60.0 / max(tempo, 1)
             let timestamp = start &+ hostTicks(for: seconds)
@@ -45,8 +48,9 @@ final class MIDIOutput {
             let packet = MIDIPacketListInit(&list)
             let bytes = event.bytes
             _ = MIDIPacketListAdd(&list, 1024, packet, timestamp, bytes.count, bytes)
-            MIDISend(port, endpoint, &list)
+            if MIDISend(port, endpoint, &list) != noErr { errors += 1 }
         }
+        return errors
     }
 
     // MARK: - Private
