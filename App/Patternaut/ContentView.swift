@@ -57,6 +57,12 @@ struct ContentView: View {
             }
 
             Button("Generate") { model.generateStarter() }
+            Menu("Mutate") {
+                ForEach(MutationStrength.allCases, id: \.self) { strength in
+                    Button(strength.rawValue.capitalized) { model.mutate(strength) }
+                }
+            }
+            .fixedSize()
             Button("Undo") { model.undo() }.disabled(!model.canUndo).keyboardShortcut("z")
             Button("Redo") { model.redo() }.disabled(!model.canRedo).keyboardShortcut("z", modifiers: [.command, .shift])
             Spacer()

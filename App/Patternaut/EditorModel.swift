@@ -67,6 +67,16 @@ final class EditorModel {
     func undo() { editor.undo() }
     func redo() { editor.redo() }
 
+    private var mutationCounter: UInt64 = 0
+
+    /// Applies a mutation of the current pattern in place (undoable). Each call
+    /// uses a fresh seed so repeated mutations explore different variants.
+    func mutate(_ strength: MutationStrength) {
+        mutationCounter &+= 1
+        let mutated = Mutation.mutate(editor.pattern, strength: strength, seed: mutationCounter)
+        editor.replace(with: mutated)
+    }
+
     // MARK: - Samples / instruments
 
     /// Loads a 16-bit PCM WAV as a sample instrument. Reports a friendly error

@@ -92,6 +92,20 @@ struct PatternEditorTests {
         #expect(e.currentStep?.fx.isEmpty == true)
     }
 
+    @Test("Replace swaps the whole pattern and is undoable")
+    func replacePattern() {
+        var e = makeEditor()
+        e.setNote(.pitch(60)) // original edit on track 0/row 0
+        let replacement = DeviceProfile.trackerPlus.makeEmptyPattern(name: "R", stepCount: 8)
+
+        e.replace(with: replacement)
+        #expect(e.currentStep?.note == .empty) // replacement's step 0 is empty
+        #expect(e.canUndo)
+
+        e.undo()
+        #expect(e.currentStep?.note == .pitch(60)) // back to pre-replace pattern
+    }
+
     @Test("Note key map follows the tracker layout")
     func noteKeyMap() {
         #expect(NoteKeyMap.semitoneOffset(for: "z") == 0)

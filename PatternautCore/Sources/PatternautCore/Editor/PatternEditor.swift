@@ -131,6 +131,14 @@ public struct PatternEditor: Sendable {
         pattern = next
     }
 
+    /// Replaces the whole pattern (e.g. applying a mutation or generated result)
+    /// as a single undoable step, keeping the cursor in range.
+    public mutating func replace(with newPattern: Pattern) {
+        snapshot()
+        pattern = newPattern
+        setCursor(track: cursor.track, row: cursor.row, column: cursor.column)
+    }
+
     // MARK: - Private
 
     private mutating func editStep(_ body: (inout Step) -> Void) {
