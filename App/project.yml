@@ -7,8 +7,8 @@ options:
   xcodeVersion: "26.0"
 
 packages:
-  PatternsmithCore:
-    path: ../PatternsmithCore
+  PatternautCore:
+    path: ../PatternautCore
 
 targets:
   Patternaut:
@@ -17,8 +17,8 @@ targets:
     sources:
       - path: Patternaut
     dependencies:
-      - package: PatternsmithCore
-        product: PatternsmithCore
+      - package: PatternautCore
+        product: PatternautCore
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.iamjarl.patternaut

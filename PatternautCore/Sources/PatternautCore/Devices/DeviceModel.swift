@@ -1,6 +1,6 @@
 import Foundation
 
-/// The hardware devices Patternsmith targets.
+/// The hardware devices Patternaut targets.
 ///
 /// The original Tracker is intentionally excluded from the primary set: it
 /// cannot run the modern firmware (CPU/RAM) and would be a separate legacy

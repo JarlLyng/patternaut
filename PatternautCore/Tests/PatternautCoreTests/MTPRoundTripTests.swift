@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import PatternsmithCore
+@testable import PatternautCore
 
 @Suite("MTP round-trip")
 struct MTPRoundTripTests {

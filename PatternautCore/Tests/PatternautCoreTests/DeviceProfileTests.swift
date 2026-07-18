@@ -1,5 +1,5 @@
 import Testing
-@testable import PatternsmithCore
+@testable import PatternautCore
 
 @Suite("Device profiles")
 struct DeviceProfileTests {

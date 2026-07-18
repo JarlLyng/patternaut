@@ -1,5 +1,5 @@
 import SwiftUI
-import PatternsmithCore
+import PatternautCore
 import UniformTypeIdentifiers
 
 struct ContentView: View {

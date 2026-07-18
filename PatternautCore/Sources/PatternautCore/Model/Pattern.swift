@@ -2,7 +2,7 @@ import Foundation
 
 /// The device-neutral internal representation of a pattern.
 ///
-/// This is Patternsmith's source of truth. It serializes cleanly to JSON so
+/// This is Patternaut's source of truth. It serializes cleanly to JSON so
 /// patterns can be backed up and shared independently of the app's database,
 /// and a device profile converts it into hardware-specific output.
 public struct Pattern: Equatable, Sendable, Codable, Identifiable {

@@ -1,5 +1,5 @@
 import SwiftUI
-import PatternsmithCore
+import PatternautCore
 
 /// The tracker grid: row numbers down the left, one column group per track, the
 /// cursor cell highlighted. Keyboard-first — see `.onKeyPress` handling in

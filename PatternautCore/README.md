@@ -1,6 +1,6 @@
-# PatternsmithCore
+# PatternautCore
 
-Device-neutral model layer for Patternsmith. Pure Swift value types, no UI or
+Device-neutral model layer for Patternaut. Pure Swift value types, no UI or
 persistence dependencies, so it builds and tests standalone (`swift test`) and
 can be consumed by the macOS app as a local package.
 
@@ -36,7 +36,7 @@ can be consumed by the macOS app as a local package.
   and `NoteKeyMap` (tracker keyboard→pitch). Pure, unit-tested logic; the
   SwiftUI layer is a thin shell over it.
 
-The **`PatternsmithApp`** executable target is a SwiftUI macOS app: a keyboard-
+The **`PatternautApp`** executable target is a SwiftUI macOS app: a keyboard-
 first tracker grid editor with device/tempo controls, a euclidean starter
 generator, undo/redo, and SD-card bundle export.
 
@@ -67,7 +67,7 @@ meaning of the per-track `length` byte.
 ## Running the app
 
 ```
-swift run PatternsmithApp
+swift run PatternautApp
 ```
 
 Keys: arrows move the cursor; the `z`/`q` rows enter notes (note column); digits
@@ -75,7 +75,7 @@ set the instrument; `+`/`-` transpose a semitone, `[`/`]` an octave; delete
 clears a step; ⌘Z / ⇧⌘Z undo/redo.
 
 The target builds as a plain SPM executable. For a shippable, sandboxed `.app`
-(menus, entitlements, icon), wrap `PatternsmithCore` in an Xcode app target that
+(menus, entitlements, icon), wrap `PatternautCore` in an Xcode app target that
 depends on this package — the app sources move over unchanged.
 
 ## Not yet built

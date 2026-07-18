@@ -1,6 +1,6 @@
 import Foundation
 import Observation
-import PatternsmithCore
+import PatternautCore
 
 /// Observable shell around ``PatternEditor`` plus app-level context (device,
 /// tempo, base octave) and actions (generate, export). All editing logic lives

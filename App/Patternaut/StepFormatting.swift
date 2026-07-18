@@ -1,4 +1,4 @@
-import PatternsmithCore
+import PatternautCore
 
 /// Display strings for grid cells, tracker-style (fixed width, dots for empty).
 enum StepFormatting {

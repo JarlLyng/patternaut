@@ -1,10 +1,10 @@
-# Patternsmith
+# Patternaut
 
-Patternsmith er en native macOS-app til musikere, der bruger Polyend Tracker+ eller Polyend Tracker Mini.
+Patternaut er en native macOS-app til musikere, der bruger Polyend Tracker+ eller Polyend Tracker Mini.
 
 Appen hjælper med at skabe, transformere og organisere tracker-patterns, før de overføres til hardware. Den fungerer som et kreativt companion-værktøj til Polyends tracker-workflow og fokuserer på hurtig pattern-generering, kontrolleret variation, MIDI-konvertering og visuel forståelse af tracker-data.
 
-Patternsmith er ikke en fuld software-tracker og skal ikke erstatte Tracker+ eller Tracker Mini. Appen skal i stedet gøre det hurtigere at udvikle idéer, som passer til maskinernes særlige struktur og begrænsninger.
+Patternaut er ikke en fuld software-tracker og skal ikke erstatte Tracker+ eller Tracker Mini. Appen skal i stedet gøre det hurtigere at udvikle idéer, som passer til maskinernes særlige struktur og begrænsninger.
 
 ## Produktidé
 
@@ -18,13 +18,13 @@ Tracker-workflowet er stærkt, fordi noter, instrumenter og effekter kan rediger
 - Eksperimentere med alternative taktarter og patternlængder
 - Huske og kombinere trackerens mange FX-kommandoer
 
-Patternsmith gør disse opgaver visuelle, hurtige og ikke-destruktive.
+Patternaut gør disse opgaver visuelle, hurtige og ikke-destruktive.
 
 Brugeren kan generere eller importere et pattern, ændre det med musikalske transformationsværktøjer og derefter eksportere resultatet til et format, der kan bruges sammen med Tracker+ eller Tracker Mini.
 
 ## Understøttede enheder
 
-Patternsmith udvikles med fælles understøttelse af:
+Patternaut udvikles med fælles understøttelse af:
 
 - Polyend Tracker+
 - Polyend Tracker Mini
@@ -35,7 +35,7 @@ Det gør det muligt senere at understøtte andre tracker-baserede enheder uden a
 
 ## Kerneprincipper
 
-Patternsmith skal være:
+Patternaut skal være:
 
 - Kreativ frem for administrativ
 - Hurtig at bruge
@@ -60,7 +60,7 @@ Et typisk workflow kan være:
 
 ## Pattern Editor
 
-Patternsmith viser data i et klassisk tracker-grid.
+Patternaut viser data i et klassisk tracker-grid.
 
 Et pattern består af:
 
@@ -141,7 +141,7 @@ Generatoren skal skabe resultater, der kan redigeres videre, ikke færdige eller
 
 ## Groove Generator
 
-Patternsmith kan generere rytmer ud fra forskellige modeller.
+Patternaut kan generere rytmer ud fra forskellige modeller.
 
 Mulige generatorer:
 
@@ -227,9 +227,9 @@ Brugeren skal kunne sammenligne versioner og markere favoritter.
 
 ## MIDI Import
 
-Patternsmith kan importere Standard MIDI Files og konvertere dem til tracker-data.
+Patternaut kan importere Standard MIDI Files og konvertere dem til tracker-data.
 
-> Bemærk: Dette er import *ind i Patternsmith* (typisk fra en DAW). Polyend Tracker+/Mini kan **ikke** selv loade en `.mid`-fil ind i et pattern. Data kommer ind i hardwaren via live-MIDI-optagelse eller direkte fil-skrivning — se afsnittet "Overførsel til hardware".
+> Bemærk: Dette er import *ind i Patternaut* (typisk fra en DAW). Polyend Tracker+/Mini kan **ikke** selv loade en `.mid`-fil ind i et pattern. Data kommer ind i hardwaren via live-MIDI-optagelse eller direkte fil-skrivning — se afsnittet "Overførsel til hardware".
 
 Ved import skal appen kunne:
 
@@ -251,7 +251,7 @@ Brugeren skal kunne ændre trackfordelingen før eksport.
 
 ## MIDI Export
 
-MIDI-eksport er primært til DAW'er og andet MIDI-grej — ikke vejen ind i Trackeren (den importerer ikke MIDI-filer). Patternsmith kan eksportere patterns som MIDI til brug i:
+MIDI-eksport er primært til DAW'er og andet MIDI-grej — ikke vejen ind i Trackeren (den importerer ikke MIDI-filer). Patternaut kan eksportere patterns som MIDI til brug i:
 
 - Ableton Live
 - Logic Pro
@@ -274,16 +274,16 @@ MIDI-eksport kan indeholde:
 
 Dette er kernen i hele værdiforslaget, så vejene er dokumenteret eksplicit. Verificeret mod Polyend Tracker Manual 1.7.0.
 
-Der findes tre broer fra Patternsmith til hardwaren:
+Der findes tre broer fra Patternaut til hardwaren:
 
 ### Vej A — Live MIDI-optagelse (primær bro i MVP)
 
-Trackeren kan optage indkommende MIDI i realtid via `[Rec] + [Play]`. Patternsmith sender patternet ud over CoreMIDI (USB), og maskinen skriver det ind i steps.
+Trackeren kan optage indkommende MIDI i realtid via `[Rec] + [Play]`. Patternaut sender patternet ud over CoreMIDI (USB), og maskinen skriver det ind i steps.
 
 - Overfører: noter og note-off. Velocity følger kun med, hvis brugeren har slået `Config > General > Recording Options` til på maskinen (ellers fast værdi) — appen skal minde om dette.
 - Overfører **ikke**: FX-kommandoer, probability, microtiming.
 - Trackerens MIDI er per-step, ikke per-track (via dedikerede MIDI-instrumenter, ét pr. kanal). Polyfoni skal derfor være fordelt på monofoniske tracks *før* afspilning (se Chord Distributor).
-- Trackeren kører 192 PPQN internt og kan følge ekstern clock. Patternsmith bør kunne fungere som clock-leader for ren kvantisering under optagelse.
+- Trackeren kører 192 PPQN internt og kan følge ekstern clock. Patternaut bør kunne fungere som clock-leader for ren kvantisering under optagelse.
 
 ### Vej B — Direkte fil-skrivning til SD-kort (v1.x, fuld troværdighed)
 
@@ -293,7 +293,7 @@ Denne vej kan i princippet overføre *alt* — inkl. FX, probability og microtim
 
 Formatet er allerede løst: **Polyend har udgivet et officielt bibliotek, [`polyend/tracker-lib`](https://github.com/polyend/tracker-lib)** (MIT-licens, TypeScript), der både læser og skriver `.pti`, `.mtp` og `.mt` inkl. FX/automation på step-niveau. Vej B er dermed *integrations-/porteringsarbejde*, ikke reverse engineering. Community-værktøjet [`iannuz92/midi-to-mtp`](https://github.com/iannuz92/midi-to-mtp) demonstrerer allerede MIDI → `.mtp` ende-til-ende.
 
-**Status:** Hele SD-kort-eksporten er implementeret i `PatternsmithCore` og verificeret byte-for-byte mod `tracker-lib` (begge retninger, læs+skriv):
+**Status:** Hele SD-kort-eksporten er implementeret i `PatternautCore` og verificeret byte-for-byte mod `tracker-lib` (begge retninger, læs+skriv):
 
 - `.mtp`-patterns (`MTPExporter`/`MTPImporter`) — round-trip begge veje.
 - `.mt`-projekter (`MTProjectExporter`/`MTProjectImporter`) — patcher kendte felter ind i en embedded template.
@@ -305,7 +305,7 @@ Udestående — kræver test på fysisk hardware: at loade en genereret bundle p
 
 Hensyn ved implementering:
 
-- **Native app vs. TS-bibliotek.** Patternsmith er Swift/SwiftUI; `tracker-lib` er TypeScript. Anbefalet: portér formatlogikken til Swift med `tracker-lib`s kildekode som autoritativ spec (ingen JS-afhængighed). Alternativ: kør biblioteket via JavaScriptCore. MIT-licensen tillader begge dele.
+- **Native app vs. TS-bibliotek.** Patternaut er Swift/SwiftUI; `tracker-lib` er TypeScript. Anbefalet: portér formatlogikken til Swift med `tracker-lib`s kildekode som autoritativ spec (ingen JS-afhængighed). Alternativ: kør biblioteket via JavaScriptCore. MIT-licensen tillader begge dele.
 - **Verificér mod målfirmware.** `tracker-lib` er tidligt stadie (v0.1.2). Bekræft FX/probability/microtiming-dækning mod den firmware, der køres på Tracker+/Mini. Enhedsprofilerne skal versionere selve filformat-skemaet, ikke kun begrænsningerne.
 - **Eksport-enheden bør være pattern-niveau (`.mtp`)** — den mindste selvstændige enhed, der matcher appens formål.
 
@@ -362,7 +362,7 @@ Variation:
 Every fourth repetition
 ```
 
-Patternsmith oversætter indstillingerne til den relevante tracker-repræsentation.
+Patternaut oversætter indstillingerne til den relevante tracker-repræsentation.
 
 Funktionen skal indeholde:
 
@@ -379,7 +379,7 @@ FX-data kan ikke overføres via MIDI (Vej A). Indtil `.mtp`-eksporten (Vej B) er
 
 ## Preview
 
-Patternsmith skal kunne afspille et hurtigt preview af et pattern.
+Patternaut skal kunne afspille et hurtigt preview af et pattern.
 
 Preview kan bruge:
 
@@ -445,7 +445,7 @@ Collections kan have egne noter og eksportindstillinger.
 
 ## Export
 
-Patternsmith skal understøtte flere eksportniveauer.
+Patternaut skal understøtte flere eksportniveauer.
 
 ### Første version
 
@@ -491,7 +491,7 @@ Alle værdier nedenfor er udtrukket fra det officielle `tracker-lib` (`ProjectCo
 - Navnelængder: projekt 32 tegn, track 21 tegn, pattern 30 tegn
 - Metadata-fil-id `PAMD` (v1); pattern-fil type `2`
 - SD-kort: FAT32 med Master Boot Record; projekter skal ligge i hoved-`/Projects`-folderen for at være synlige
-- **Samme `.mt`/`.mtp`-format med 16 tracks** — Mini 2.0 og Tracker+ er projektkompatible. Patternsmith kan derfor bruge én intern model og én exporter; profilen begrænser blot per-track-type.
+- **Samme `.mt`/`.mtp`-format med 16 tracks** — Mini 2.0 og Tracker+ er projektkompatible. Patternaut kan derfor bruge én intern model og én exporter; profilen begrænser blot per-track-type.
 
 ### Step-encoding (autoritativt)
 
@@ -572,7 +572,7 @@ Bemærk: symbolerne afviger fra den gamle Tracker-manual (fx moderne `L`/`H`/`B`
 
 ## Brugeroplevelse
 
-Patternsmith skal føles som en moderne native macOS-app.
+Patternaut skal føles som en moderne native macOS-app.
 
 Den primære navigation kan bestå af:
 
@@ -625,7 +625,7 @@ Vigtige designprincipper:
 
 ## Teknisk retning
 
-Patternsmith bygges som en native macOS-app i Swift og SwiftUI.
+Patternaut bygges som en native macOS-app i Swift og SwiftUI.
 
 Mulige teknologier:
 
@@ -643,7 +643,7 @@ Appen skal fungere lokalt uden krav om konto eller cloud.
 
 ## Intern datamodel
 
-Patternsmith skal have et internt, enhedsneutralt pattern-format.
+Patternaut skal have et internt, enhedsneutralt pattern-format.
 
 Et pattern kan konceptuelt bestå af:
 
@@ -672,7 +672,7 @@ Det interne format skal kunne serialiseres som JSON, så patterns kan sikkerheds
 
 ## Sikkerhed og dataintegritet
 
-Patternsmith skal behandle brugerens arbejde konservativt.
+Patternaut skal behandle brugerens arbejde konservativt.
 
 Grundregler:
 
@@ -700,7 +700,7 @@ Første version skal fokusere på den kreative kerne.
 8. Swing og humanize
 9. Pattern rotation og shifting
 10. Subtle, moderate og strong mutation
-11. MIDI-import (ind i Patternsmith, fra DAW)
+11. MIDI-import (ind i Patternaut, fra DAW)
 12. Automatisk fordeling af polyfoni
 13. MIDI-eksport (til DAW)
 14. Live MIDI-optagelse til hardwaren (Vej A)
@@ -722,7 +722,7 @@ Første version skal fokusere på den kreative kerne.
 
 ## Senere muligheder
 
-Efter MVP kan Patternsmith udvides med:
+Efter MVP kan Patternaut udvides med:
 
 - Direkte `.mtp`/`.mt`-eksport til Polyend-projektformater (Vej B)
 - Flere FX-kommandoer
@@ -752,7 +752,7 @@ Eksempel:
 
 > Lav et 64-row jungle-pattern med en enkel kick, ustabile hi-hats og et fill i de sidste otte rows.
 
-Resultatet skal stadig genereres af Patternsmiths deterministiske pattern-motor, så brugeren kan forstå, redigere og reproducere det.
+Resultatet skal stadig genereres af Patternauts deterministiske pattern-motor, så brugeren kan forstå, redigere og reproducere det.
 
 AI-funktionen må ikke skjule tracker-data eller gøre resultatet til en lukket proces.
 
@@ -773,7 +773,7 @@ Den sekundære målgruppe er musikere, der er nysgerrige på tracker-workflowet,
 
 ## Positionering
 
-Patternsmith er ikke en DAW og ikke en traditionel software-tracker.
+Patternaut er ikke en DAW og ikke en traditionel software-tracker.
 
 Det er et kreativt pattern-værktøj, som hjælper musikere med at skabe komplekse, kontrollerede og hardware-klare idéer til Polyend Tracker+ og Tracker Mini.
 
