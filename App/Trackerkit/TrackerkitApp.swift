@@ -1,9 +1,9 @@
 import SwiftUI
 
 @main
-struct PatternsmithApp: App {
+struct TrackerkitApp: App {
     var body: some Scene {
-        WindowGroup("Patternsmith") {
+        WindowGroup("Trackerkit") {
             ContentView()
         }
         .windowStyle(.titleBar)
