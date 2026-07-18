@@ -10,6 +10,7 @@
 		1F2495F7FDC775FB45DA22C6 /* PatternsmithCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF67DE54195DDDEA056D4553 /* PatternsmithCore */; };
 		3EA2FA7466A228A2262FA275 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7B0151FBB1CD791E2BF27 /* StepFormatting.swift */; };
 		455D84813B839ADFF52044F3 /* PatternsmithApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC3FB01127AF9006F4CCF29 /* PatternsmithApp.swift */; };
+		473F67EEBF583A9E80752086 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F693818217EF40FF43B6535B /* Assets.xcassets */; };
 		C3370DB4B469A9F1C184DE44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8D88613CD6A6D9AA3A791 /* ContentView.swift */; };
 		DF2925DD3921E7B8FC1B656A /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA37087E0D1FB039387FF0A /* EditorModel.swift */; };
 		F9AD0E411AF2B3493DF04CEB /* PatternGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF475A5299B732EF8E36BD8C /* PatternGridView.swift */; };
@@ -23,6 +24,7 @@
 		C958D9921A0E95AF6A51A205 /* Patternsmith.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Patternsmith.entitlements; sourceTree = "<group>"; };
 		DCC3FB01127AF9006F4CCF29 /* PatternsmithApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternsmithApp.swift; sourceTree = "<group>"; };
 		ECE8D88613CD6A6D9AA3A791 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F693818217EF40FF43B6535B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF475A5299B732EF8E36BD8C /* PatternGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +52,7 @@
 		B19B5792FE6878DF2E123EEC /* Patternsmith */ = {
 			isa = PBXGroup;
 			children = (
+				F693818217EF40FF43B6535B /* Assets.xcassets */,
 				ECE8D88613CD6A6D9AA3A791 /* ContentView.swift */,
 				7BA37087E0D1FB039387FF0A /* EditorModel.swift */,
 				FF475A5299B732EF8E36BD8C /* PatternGridView.swift */,
@@ -84,6 +87,7 @@
 			buildConfigurationList = DC738F3FE28B8971FD4B9336 /* Build configuration list for PBXNativeTarget "Patternsmith" */;
 			buildPhases = (
 				E4E4CE4DC8A6753C84A7B07E /* Sources */,
+				3A3035E2331E095CE5E3C8A8 /* Resources */,
 				FF50E0CD0B498248BF3ECA98 /* Frameworks */,
 			);
 			buildRules = (
@@ -133,6 +137,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A3035E2331E095CE5E3C8A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				473F67EEBF583A9E80752086 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4E4CE4DC8A6753C84A7B07E /* Sources */ = {
