@@ -25,6 +25,7 @@ targets:
         PRODUCT_NAME: Patternaut
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
+        VERSIONING_SYSTEM: apple-generic
         SWIFT_VERSION: "6.0"
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
