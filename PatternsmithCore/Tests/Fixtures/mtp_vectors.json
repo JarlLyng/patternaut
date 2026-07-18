@@ -1,0 +1,3723 @@
+{
+  "cases": [
+    {
+      "name": "16-track basic",
+      "header": {
+        "idFile": "PM",
+        "type": 0,
+        "fwVersion": [
+          1,
+          9,
+          0,
+          0
+        ],
+        "fileStructureVersion": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "size": 0
+      },
+      "crc": 0,
+      "tracks": [
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": 60,
+              "instrument": 1,
+              "fx0": {
+                "type": 4,
+                "value": 50
+              },
+              "fx1": {
+                "type": 3,
+                "value": 2
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": 48,
+              "instrument": 48,
+              "fx0": {
+                "type": 8,
+                "value": 100
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 16,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        }
+      ],
+      "expectedBase64": "UE0AAAEJAAAFBQUFAAAAAAAAAAAAAAAAAAAAABA8AQMCBDL/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEP8AAAAAAP8AAAAAAP8AAAAAADAwAAAIZP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "2-track extremes + padding",
+      "header": {
+        "idFile": "PM",
+        "type": 0,
+        "fwVersion": [
+          1,
+          9,
+          0,
+          0
+        ],
+        "fileStructureVersion": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "size": 0
+      },
+      "crc": 0,
+      "tracks": [
+        {
+          "length": 4,
+          "steps": [
+            {
+              "note": -4,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -2,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -3,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "length": 4,
+          "steps": [
+            {
+              "note": 127,
+              "instrument": 66,
+              "fx0": {
+                "type": 41,
+                "value": 255
+              },
+              "fx1": {
+                "type": 31,
+                "value": 50
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        }
+      ],
+      "expectedBase64": "UE0AAAEJAAAFBQUFAAAAAAAAAAAAAAAAAAAAAAT8AAAAAAD+AAAAAAD9AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEf0IfMin//wAAAAAA/wAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    },
+    {
+      "name": "custom header + crc",
+      "header": {
+        "idFile": "PM",
+        "type": 2,
+        "fwVersion": [
+          1,
+          9,
+          2,
+          3
+        ],
+        "fileStructureVersion": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "size": 1234
+      },
+      "crc": 3735928559,
+      "tracks": [
+        {
+          "length": 32,
+          "steps": [
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": 72,
+              "instrument": 2,
+              "fx0": {
+                "type": 15,
+                "value": 120
+              },
+              "fx1": {
+                "type": 17,
+                "value": 60
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            },
+            {
+              "note": -1,
+              "instrument": 0,
+              "fx0": {
+                "type": 0,
+                "value": 0
+              },
+              "fx1": {
+                "type": 0,
+                "value": 0
+              }
+            }
+          ]
+        }
+      ],
+      "expectedBase64": "UE0CAAEJAgMHBwcH0gQAAAAAAAAAAAAAAAAAACD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAABIAhE8D3j/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvvq3e"
+    }
+  ]
+}

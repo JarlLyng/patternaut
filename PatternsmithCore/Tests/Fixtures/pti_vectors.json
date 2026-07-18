@@ -1,0 +1,634 @@
+{
+  "cases": [
+    {
+      "name": "default mono",
+      "header": {
+        "idFile": "TI",
+        "type": 1,
+        "fwVersion": [
+          1,
+          9,
+          1,
+          1
+        ],
+        "fileStructureVersion": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "size": 372
+      },
+      "isActive": true,
+      "sample": {
+        "type": 0,
+        "filename": "untitled",
+        "length": 8,
+        "wavetableWindowCount": 0,
+        "channels": 1
+      },
+      "playmode": 0,
+      "startPoint": 0,
+      "loopPoint1": 0,
+      "loopPoint2": 65534,
+      "endPoint": 65535,
+      "wavetableCurrentWindow": 0,
+      "automations": [
+        {
+          "enabled": true,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        }
+      ],
+      "cutoff": 1,
+      "resonance": 0,
+      "filterType": 0,
+      "filterEnabled": false,
+      "tune": 0,
+      "finetune": 0,
+      "volume": 1,
+      "panning": 0,
+      "delaySend": 0,
+      "reverbSend": 0,
+      "slices": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "numSlices": 0,
+      "selectedSlice": 0,
+      "granular": {
+        "grainLength": 4410,
+        "currentPosition": 0,
+        "shape": 1,
+        "type": 0
+      },
+      "overdrive": 0,
+      "bitdepth": 16,
+      "wavBase64": "UklGRjQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YRAAAAAAAOgDGPz/fwCA9AEM/gAA",
+      "expectedBase64": "VEkBAAEJAQEJCQkJdAEAAAEAAAAAdW50aXRsZWQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCaACAAAAAAIAAAAAAAAAAAAAAAAAAAAAP7///8AAAAAAAAAAIA/AAAAAAAAAAAAAIA/6AMAAQAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAAAAIA/AAAAAAAAAAAAAIA/6AMAAAAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAAAAAIA/AAAAAAAAAAAyAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOhEAAAEAAAAQAAAAAADoAxj8/38AgPQBDP4AAAAA"
+    },
+    {
+      "name": "custom mono",
+      "header": {
+        "idFile": "TI",
+        "type": 1,
+        "fwVersion": [
+          1,
+          9,
+          1,
+          1
+        ],
+        "fileStructureVersion": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "size": 372
+      },
+      "isActive": true,
+      "sample": {
+        "type": 0,
+        "filename": "kick808",
+        "length": 4,
+        "wavetableWindowCount": 0,
+        "channels": 1
+      },
+      "playmode": 1,
+      "startPoint": 10,
+      "loopPoint1": 0,
+      "loopPoint2": 65534,
+      "endPoint": 5000,
+      "wavetableCurrentWindow": 0,
+      "automations": [
+        {
+          "enabled": true,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        }
+      ],
+      "cutoff": 0.4,
+      "resonance": 0,
+      "filterType": 1,
+      "filterEnabled": true,
+      "tune": -7,
+      "finetune": 20,
+      "volume": 1.5,
+      "panning": -0.5,
+      "delaySend": 0.3,
+      "reverbSend": 0.6,
+      "slices": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "numSlices": 0,
+      "selectedSlice": 0,
+      "granular": {
+        "grainLength": 4410,
+        "currentPosition": 0,
+        "shape": 1,
+        "type": 0
+      },
+      "overdrive": 0.25,
+      "bitdepth": 16,
+      "wavBase64": "UklGRiwAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQgAAABkAMgALAGQAQ==",
+      "expectedBase64": "VEkBAAEJAQEJCQkJdAEAAAEAAAAAa2ljazgwOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCaABAAAAAAIAAAAAAAAAAAAAAEACgAAAP7/iBMAAAAAAAAAAIA/AAAAAAAAAAAAAIA/6AMAAQAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAAAAIA/AAAAAAAAAAAAAIA/6AMAAAAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAADNzMw+AAAAAAEB+RRLAAAAGQAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOhEAAAEAPBkQAAAAZADIACwBkAEAAA=="
+    },
+    {
+      "name": "stereo",
+      "header": {
+        "idFile": "TI",
+        "type": 1,
+        "fwVersion": [
+          1,
+          9,
+          1,
+          1
+        ],
+        "fileStructureVersion": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "size": 372
+      },
+      "isActive": true,
+      "sample": {
+        "type": 0,
+        "filename": "untitled",
+        "length": 4,
+        "wavetableWindowCount": 0,
+        "channels": 2
+      },
+      "playmode": 0,
+      "startPoint": 0,
+      "loopPoint1": 0,
+      "loopPoint2": 65534,
+      "endPoint": 65535,
+      "wavetableCurrentWindow": 0,
+      "automations": [
+        {
+          "enabled": true,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        },
+        {
+          "enabled": false,
+          "isLFO": false,
+          "envelope": {
+            "amount": 1,
+            "delay": 0,
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 1000
+          },
+          "lfo": {
+            "shape": 2,
+            "speed": 10,
+            "amount": 0
+          }
+        }
+      ],
+      "cutoff": 1,
+      "resonance": 0,
+      "filterType": 0,
+      "filterEnabled": false,
+      "tune": 0,
+      "finetune": 0,
+      "volume": 1,
+      "panning": 0,
+      "delaySend": 0,
+      "reverbSend": 0,
+      "slices": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "numSlices": 0,
+      "selectedSlice": 0,
+      "granular": {
+        "grainLength": 4410,
+        "currentPosition": 0,
+        "shape": 1,
+        "type": 0
+      },
+      "overdrive": 0,
+      "bitdepth": 16,
+      "wavBase64": "UklGRjQAAABXQVZFZm10IBAAAAABAAIARKwAABCxAgAEABAAZGF0YRAAAAABAAIAAwAEAAUABgAHAAgA",
+      "expectedBase64": "VEkBAAEJAQEJCQkJdAEAAAEAAAAAdW50aXRsZWQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoCaABAAAAAAIAAAAAAAAAAAAAAAAAAAAAP7///8AAAAAAAAAAIA/AAAAAAAAAAAAAIA/6AMAAQAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAAAAIA/AAAAAAAAAAAAAIA/6AMAAAAAgD8AAAAAAAAAAAAAgD/oAwAAAACAPwAAAAAAAAAAAACAP+gDAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAAACCgAAAAAAAAIKAAAAAAAAAgoAAAAAAAAAAIA/AAAAAAAAAAAyAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOhEAAAEAAAAQAAAAAQADAAUABwACAAQABgAIAAAA"
+    }
+  ]
+}

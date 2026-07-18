@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Xcode Cloud / archives
+*.xcarchive
+
+# Scratch
+Polyend-Tracker-Manual-1.7.0.pdf
+
+# Stray icon candidates at repo root (not wired up)
+/app-icon-*.png
