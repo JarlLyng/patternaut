@@ -16,6 +16,20 @@ final class EditorModel {
     var issues: [ValidationIssue] = []
     var lastExportPath: String?
 
+    /// Loaded sample instruments (written as `.pti` on export). Their order is
+    /// the sample-instrument slot: index 0 = instrument 0 in the pattern grid.
+    var instruments: [LoadedInstrument] = []
+    var sampleError: String?
+
+    /// A sample loaded from a WAV, ready to export as a `.pti`.
+    struct LoadedInstrument: Identifiable {
+        let id = UUID()
+        var name: String
+        var instrument: Instrument
+        var isStereo: Bool { instrument.sample.channels == 2 }
+        var frames: Int { instrument.sample.length }
+    }
+
     init(device: DeviceModel = .trackerPlus) {
         self.device = device
         self.tempo = 130
@@ -53,19 +67,67 @@ final class EditorModel {
     func undo() { editor.undo() }
     func redo() { editor.redo() }
 
-    /// Validates and writes a project bundle to `directory`.
+    // MARK: - Samples / instruments
+
+    /// Loads a 16-bit PCM WAV as a sample instrument. Reports a friendly error
+    /// on unsupported files instead of throwing.
+    func loadSample(from url: URL) {
+        do {
+            let data = try Data(contentsOf: url)
+            let info = try WavFile.info(data)
+            guard info.bitsPerSample == 16 else {
+                sampleError = "\(url.lastPathComponent): needs a 16-bit WAV (got \(info.bitsPerSample)-bit)."
+                return
+            }
+            let name = url.deletingPathExtension().lastPathComponent
+            let instrument = try Instrument.new(wav: data, filename: String(name.prefix(31)))
+            instruments.append(LoadedInstrument(name: name, instrument: instrument))
+            sampleError = nil
+        } catch let error as WavFile.WavError {
+            sampleError = "\(url.lastPathComponent): not a supported WAV (\(error)). Use 16-bit PCM."
+        } catch {
+            sampleError = "Couldn't load \(url.lastPathComponent)."
+        }
+    }
+
+    func removeInstrument(_ id: LoadedInstrument.ID) {
+        instruments.removeAll { $0.id == id }
+    }
+
+    /// Validates and writes a project bundle (patterns + loaded instruments) to
+    /// `directory`.
     func export(to directory: URL) {
         issues = device.profile.validate(pattern)
         guard device.profile.isExportable(pattern) else { return }
         do {
             let result = try ProjectBundleWriter.write(
                 patterns: [pattern], projectName: pattern.metadata.name, device: device,
-                tempo: Float(tempo), to: directory
+                tempo: Float(tempo), instruments: namedInstruments(), to: directory
             )
             lastExportPath = result.projectDirectory.path
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]
         }
+    }
+
+    /// Maps loaded instruments to unique, filesystem-safe `.pti` names.
+    private func namedInstruments() -> [ProjectBundleWriter.NamedInstrument] {
+        var used = Set<String>()
+        return instruments.map { loaded in
+            let base = sanitizedFileName(loaded.name)
+            var name = base
+            var suffix = 1
+            while used.contains(name) { name = "\(base)-\(suffix)"; suffix += 1 }
+            used.insert(name)
+            return ProjectBundleWriter.NamedInstrument(name: name, instrument: loaded.instrument)
+        }
+    }
+
+    private func sanitizedFileName(_ raw: String) -> String {
+        let cleaned = raw.replacingOccurrences(of: "/", with: "-")
+            .replacingOccurrences(of: ":", with: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return cleaned.isEmpty ? "instrument" : String(cleaned.prefix(40))
     }
 
     // MARK: - Key handling

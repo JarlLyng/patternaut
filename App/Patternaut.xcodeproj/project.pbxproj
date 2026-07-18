@@ -14,6 +14,7 @@
 		83CABA08652153406E608F41 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */; };
 		B5EB100002C0FB399C479C54 /* PatternautCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B916700499670B44836604C /* PatternautCore */; };
 		BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */; };
+		BDD56922C19834CD5393B862 /* InstrumentsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormatting.swift; sourceTree = "<group>"; };
 		351BF0C56ED67F247A792DCA /* Patternaut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Patternaut.entitlements; sourceTree = "<group>"; };
 		3DF648219753A5D350CCCC59 /* PatternGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridView.swift; sourceTree = "<group>"; };
+		4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsPanel.swift; sourceTree = "<group>"; };
 		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
 		BD13308432A86D508BCEC6D2 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				8E84D35258A28FFF54312DCC /* Assets.xcassets */,
 				F8EDCC653F6211947718B51E /* ContentView.swift */,
 				BD13308432A86D508BCEC6D2 /* EditorModel.swift */,
+				4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */,
 				351BF0C56ED67F247A792DCA /* Patternaut.entitlements */,
 				AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */,
 				3DF648219753A5D350CCCC59 /* PatternGridView.swift */,
@@ -157,6 +160,7 @@
 			files = (
 				205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */,
 				80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */,
+				BDD56922C19834CD5393B862 /* InstrumentsPanel.swift in Sources */,
 				3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */,
 				BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */,
 				83CABA08652153406E608F41 /* StepFormatting.swift in Sources */,

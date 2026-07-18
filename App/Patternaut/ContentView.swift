@@ -10,17 +10,24 @@ struct ContentView: View {
         VStack(spacing: 0) {
             controls
             Divider()
-            PatternGridView(model: model)
-                .focusable()
-                .focused($gridFocused)
-                .focusEffectDisabled()
-                .onKeyPress { handle($0) }
-            if !model.issues.isEmpty {
-                Divider()
-                issueBar
+            HSplitView {
+                VStack(spacing: 0) {
+                    PatternGridView(model: model)
+                        .focusable()
+                        .focused($gridFocused)
+                        .focusEffectDisabled()
+                        .onKeyPress { handle($0) }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    if !model.issues.isEmpty {
+                        Divider()
+                        issueBar
+                    }
+                }
+                InstrumentsPanel(model: model, onAdd: loadSamples)
+                    .frame(minWidth: 240, idealWidth: 260, maxWidth: 380)
             }
         }
-        .frame(minWidth: 720, minHeight: 460)
+        .frame(minWidth: 900, minHeight: 480)
         .onAppear { gridFocused = true }
     }
 
@@ -109,6 +116,19 @@ struct ContentView: View {
         panel.message = "Choose a folder (e.g. your SD card's Projects directory)"
         if panel.runModal() == .OK, let url = panel.url {
             model.export(to: url)
+        }
+    }
+
+    private func loadSamples() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = true
+        panel.allowedContentTypes = [.wav]
+        panel.prompt = "Load"
+        panel.message = "Choose 16-bit WAV samples"
+        if panel.runModal() == .OK {
+            for url in panel.urls { model.loadSample(from: url) }
         }
     }
 }
