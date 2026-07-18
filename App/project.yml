@@ -21,7 +21,7 @@ targets:
         product: PatternsmithCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.iamjarl.patternsmith
+        PRODUCT_BUNDLE_IDENTIFIER: com.iamjarl.metron
         PRODUCT_NAME: Metron
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
