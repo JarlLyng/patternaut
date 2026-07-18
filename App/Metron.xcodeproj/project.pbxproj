@@ -1,0 +1,377 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		044E21F7C36C9A55C04F83A3 /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30599E3EACDF2A24ABC53E53 /* EditorModel.swift */; };
+		480BE1DDC473E14080C6A3EA /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CC4E84A9018D13A99E0D6 /* StepFormatting.swift */; };
+		5042442CB3BCDC3001CAE4A5 /* PatternGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DC4648AB9F56EFA61BDB2 /* PatternGridView.swift */; };
+		A53D654473438D617F4A5BA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C5ACFC1A47865150CC81C7 /* ContentView.swift */; };
+		B3384704A9341F45AD5F8EA0 /* MetronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9C7E49AD2FA2B7D056AAA /* MetronApp.swift */; };
+		B5FB529883247ED92CC3A0E0 /* PatternsmithCore in Frameworks */ = {isa = PBXBuildFile; productRef = FD3265B70E16F2D52ABCE5D3 /* PatternsmithCore */; };
+		F14DEA6E39E5198FD48C8623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC22D67FA90730A8760913C7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		081CC4E84A9018D13A99E0D6 /* StepFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormatting.swift; sourceTree = "<group>"; };
+		30599E3EACDF2A24ABC53E53 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
+		353DC4648AB9F56EFA61BDB2 /* PatternGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridView.swift; sourceTree = "<group>"; };
+		4218A4C9817E20290A596409 /* Metron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metron.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A4C8ED874AF7EF9C5A7785D /* Metron.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Metron.entitlements; sourceTree = "<group>"; };
+		A2C5ACFC1A47865150CC81C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BCA6833D6EBE7A0B64C16B2D /* PatternsmithCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PatternsmithCore; path = ../PatternsmithCore; sourceTree = SOURCE_ROOT; };
+		D6A9C7E49AD2FA2B7D056AAA /* MetronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronApp.swift; sourceTree = "<group>"; };
+		DC22D67FA90730A8760913C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF97C86D4CEC02F7D8A27B0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FB529883247ED92CC3A0E0 /* PatternsmithCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0AEBE10FE28C4F2A056DFE7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4218A4C9817E20290A596409 /* Metron.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC0FCF04BF726F6BFB43CE26 /* Metron */ = {
+			isa = PBXGroup;
+			children = (
+				DC22D67FA90730A8760913C7 /* Assets.xcassets */,
+				A2C5ACFC1A47865150CC81C7 /* ContentView.swift */,
+				30599E3EACDF2A24ABC53E53 /* EditorModel.swift */,
+				5A4C8ED874AF7EF9C5A7785D /* Metron.entitlements */,
+				D6A9C7E49AD2FA2B7D056AAA /* MetronApp.swift */,
+				353DC4648AB9F56EFA61BDB2 /* PatternGridView.swift */,
+				081CC4E84A9018D13A99E0D6 /* StepFormatting.swift */,
+			);
+			path = Metron;
+			sourceTree = "<group>";
+		};
+		D7937B8501C486B94A834F6D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BCA6833D6EBE7A0B64C16B2D /* PatternsmithCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		F5D80F5D2D9C57003D8AD35C = {
+			isa = PBXGroup;
+			children = (
+				CC0FCF04BF726F6BFB43CE26 /* Metron */,
+				D7937B8501C486B94A834F6D /* Packages */,
+				0AEBE10FE28C4F2A056DFE7F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		893C739F5A84D10BEAABEA35 /* Metron */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD3ED6992778635685CE9ADA /* Build configuration list for PBXNativeTarget "Metron" */;
+			buildPhases = (
+				B0E13B62D2C8DDEC168EDF82 /* Sources */,
+				249604920DF3590F94801524 /* Resources */,
+				CF97C86D4CEC02F7D8A27B0B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Metron;
+			packageProductDependencies = (
+				FD3265B70E16F2D52ABCE5D3 /* PatternsmithCore */,
+			);
+			productName = Metron;
+			productReference = 4218A4C9817E20290A596409 /* Metron.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6ABCC0437AE490B6B5F4AEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					893C739F5A84D10BEAABEA35 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 36CAAE8D4DA2CBBC1AD45BF0 /* Build configuration list for PBXProject "Metron" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F5D80F5D2D9C57003D8AD35C;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AC6D02CEBF1D1F2AC5EE4193 /* XCLocalSwiftPackageReference "../PatternsmithCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 0AEBE10FE28C4F2A056DFE7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				893C739F5A84D10BEAABEA35 /* Metron */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		249604920DF3590F94801524 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F14DEA6E39E5198FD48C8623 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0E13B62D2C8DDEC168EDF82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A53D654473438D617F4A5BA9 /* ContentView.swift in Sources */,
+				044E21F7C36C9A55C04F83A3 /* EditorModel.swift in Sources */,
+				B3384704A9341F45AD5F8EA0 /* MetronApp.swift in Sources */,
+				5042442CB3BCDC3001CAE4A5 /* PatternGridView.swift in Sources */,
+				480BE1DDC473E14080C6A3EA /* StepFormatting.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1F471A3CA3C43FBE3BAC7EC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9AF3683C1362189F9F661A21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BADF8B9BC3BB97BEB4AA3503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Metron/Metron.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Metron;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamjarl.patternsmith;
+				PRODUCT_NAME = Metron;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		DDB1B76AA1B5321CCE90761A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Metron/Metron.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Metron;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamjarl.patternsmith;
+				PRODUCT_NAME = Metron;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36CAAE8D4DA2CBBC1AD45BF0 /* Build configuration list for PBXProject "Metron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AF3683C1362189F9F661A21 /* Debug */,
+				1F471A3CA3C43FBE3BAC7EC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DD3ED6992778635685CE9ADA /* Build configuration list for PBXNativeTarget "Metron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDB1B76AA1B5321CCE90761A /* Debug */,
+				BADF8B9BC3BB97BEB4AA3503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AC6D02CEBF1D1F2AC5EE4193 /* XCLocalSwiftPackageReference "../PatternsmithCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../PatternsmithCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD3265B70E16F2D52ABCE5D3 /* PatternsmithCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PatternsmithCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E6ABCC0437AE490B6B5F4AEF /* Project object */;
+}

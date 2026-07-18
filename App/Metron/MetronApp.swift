@@ -1,9 +1,9 @@
 import SwiftUI
 
 @main
-struct TrackerkitApp: App {
+struct MetronApp: App {
     var body: some Scene {
-        WindowGroup("Trackerkit") {
+        WindowGroup("Metron") {
             ContentView()
         }
         .windowStyle(.titleBar)
