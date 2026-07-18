@@ -1,4 +1,4 @@
-name: Metron
+name: Patternaut
 options:
   bundleIdPrefix: com.iamjarl
   deploymentTarget:
@@ -11,36 +11,36 @@ packages:
     path: ../PatternsmithCore
 
 targets:
-  Metron:
+  Patternaut:
     type: application
     platform: macOS
     sources:
-      - path: Metron
+      - path: Patternaut
     dependencies:
       - package: PatternsmithCore
         product: PatternsmithCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.iamjarl.metron
-        PRODUCT_NAME: Metron
+        PRODUCT_BUNDLE_IDENTIFIER: com.iamjarl.patternaut
+        PRODUCT_NAME: Patternaut
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "6.0"
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        INFOPLIST_KEY_CFBundleDisplayName: Metron
+        INFOPLIST_KEY_CFBundleDisplayName: Patternaut
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.music
         ENABLE_HARDENED_RUNTIME: YES
         CODE_SIGN_STYLE: Automatic
-        CODE_SIGN_ENTITLEMENTS: Metron/Metron.entitlements
+        CODE_SIGN_ENTITLEMENTS: Patternaut/Patternaut.entitlements
         ENABLE_USER_SCRIPT_SANDBOXING: YES
         DEAD_CODE_STRIPPING: YES
 
 schemes:
-  Metron:
+  Patternaut:
     build:
       targets:
-        Metron: all
+        Patternaut: all
     run:
       config: Debug
     archive:

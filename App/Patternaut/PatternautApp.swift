@@ -1,9 +1,9 @@
 import SwiftUI
 
 @main
-struct MetronApp: App {
+struct PatternautApp: App {
     var body: some Scene {
-        WindowGroup("Metron") {
+        WindowGroup("Patternaut") {
             ContentView()
         }
         .windowStyle(.titleBar)

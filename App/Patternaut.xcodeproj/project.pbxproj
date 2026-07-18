@@ -1,0 +1,377 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17D98BB2B54AF50B3AD382BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E84D35258A28FFF54312DCC /* Assets.xcassets */; };
+		205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDCC653F6211947718B51E /* ContentView.swift */; };
+		3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF648219753A5D350CCCC59 /* PatternGridView.swift */; };
+		80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD13308432A86D508BCEC6D2 /* EditorModel.swift */; };
+		83CABA08652153406E608F41 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */; };
+		B5EB100002C0FB399C479C54 /* PatternsmithCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B6ED64884E80C163116CF30 /* PatternsmithCore */; };
+		BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2967431FB755A4431EE7B42D /* Patternaut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Patternaut.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormatting.swift; sourceTree = "<group>"; };
+		351BF0C56ED67F247A792DCA /* Patternaut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Patternaut.entitlements; sourceTree = "<group>"; };
+		3DF648219753A5D350CCCC59 /* PatternGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridView.swift; sourceTree = "<group>"; };
+		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
+		BD13308432A86D508BCEC6D2 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
+		DDBFD04BA2761505F5154DC3 /* PatternsmithCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PatternsmithCore; path = ../PatternsmithCore; sourceTree = SOURCE_ROOT; };
+		F8EDCC653F6211947718B51E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A539113A10F650867CC9FE86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5EB100002C0FB399C479C54 /* PatternsmithCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0347AD4E8BDF8D0EFC335C1C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2967431FB755A4431EE7B42D /* Patternaut.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2AA5DE7B019D37F5BEC2EC67 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				DDBFD04BA2761505F5154DC3 /* PatternsmithCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		641509F73B35BE32C32EF5E9 = {
+			isa = PBXGroup;
+			children = (
+				2AA5DE7B019D37F5BEC2EC67 /* Packages */,
+				F3F4E739193DE9080105D72A /* Patternaut */,
+				0347AD4E8BDF8D0EFC335C1C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F3F4E739193DE9080105D72A /* Patternaut */ = {
+			isa = PBXGroup;
+			children = (
+				8E84D35258A28FFF54312DCC /* Assets.xcassets */,
+				F8EDCC653F6211947718B51E /* ContentView.swift */,
+				BD13308432A86D508BCEC6D2 /* EditorModel.swift */,
+				351BF0C56ED67F247A792DCA /* Patternaut.entitlements */,
+				AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */,
+				3DF648219753A5D350CCCC59 /* PatternGridView.swift */,
+				2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */,
+			);
+			path = Patternaut;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDD394560BD6D573E2FCE7A2 /* Patternaut */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 289C21D70E7E7E8A0923D662 /* Build configuration list for PBXNativeTarget "Patternaut" */;
+			buildPhases = (
+				A2A8E81232776CB377E52D9E /* Sources */,
+				389ABF97EBDD7F6EA2C2C855 /* Resources */,
+				A539113A10F650867CC9FE86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Patternaut;
+			packageProductDependencies = (
+				4B6ED64884E80C163116CF30 /* PatternsmithCore */,
+			);
+			productName = Patternaut;
+			productReference = 2967431FB755A4431EE7B42D /* Patternaut.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		815650B13F748C59F6670F86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					CDD394560BD6D573E2FCE7A2 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4D0C53E5074374590784DEA3 /* Build configuration list for PBXProject "Patternaut" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 641509F73B35BE32C32EF5E9;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				916A44CD8FB7B2F11CC94E19 /* XCLocalSwiftPackageReference "../PatternsmithCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 0347AD4E8BDF8D0EFC335C1C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDD394560BD6D573E2FCE7A2 /* Patternaut */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		389ABF97EBDD7F6EA2C2C855 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17D98BB2B54AF50B3AD382BC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A2A8E81232776CB377E52D9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */,
+				80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */,
+				3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */,
+				BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */,
+				83CABA08652153406E608F41 /* StepFormatting.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3EE346692ECFFC66B70374D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Patternaut/Patternaut.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Patternaut;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamjarl.patternaut;
+				PRODUCT_NAME = Patternaut;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		5E119B37CCA9EEC55C1F5D9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		636238DD1DE013F565B4F3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Patternaut/Patternaut.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Patternaut;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamjarl.patternaut;
+				PRODUCT_NAME = Patternaut;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		FDC8C51221807F54424A0B55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		289C21D70E7E7E8A0923D662 /* Build configuration list for PBXNativeTarget "Patternaut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636238DD1DE013F565B4F3DA /* Debug */,
+				3EE346692ECFFC66B70374D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4D0C53E5074374590784DEA3 /* Build configuration list for PBXProject "Patternaut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E119B37CCA9EEC55C1F5D9E /* Debug */,
+				FDC8C51221807F54424A0B55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		916A44CD8FB7B2F11CC94E19 /* XCLocalSwiftPackageReference "../PatternsmithCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../PatternsmithCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B6ED64884E80C163116CF30 /* PatternsmithCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PatternsmithCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 815650B13F748C59F6670F86 /* Project object */;
+}
