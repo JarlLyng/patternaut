@@ -67,6 +67,34 @@ final class EditorModel {
     func undo() { editor.undo() }
     func redo() { editor.redo() }
 
+    // MARK: - Live MIDI (Vej A)
+
+    private let midi = MIDIOutput()
+    var midiDestinations: [MIDIDestination] = []
+    var selectedDestinationID: MIDIDestination.ID?
+    var midiStatus: String?
+
+    func refreshMIDIDestinations() {
+        midiDestinations = midi?.destinations() ?? []
+        if selectedDestinationID == nil || !midiDestinations.contains(where: { $0.id == selectedDestinationID }) {
+            selectedDestinationID = midiDestinations.first?.id
+        }
+    }
+
+    /// Sends the current pattern as live MIDI to the selected destination — e.g.
+    /// into a Tracker armed with `[Rec]+[Play]`.
+    func sendLive() {
+        guard let midi else { midiStatus = "MIDI unavailable."; return }
+        guard let id = selectedDestinationID, let dest = midiDestinations.first(where: { $0.id == id }) else {
+            midiStatus = "Choose a MIDI destination first."
+            return
+        }
+        let events = MIDISequencer.events(for: pattern, channelMode: .perTrack)
+        guard !events.isEmpty else { midiStatus = "Pattern has no notes to send."; return }
+        midi.send(events, tempo: tempo, to: dest.endpoint)
+        midiStatus = "Sent \(events.count) MIDI events to \(dest.name)."
+    }
+
     private var mutationCounter: UInt64 = 0
 
     /// Applies a mutation of the current pattern in place (undoable). Each call

@@ -18,7 +18,7 @@ struct ContentView: View {
                         .focusEffectDisabled()
                         .onKeyPress { handle($0) }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    if !model.issues.isEmpty {
+                    if showsStatusBar {
                         Divider()
                         issueBar
                     }
@@ -28,7 +28,14 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 480)
-        .onAppear { gridFocused = true }
+        .onAppear {
+            gridFocused = true
+            model.refreshMIDIDestinations()
+        }
+    }
+
+    private var showsStatusBar: Bool {
+        !model.issues.isEmpty || model.lastExportPath != nil || model.midiStatus != nil
     }
 
     // MARK: Controls
@@ -66,6 +73,15 @@ struct ContentView: View {
             Button("Undo") { model.undo() }.disabled(!model.canUndo).keyboardShortcut("z")
             Button("Redo") { model.redo() }.disabled(!model.canRedo).keyboardShortcut("z", modifiers: [.command, .shift])
             Spacer()
+            if !model.midiDestinations.isEmpty {
+                Picker("MIDI", selection: $model.selectedDestinationID) {
+                    ForEach(model.midiDestinations) { Text($0.name).tag(Optional($0.id)) }
+                }
+                .labelsHidden()
+                .fixedSize()
+                Button("Send MIDI") { model.sendLive() }
+                    .help("Play the pattern as live MIDI (e.g. into a Tracker in Rec)")
+            }
             Button("Export…") { exportBundle() }
         }
         .padding(8)
@@ -76,6 +92,10 @@ struct ContentView: View {
             if let path = model.lastExportPath {
                 Label("Exported to \(path)", systemImage: "checkmark.circle")
                     .foregroundStyle(.green)
+            }
+            if let status = model.midiStatus {
+                Label(status, systemImage: "pianokeys")
+                    .foregroundStyle(.secondary)
             }
             ForEach(Array(model.issues.enumerated()), id: \.offset) { _, issue in
                 Label(issue.message, systemImage: issue.severity == .error ? "xmark.octagon" : "exclamationmark.triangle")
