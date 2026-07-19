@@ -3,112 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Patternaut — pattern companion for Polyend Tracker+ &amp; Mini</title>
-  <meta name="description" content="A native macOS companion for the Polyend Tracker+ and Tracker Mini. Generate, mutate and shape patterns on your Mac, then take them to your hardware." />
+  <title>Patternaut — a Mac companion for the Polyend Tracker+ and Mini</title>
+  <meta name="description" content="I built Patternaut to prepare Polyend Tracker patterns on my Mac: generate and mutate ideas, then send them to the hardware. A one-time purchase, no subscription." />
   <meta property="og:title" content="Patternaut" />
-  <meta property="og:description" content="Build the pattern. Break the pattern. Take it to the Tracker." />
+  <meta property="og:description" content="Build the pattern. Break the pattern. Take it to the Tracker. A native Mac companion for the Polyend Tracker+ and Tracker Mini." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://patternaut.iamjarl.com/" />
+  <link rel="canonical" href="https://patternaut.iamjarl.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23111'/%3E%3Cg fill='%235eead4'%3E%3Ccircle cx='4' cy='4' r='1.4'/%3E%3Ccircle cx='12' cy='4' r='1.4'/%3E%3Ccircle cx='8' cy='8' r='1.4'/%3E%3Ccircle cx='4' cy='12' r='1.4'/%3E%3Ccircle cx='12' cy='12' r='1.4'/%3E%3C/g%3E%3C/svg%3E" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Patternaut",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "macOS 14 and later",
+    "description": "A native Mac companion for the Polyend Tracker+ and Tracker Mini. Generate and mutate patterns on your Mac, then take them to the hardware.",
+    "url": "https://patternaut.iamjarl.com/",
+    "author": { "@type": "Person", "name": "Jarl", "url": "https://iamjarl.com" }
+  }
+  </script>
   <style>
     :root {
-      --bg: #0e0f13;
-      --panel: #16181f;
-      --border: #262a35;
-      --text: #e7e9ee;
-      --muted: #9aa1b1;
-      --accent: #5eead4;
-      --accent-2: #a5b4fc;
-      --radius: 14px;
-      --maxw: 1040px;
-      color-scheme: dark;
+      --bg: #0e0f13; --panel: #16181f; --border: #262a35;
+      --text: #e7e9ee; --muted: #9aa1b1; --accent: #5eead4; --accent-2: #a5b4fc;
+      --radius: 14px; --maxw: 720px; color-scheme: dark;
     }
     @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f7f8fa;
-        --panel: #ffffff;
-        --border: #e4e7ee;
-        --text: #14161c;
-        --muted: #5b6474;
-        --accent: #0d9488;
-        --accent-2: #4f46e5;
-        color-scheme: light;
-      }
+      :root { --bg: #f7f8fa; --panel: #fff; --border: #e4e7ee; --text: #14161c; --muted: #5b6474; --accent: #0d9488; --accent-2: #4f46e5; color-scheme: light; }
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
+      margin: 0; color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 70% -10%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
-        var(--bg);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
+      background: radial-gradient(1100px 560px at 72% -12%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%), var(--bg);
+      line-height: 1.62; -webkit-font-smoothing: antialiased;
     }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     a { color: var(--accent); }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
-
     header.nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; font-size: 18px; }
     .brand .dot { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
     .nav .tag { color: var(--muted); font-size: 13px; }
-
-    .hero { padding: 64px 0 40px; }
-    .badge {
-      display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
-      color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
-      border-radius: 999px; padding: 5px 12px; margin-bottom: 20px;
-    }
-    h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 16px; }
-    .tagline { font-size: clamp(18px, 2.4vw, 24px); color: var(--text); margin: 0 0 10px; font-weight: 600; }
-    .lede { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 620px; margin: 0 0 28px; }
-    .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600;
-      padding: 12px 20px; border-radius: 10px; border: 1px solid transparent;
-    }
+    .hero { padding: 52px 0 34px; }
+    .badge { display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
+    h1 { font-size: clamp(40px, 8vw, 68px); line-height: 1.03; letter-spacing: -0.03em; margin: 0 0 14px; }
+    .tagline { font-size: clamp(18px, 3vw, 23px); font-weight: 600; margin: 0 0 22px; }
+    p { font-size: 17px; color: var(--text); }
+    .muted { color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 22px 0 4px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 10px; border: 1px solid transparent; }
     .btn.primary { background: var(--accent); color: #06231f; }
     @media (prefers-color-scheme: light) { .btn.primary { color: #fff; } }
     .btn.ghost { border-color: var(--border); color: var(--text); }
-    .btn.primary[aria-disabled="true"] { opacity: 0.9; cursor: default; }
-
-    /* Tracker-grid motif */
-    .grid-art {
-      margin-top: 46px; border: 1px solid var(--border); border-radius: var(--radius);
-      background: var(--panel); overflow-x: auto;
-    }
-    .grid-art pre {
-      margin: 0; padding: 20px 22px; font-size: 13px; color: var(--muted);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    .grid-art .hit { color: var(--accent); }
-    .grid-art .fx { color: var(--accent-2); }
-
-    section { padding: 48px 0; }
-    h2 { font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.02em; margin: 0 0 8px; }
-    .section-lede { color: var(--muted); max-width: 640px; margin: 0 0 30px; }
-
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-    .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-    .card h3 { margin: 0 0 6px; font-size: 17px; }
-    .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
-    .card .k { font-size: 12px; color: var(--accent); letter-spacing: 0.03em; text-transform: uppercase; }
-
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; counter-reset: step; }
-    .step { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-    .step::before {
-      counter-increment: step; content: counter(step);
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 30px; height: 30px; border-radius: 8px; margin-bottom: 12px;
-      background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); font-weight: 700;
-    }
-    .step h3 { margin: 0 0 4px; font-size: 16px; }
-    .step p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    footer { border-top: 1px solid var(--border); margin-top: 20px; padding: 30px 0 50px; color: var(--muted); font-size: 13.5px; }
-    footer p { margin: 6px 0; }
+    .grid-art { margin: 40px 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); overflow-x: auto; }
+    .grid-art pre { margin: 0; padding: 20px 22px; font-size: 13px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .grid-art .hit { color: var(--accent); } .grid-art .fx { color: var(--accent-2); }
+    section { padding: 26px 0; }
+    h2 { font-size: clamp(22px, 4vw, 28px); letter-spacing: -0.02em; margin: 0 0 12px; }
+    footer { border-top: 1px solid var(--border); margin-top: 30px; padding: 28px 0 52px; color: var(--muted); font-size: 14px; }
+    footer p { margin: 8px 0; font-size: 14px; }
     .disclaimer { font-size: 12.5px; opacity: 0.85; }
   </style>
 </head>
@@ -116,7 +73,7 @@
   <div class="wrap">
     <header class="nav">
       <div class="brand"><span class="dot"></span> Patternaut</div>
-      <div class="tag mono">for Polyend Tracker+ · Tracker Mini</div>
+      <div class="tag mono">for Polyend Tracker+ and Tracker Mini</div>
     </header>
 
     <main>
@@ -124,11 +81,14 @@
         <span class="badge">Private beta · macOS</span>
         <h1>Patternaut</h1>
         <p class="tagline">Build the pattern. Break the pattern. Take it to the Tracker.</p>
-        <p class="lede">A native macOS companion for the Polyend Tracker+ and Tracker Mini. Generate,
-          mutate and shape patterns on your Mac — then take them to your hardware.</p>
+        <p>I make music on a Polyend Tracker, and I built Patternaut to do the fiddly parts on my
+          Mac first. It generates and mutates patterns, then gets them onto the hardware, so I
+          spend less time programming steps and more time playing.</p>
+        <p class="muted">When it ships it will be a one-time purchase. No subscription, no account,
+          nothing sent to a server.</p>
         <div class="cta">
-          <a class="btn primary" href="#beta" aria-disabled="true">In TestFlight beta</a>
-          <a class="btn ghost" href="#features">See what it does</a>
+          <a class="btn primary" href="#beta">In TestFlight beta</a>
+          <a class="btn ghost" href="#what">What it does</a>
         </div>
 
         <div class="grid-art" aria-hidden="true">
@@ -141,45 +101,35 @@
         </div>
       </section>
 
-      <section id="features">
-        <h2>A tracker-native toolkit</h2>
-        <p class="section-lede">Patternaut thinks the way the Tracker works — 16 tracks, per-step FX,
-          monophonic voices — so what you make actually fits the machine.</p>
-        <div class="cards">
-          <div class="card"><div class="k">Generate</div><h3>Rhythm generators</h3><p>Euclidean rhythms, probability, swing and humanize — every result reproducible from a seed.</p></div>
-          <div class="card"><div class="k">Evolve</div><h3>Mutation</h3><p>Nudge a pattern from subtle to chaotic. Keep its identity, or deliberately break it.</p></div>
-          <div class="card"><div class="k">Shape</div><h3>Transforms</h3><p>Rotate, reverse, and groove your patterns non-destructively across tracks and steps.</p></div>
-          <div class="card"><div class="k">Hardware</div><h3>SD-card export</h3><p>Write byte-exact <span class="mono">.mtp</span> patterns, <span class="mono">.mt</span> projects and <span class="mono">.pti</span> instruments straight to your card.</p></div>
-          <div class="card"><div class="k">Play</div><h3>Live MIDI</h3><p>Send a pattern straight into the Tracker in record mode over USB or MIDI.</p></div>
-          <div class="card"><div class="k">Native</div><h3>Local &amp; offline</h3><p>A real macOS app. No account, no cloud, your work stays on your Mac.</p></div>
-        </div>
-      </section>
-
-      <section>
-        <h2>How it works</h2>
-        <p class="section-lede">From idea to hardware in three moves.</p>
-        <div class="steps">
-          <div class="step"><h3>Generate or edit</h3><p>Start from a generator or program the grid by keyboard.</p></div>
-          <div class="step"><h3>Mutate &amp; shape</h3><p>Explore variations, compare versions, keep the ones you like.</p></div>
-          <div class="step"><h3>Take it to the Tracker</h3><p>Export a project to your SD card, or play it in live over MIDI.</p></div>
-        </div>
+      <section id="what">
+        <h2>What it does</h2>
+        <p>Patternaut works the way the Tracker does. Sixteen tracks, per-step FX, monophonic
+          voices. You generate a rhythm (Euclidean, probability, swing and humanize) or program
+          the grid by keyboard, then shape it with rotates, transforms, and mutation that can stay
+          subtle or go fully off the rails. Everything is reproducible from a seed, so a pattern
+          you like is a pattern you can get back.</p>
+        <p>When an idea is ready, Patternaut writes it straight to your SD card as real Tracker
+          files (<span class="mono">.mtp</span> patterns, <span class="mono">.mt</span> projects,
+          <span class="mono">.pti</span> instruments), or plays it into the Tracker live over MIDI
+          while it records. Drop in a 16-bit WAV and it becomes an instrument.</p>
+        <p>It is not a replacement for the Tracker, and it is not trying to be. It gets ideas ready
+          for the machine and then stays out of the way. It runs locally on your Mac, with no
+          account and nothing sent anywhere.</p>
       </section>
 
       <section id="beta">
-        <h2>Join the beta</h2>
-        <p class="section-lede">Patternaut is in active development and currently in a private TestFlight
-          beta for macOS 14 and later. Interested in trying it?</p>
-        <div class="cta">
-          <a class="btn primary" href="https://iamjarl.com">Get in touch</a>
-        </div>
+        <h2>Try the beta</h2>
+        <p>Patternaut is early. It is in a private TestFlight beta for macOS 14 and later, and I am
+          still shaping it. If you use a Tracker+ or Tracker Mini and want to try it, get in touch.</p>
+        <div class="cta"><a class="btn primary" href="https://iamjarl.com">Get in touch</a></div>
       </section>
     </main>
 
     <footer>
-      <p>Patternaut — a companion app for the Polyend Tracker+ and Tracker Mini.</p>
-      <p>Made by <a href="https://iamjarl.com">iamjarl</a>.</p>
-      <p class="disclaimer">Not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+ and
-        Tracker Mini are trademarks of their respective owners.</p>
+      <p>Made by one person, in the open. More at <a href="https://iamjarl.com">iamjarl.com</a>.</p>
+      <p>Co-created with AI. <a href="https://madebyhuman.iamjarl.com">How that works</a>.</p>
+      <p class="disclaimer">Not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+
+        and Tracker Mini are trademarks of their respective owners.</p>
     </footer>
   </div>
 </body>
