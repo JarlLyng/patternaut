@@ -81,4 +81,37 @@ struct MIDISequencerTests {
         #expect(MIDIEvent(beat: 0, channel: 2, kind: .noteOn(note: 60, velocity: 100)).bytes == [0x92, 60, 100])
         #expect(MIDIEvent(beat: 0, channel: 2, kind: .noteOff(note: 60)).bytes == [0x82, 60, 0])
     }
+
+    @Test("Single-track send includes only that track, on the fixed channel")
+    func singleTrackSend() {
+        let kick = RhythmGenerator.euclidean(pulses: 2, steps: 8, note: .pitch(36), instrument: 0, name: "Kick")
+        let hat = RhythmGenerator.euclidean(pulses: 8, steps: 8, note: .pitch(42), instrument: 1, name: "Hat")
+        let pattern = Pattern(metadata: PatternMetadata(name: "P"), device: .trackerPlus, tracks: [kick, hat])
+
+        let events = MIDISequencer.events(forTrack: 1, in: pattern, channel: 3)
+        #expect(!events.isEmpty)
+        #expect(events.allSatisfy { $0.channel == 3 })
+
+        let notes = Set(events.map { event -> UInt8 in
+            switch event.kind {
+            case .noteOn(let n, _): return n
+            case .noteOff(let n): return n
+            }
+        })
+        #expect(notes == [42]) // never the kick's 36
+    }
+
+    @Test("Track filter honours nil, a subset, empty, and out-of-range")
+    func trackFilter() {
+        let kick = RhythmGenerator.euclidean(pulses: 2, steps: 8, note: .pitch(36), instrument: 0, name: "Kick")
+        let hat = RhythmGenerator.euclidean(pulses: 8, steps: 8, note: .pitch(42), instrument: 1, name: "Hat")
+        let pattern = Pattern(metadata: PatternMetadata(name: "P"), device: .trackerPlus, tracks: [kick, hat])
+
+        let all = MIDISequencer.events(for: pattern)
+        let justKick = MIDISequencer.events(for: pattern, trackIndices: [0])
+        #expect(justKick.allSatisfy { $0.channel == 0 })
+        #expect(all.count > justKick.count)
+        #expect(MIDISequencer.events(for: pattern, trackIndices: []).isEmpty)
+        #expect(MIDISequencer.events(forTrack: 99, in: pattern).isEmpty)
+    }
 }

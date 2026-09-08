@@ -6,6 +6,14 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- Live MIDI now sends a single track (the one under the cursor) on a selectable channel, instead
+  of all tracks on separate channels. The Tracker records incoming MIDI into its currently
+  selected track only, so the previous whole-pattern send could not work.
+
+### Added
+- `MIDISequencer.events(forTrack:in:channel:)` and a `trackIndices` filter on `events(for:)`.
+
 ## [0.1.0] — 2026-07-18
 First TestFlight build (macOS, private beta).
 

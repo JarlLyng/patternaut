@@ -83,8 +83,13 @@ struct ContentView: View {
                 }
                 .labelsHidden()
                 .fixedSize()
-                Button("Send MIDI") { model.sendLive() }
-                    .help("Play the pattern as live MIDI (e.g. into a Tracker in Rec)")
+                HStack(spacing: 4) {
+                    Text("Ch")
+                    Stepper(value: $model.midiChannel, in: 1...16) { Text("\(model.midiChannel)") }
+                        .fixedSize()
+                }
+                Button("Send \(model.sendTrackName)") { model.sendLive() }
+                    .help("Send the track your cursor is on as live MIDI. The Tracker records into its selected track, so send one track at a time.")
             }
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }

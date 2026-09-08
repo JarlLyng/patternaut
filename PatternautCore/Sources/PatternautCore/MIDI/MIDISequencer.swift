@@ -20,9 +20,11 @@ public enum MIDISequencer {
     ///   - stepsPerBeat: grid resolution; `4` = 16th-note steps.
     ///   - gate: note length as a fraction of one step (before the next-event cap).
     ///   - defaultVelocity: `0...100` used when a step has no Volume FX.
+    ///   - trackIndices: restrict to these track indices; `nil` includes all.
     ///   - channelMode: see ``MIDIChannelMode``.
     public static func events(
         for pattern: Pattern,
+        trackIndices: Set<Int>? = nil,
         stepsPerBeat: Double = 4,
         gate: Double = 0.5,
         defaultVelocity: Int = 100,
@@ -31,6 +33,8 @@ public enum MIDISequencer {
         var events: [MIDIEvent] = []
 
         for (trackIndex, track) in pattern.tracks.enumerated() {
+            if let trackIndices, !trackIndices.contains(trackIndex) { continue }
+
             let channel: UInt8
             switch channelMode {
             case .perTrack: channel = UInt8(min(trackIndex, 15))
@@ -58,6 +62,30 @@ public enum MIDISequencer {
             if a.element.isNoteOff != b.element.isNoteOff { return a.element.isNoteOff }
             return a.offset < b.offset
         }.map(\.element)
+    }
+
+    /// Events for a **single track** on one channel.
+    ///
+    /// The Tracker records incoming MIDI into its *currently selected* track only
+    /// (Notes In is one channel or All), so live recording is a one-track-at-a-time
+    /// workflow. This is the shape that actually works against the hardware; a
+    /// multi-channel whole-pattern send does not.
+    public static func events(
+        forTrack index: Int,
+        in pattern: Pattern,
+        channel: UInt8 = 0,
+        stepsPerBeat: Double = 4,
+        gate: Double = 0.5,
+        defaultVelocity: Int = 100
+    ) -> [MIDIEvent] {
+        events(
+            for: pattern,
+            trackIndices: [index],
+            stepsPerBeat: stepsPerBeat,
+            gate: gate,
+            defaultVelocity: defaultVelocity,
+            channelMode: .fixed(channel)
+        )
     }
 
     /// Beat of the next note/off step on this track after `i`, or the pattern end.

@@ -76,6 +76,17 @@ final class EditorModel {
     var midiDestinations: [MIDIDestination] = []
     var selectedDestinationID: MIDIDestination.ID?
     var midiStatus: String?
+    /// MIDI channel (1...16) the Tracker is listening on for Notes In.
+    var midiChannel: Int = 1
+
+    /// Live MIDI sends the track the cursor is on. The Tracker records incoming
+    /// MIDI into its currently selected track only, so this is one track at a time.
+    var sendTrackIndex: Int { editor.cursor.track }
+    var sendTrackName: String {
+        let tracks = pattern.tracks
+        guard sendTrackIndex >= 0, sendTrackIndex < tracks.count else { return "track" }
+        return tracks[sendTrackIndex].name
+    }
 
     func refreshMIDIDestinations() {
         if midi == nil { diagnostics.log("CoreMIDI unavailable (client/port not created).", level: .error, category: "midi") }
@@ -87,8 +98,9 @@ final class EditorModel {
         diagnostics.log("MIDI destinations: \(names)", category: "midi")
     }
 
-    /// Sends the current pattern as live MIDI to the selected destination — e.g.
-    /// into a Tracker armed with `[Rec]+[Play]`.
+    /// Sends the cursor's track as live MIDI to the selected destination, e.g.
+    /// into a Tracker armed with `[Rec]+[Play]`. One track at a time, because the
+    /// Tracker records incoming MIDI into its selected track only.
     func sendLive() {
         guard let midi else {
             midiStatus = "MIDI unavailable."
@@ -100,15 +112,18 @@ final class EditorModel {
             diagnostics.log("Send aborted: no destination selected.", level: .warning, category: "midi")
             return
         }
-        let events = MIDISequencer.events(for: pattern, channelMode: .perTrack)
+        let channel = UInt8(min(max(midiChannel, 1), 16) - 1)
+        let index = sendTrackIndex
+        let name = sendTrackName
+        let events = MIDISequencer.events(forTrack: index, in: pattern, channel: channel)
         guard !events.isEmpty else {
-            midiStatus = "Pattern has no notes to send."
-            diagnostics.log("Send skipped: pattern has no notes.", level: .warning, category: "midi")
+            midiStatus = "\(name) has no notes to send."
+            diagnostics.log("Send skipped: track \(index + 1) \"\(name)\" has no notes.", level: .warning, category: "midi")
             return
         }
         let errors = midi.send(events, tempo: tempo, to: dest.endpoint)
-        midiStatus = "Sent \(events.count) MIDI events to \(dest.name)."
-        diagnostics.log("Sent \(events.count) events to \"\(dest.name)\" at \(Int(tempo)) BPM\(errors > 0 ? "; \(errors) send errors" : "").",
+        midiStatus = "Sent \(name), \(events.count) events, on channel \(midiChannel) to \(dest.name)."
+        diagnostics.log("Sent track \(index + 1) \"\(name)\", \(events.count) events, channel \(midiChannel), to \"\(dest.name)\" at \(Int(tempo)) BPM\(errors > 0 ? "; \(errors) send errors" : "").",
                         level: errors > 0 ? .error : .info, category: "midi")
     }
 

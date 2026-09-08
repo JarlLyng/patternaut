@@ -42,13 +42,16 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Mutation: subtle / moderate / strong / chaotic.
 - Byte-exact hardware export verified against the official `polyend/tracker-lib`: `.mtp`
   patterns, `.mt` projects, `.pti` instruments, written as a loadable SD-card project folder.
-- Live MIDI output (CoreMIDI) — play a pattern into the Tracker in record mode.
+- Live MIDI output (CoreMIDI): send **one track at a time** into the Tracker in record mode. The
+  Tracker records incoming MIDI into its currently selected track only, so a whole-pattern
+  multi-channel send does not work (community-confirmed, matches the manual).
 - Sample loading: 16-bit WAV becomes a `.pti` instrument.
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
   log panel with copy.
 
 ### Features that do NOT exist (common hallucination targets)
 - No audio engine and no in-app sample playback / preview.
+- No whole-pattern live MIDI. Sending is per track, by design of the hardware.
 - No `.mtp`/`.mt` import UI (the core can read `.mtp`, but there is no import flow yet).
 - The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
   auto-assigned to instrument slots on the device yet.
