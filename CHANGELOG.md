@@ -12,6 +12,11 @@ All notable changes to Patternaut are documented here. The format follows
   selected track only, so the previous whole-pattern send could not work.
 
 ### Added
+- FX entry in the grid editor. Both FX lanes are now editable: type an effect's device symbol
+  (`L` low-pass, `P` panning, `s` delay send) or pick from the FX menu, then type digits to set
+  the value, `+`/`-` to nudge by one and `[`/`]` by ten. Delete clears just that lane.
+- FX values are shown in the ranges the device shows, not the stored ones, so Panning reads
+  -50 to +50 and Tempo 8 to 400.
 - `MIDISequencer.events(forTrack:in:channel:)` and a `trackIndices` filter on `events(for:)`.
 
 ## [0.1.0] — 2026-07-18

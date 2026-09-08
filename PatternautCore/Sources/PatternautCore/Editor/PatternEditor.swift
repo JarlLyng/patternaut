@@ -96,6 +96,52 @@ public struct PatternEditor: Sendable {
         }
     }
 
+    /// The lane the cursor sits on (0 = FX1, 1 = FX2), or `nil` when the cursor
+    /// is on the note or instrument column.
+    public var cursorFXLane: Int? {
+        switch cursor.column {
+        case .fx1: return 0
+        case .fx2: return 1
+        case .note, .instrument: return nil
+        }
+    }
+
+    /// The effect on lane `lane` of the step under the cursor, or `nil` when the
+    /// lane is empty.
+    public func fx(lane: Int) -> FXCommand? {
+        guard let step = currentStep, step.fx.count > lane else { return nil }
+        let command = step.fx[lane]
+        return command.type == .none ? nil : command
+    }
+
+    /// Places `type` on lane `lane`, keeping the lane's existing value when it
+    /// still fits the new effect's range and using the effect's default otherwise.
+    public mutating func setFXType(lane: Int, _ type: FXType) {
+        guard lane == 0 || lane == 1 else { return }
+        guard type != .none else { setFX(lane: lane, nil); return }
+        var command = FXCommand(type)
+        if let existing = fx(lane: lane) {
+            command.value = existing.value
+            command.value = command.clampedValue
+        }
+        setFX(lane: lane, command)
+    }
+
+    /// Sets lane `lane`'s value from a number in the *displayed* range, clamped.
+    /// Does nothing when the lane holds no effect yet.
+    public mutating func setFXDisplayValue(lane: Int, _ displayed: Int) {
+        guard var command = fx(lane: lane) else { return }
+        command.setDisplayValue(displayed)
+        setFX(lane: lane, command)
+    }
+
+    /// Nudges lane `lane`'s displayed value by `delta`, clamped. Does nothing
+    /// when the lane holds no effect yet.
+    public mutating func adjustFXValue(lane: Int, by delta: Int) {
+        guard let command = fx(lane: lane) else { return }
+        setFXDisplayValue(lane: lane, command.displayValue + delta)
+    }
+
     /// Clears the step under the cursor (note, instrument, effects).
     public mutating func clearStep() {
         editStep { step in

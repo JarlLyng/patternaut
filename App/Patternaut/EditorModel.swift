@@ -209,6 +209,92 @@ final class EditorModel {
         return cleaned.isEmpty ? "instrument" : String(cleaned.prefix(40))
     }
 
+    // MARK: - FX entry
+
+    /// Digits typed so far in the FX column, and the cell they belong to. Typing
+    /// `4` then `0` means 40, the way a tracker's value field behaves; moving the
+    /// cursor starts over.
+    private var fxDigits = ""
+    private var fxDigitsCell: PatternEditor.Cursor?
+
+    /// A one-line description of the cell under the cursor, shown under the grid
+    /// so the single-letter FX symbols are never a guessing game.
+    var cursorHint: String? {
+        guard let lane = editor.cursorFXLane else { return nil }
+        let laneName = lane == 0 ? "FX1" : "FX2"
+        guard let command = editor.fx(lane: lane) else {
+            return "\(laneName): empty. Type an effect symbol (L low-pass, P panning, s delay send…) or pick from the FX menu."
+        }
+        let d = command.type.descriptor
+        let range = command.displayRange
+        return "\(laneName): \(d.name) (\(d.symbol)) \(command.displayValue), range \(range.min) to \(range.max). Type digits to set it, + and - to nudge by one, [ and ] by ten."
+    }
+
+    /// Places `type` on the lane under the cursor. Used by the FX menu.
+    func setCursorFX(_ type: FXType) {
+        guard let lane = editor.cursorFXLane else { return }
+        resetFXDigits()
+        editor.setFXType(lane: lane, type)
+    }
+
+    /// Clears the lane under the cursor.
+    func clearCursorFX() {
+        guard let lane = editor.cursorFXLane else { return }
+        resetFXDigits()
+        editor.setFX(lane: lane, nil)
+    }
+
+    /// Nudges the value under the cursor: the FX value in an FX column, the note
+    /// elsewhere. Returns `true` if it handled the key.
+    func nudge(by delta: Int) -> Bool {
+        if let lane = editor.cursorFXLane {
+            guard editor.fx(lane: lane) != nil else { return false }
+            resetFXDigits()
+            editor.adjustFXValue(lane: lane, by: delta)
+            return true
+        }
+        editor.transpose(by: delta)
+        return true
+    }
+
+    /// True when the cursor sits on an FX lane that already holds an effect.
+    var hasCursorFX: Bool {
+        guard let lane = editor.cursorFXLane else { return false }
+        return editor.fx(lane: lane) != nil
+    }
+
+    var cursorFXType: FXType? {
+        guard let lane = editor.cursorFXLane else { return nil }
+        return editor.fx(lane: lane)?.type
+    }
+
+    private func resetFXDigits() {
+        fxDigits = ""
+        fxDigitsCell = nil
+    }
+
+    /// Handles a keystroke in an FX column: an effect symbol places that effect,
+    /// a digit types into the value.
+    private func handleFXKey(_ character: Character, lane: Int) -> Bool {
+        if let digit = character.wholeNumberValue, (0...9).contains(digit), character.isASCII {
+            guard editor.fx(lane: lane) != nil else { return false }
+            if fxDigitsCell != editor.cursor { fxDigits = ""; fxDigitsCell = editor.cursor }
+            // Three digits is the widest displayed range (Slide Up/Down, 0...255).
+            if fxDigits.count >= 3 { fxDigits = "" }
+            fxDigits.append(character)
+            if let value = Int(fxDigits) {
+                editor.setFXDisplayValue(lane: lane, value)
+            }
+            return true
+        }
+        if let type = FXKeyMap.fx(for: character) {
+            resetFXDigits()
+            editor.setFXType(lane: lane, type)
+            return true
+        }
+        return false
+    }
+
     // MARK: - Key handling
 
     /// Applies a key to the editor. Returns `true` if handled.
@@ -225,8 +311,10 @@ final class EditorModel {
                 editor.setInstrument(digit)
                 return true
             }
-        case .fx1, .fx2:
-            break
+        case .fx1:
+            return handleFXKey(character, lane: 0)
+        case .fx2:
+            return handleFXKey(character, lane: 1)
         }
         return false
     }

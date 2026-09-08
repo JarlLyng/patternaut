@@ -36,7 +36,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 ## App features (be precise — do not invent features that don't exist)
 
 - Device-neutral pattern model with Tracker Mini / Tracker+ device profiles (16 tracks).
-- Keyboard-first grid editor: cursor navigation, note/instrument/FX entry, undo/redo.
+- Keyboard-first grid editor: cursor navigation, note/instrument entry, undo/redo, and full
+  per-step FX entry on both lanes (all 42 effects from the device's FX set, typed by their
+  device symbol or picked from an FX menu, with values shown in the same scaled ranges the
+  Tracker shows, e.g. Panning as -50 to +50).
 - Generators, all reproducible from a seed: Euclidean rhythms, probability, swing, humanize,
   rotate/reverse transforms.
 - Mutation: subtle / moderate / strong / chaotic.

@@ -40,6 +40,23 @@ struct ContentView: View {
 
     private var showsStatusBar: Bool {
         !model.issues.isEmpty || model.lastExportPath != nil || model.midiStatus != nil
+            || model.cursorHint != nil
+    }
+
+    /// Every effect the device supports, applied to the lane under the cursor.
+    private var fxMenu: some View {
+        Menu("FX") {
+            if model.hasCursorFX {
+                Button("Clear lane") { model.clearCursorFX() }
+                Divider()
+            }
+            ForEach(FXKeyMap.menuOrder, id: \.self) { type in
+                Button(FXKeyMap.label(for: type)) { model.setCursorFX(type) }
+            }
+        }
+        .fixedSize()
+        .disabled(model.editor.cursorFXLane == nil)
+        .help("Place an effect on the FX lane under the cursor. Move the cursor to an FX column first.")
     }
 
     // MARK: Controls
@@ -74,6 +91,7 @@ struct ContentView: View {
                 }
             }
             .fixedSize()
+            fxMenu
             Button("Undo") { model.undo() }.disabled(!model.canUndo).keyboardShortcut("z")
             Button("Redo") { model.redo() }.disabled(!model.canRedo).keyboardShortcut("z", modifiers: [.command, .shift])
             Spacer()
@@ -99,6 +117,10 @@ struct ContentView: View {
 
     private var issueBar: some View {
         VStack(alignment: .leading, spacing: 2) {
+            if let hint = model.cursorHint {
+                Text(hint)
+                    .foregroundStyle(.secondary)
+            }
             if let path = model.lastExportPath {
                 Label("Exported to \(path)", systemImage: "checkmark.circle")
                     .foregroundStyle(.green)
@@ -125,16 +147,20 @@ struct ContentView: View {
         case .downArrow: model.editor.moveDown(); return .handled
         case .leftArrow: model.editor.moveLeft(); return .handled
         case .rightArrow: model.editor.moveRight(); return .handled
-        case .deleteForward, .delete: model.editor.clearStep(); return .handled
+        case .deleteForward, .delete:
+            // In an FX column, delete clears just that lane, not the whole step.
+            if model.editor.cursorFXLane != nil { model.clearCursorFX() } else { model.editor.clearStep() }
+            return .handled
         default: break
         }
 
         if let ch = press.characters.first {
+            let onFX = model.editor.cursorFXLane != nil
             switch ch {
-            case "+", "=": model.editor.transpose(by: 1); return .handled
-            case "-", "_": model.editor.transpose(by: -1); return .handled
-            case "]": model.editor.transpose(by: 12); return .handled
-            case "[": model.editor.transpose(by: -12); return .handled
+            case "+", "=": if model.nudge(by: 1) { return .handled }
+            case "-", "_": if model.nudge(by: -1) { return .handled }
+            case "]": if model.nudge(by: onFX ? 10 : 12) { return .handled }
+            case "[": if model.nudge(by: onFX ? -10 : -12) { return .handled }
             default:
                 if model.handleKey(ch, shift: press.modifiers.contains(.shift)) { return .handled }
             }

@@ -156,4 +156,33 @@ public struct FXCommand: Equatable, Sendable, Codable {
         let d = type.descriptor
         return value >= d.min && value <= d.max
     }
+
+    /// The range the device shows the user, which for some effects differs from
+    /// the stored range (Panning stores `0...100` and shows `-50...+50`).
+    public var displayRange: ScaledRange {
+        let d = type.descriptor
+        return d.scaled ?? ScaledRange(min: d.min, max: d.max)
+    }
+
+    /// ``value`` translated into the displayed range, so the app shows what the
+    /// device would show.
+    public var displayValue: Int {
+        let d = type.descriptor
+        guard let scaled = d.scaled, d.max > d.min else { return clampedValue }
+        let position = Double(clampedValue - d.min) / Double(d.max - d.min)
+        return scaled.min + Int((position * Double(scaled.max - scaled.min)).rounded())
+    }
+
+    /// Sets ``value`` from a number in the displayed range (the inverse of
+    /// ``displayValue``), clamped.
+    public mutating func setDisplayValue(_ displayed: Int) {
+        let d = type.descriptor
+        guard let scaled = d.scaled, scaled.max > scaled.min else {
+            value = Swift.min(Swift.max(displayed, d.min), d.max)
+            return
+        }
+        let clamped = Swift.min(Swift.max(displayed, scaled.min), scaled.max)
+        let position = Double(clamped - scaled.min) / Double(scaled.max - scaled.min)
+        value = d.min + Int((position * Double(d.max - d.min)).rounded())
+    }
 }
