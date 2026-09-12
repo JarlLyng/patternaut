@@ -40,7 +40,7 @@ struct ContentView: View {
 
     private var showsStatusBar: Bool {
         !model.issues.isEmpty || model.lastExportPath != nil || model.midiStatus != nil
-            || model.cursorHint != nil
+            || model.cursorHint != nil || model.currentSeed != nil
     }
 
     /// Every effect the device supports, applied to the lane under the cursor.
@@ -84,7 +84,8 @@ struct ContentView: View {
                     .fixedSize()
             }
 
-            Button("Generate") { model.generateStarter() }
+            Button("Generate") { model.generate() }
+                .help("Make a new beat. Every press is a different one, and Undo brings back what you had.")
             Menu("Mutate") {
                 ForEach(MutationStrength.allCases, id: \.self) { strength in
                     Button(strength.rawValue.capitalized) { model.mutate(strength) }
@@ -117,6 +118,10 @@ struct ContentView: View {
 
     private var issueBar: some View {
         VStack(alignment: .leading, spacing: 2) {
+            if let seed = model.currentSeed {
+                Label("Seed \(seed)", systemImage: "dice")
+                    .foregroundStyle(.secondary)
+            }
             if let hint = model.cursorHint {
                 Text(hint)
                     .foregroundStyle(.secondary)

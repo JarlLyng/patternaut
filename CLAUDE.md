@@ -40,8 +40,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   per-step FX entry on both lanes (all 42 effects from the device's FX set, typed by their
   device symbol or picked from an FX menu, with values shown in the same scaled ranges the
   Tracker shows, e.g. Panning as -50 to +50).
-- Generators, all reproducible from a seed: Euclidean rhythms, probability, swing, humanize,
-  rotate/reverse transforms.
+- Generators, all reproducible from a seed: whole beats (kick/snare/hat plus optional
+  probability percussion and bass), Euclidean rhythms, probability, swing, humanize,
+  rotate/reverse transforms. Generate rolls a new seed each press; the seed is stored with the
+  pattern and shown in the app.
 - Mutation: subtle / moderate / strong / chaotic.
 - Byte-exact hardware export verified against the official `polyend/tracker-lib`: `.mtp`
   patterns, `.mt` projects, `.pti` instruments, written as a loadable SD-card project folder.

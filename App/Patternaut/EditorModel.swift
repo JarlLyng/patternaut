@@ -53,16 +53,17 @@ final class EditorModel {
         newPattern()
     }
 
-    /// Fills the pattern with a simple euclidean starter kit for demoing.
-    func generateStarter(seed: UInt64 = 1) {
-        let steps = 16
-        let kick = RhythmGenerator.euclidean(pulses: 4, steps: steps, note: .pitch(36), instrument: 0, velocity: 110, name: "Kick")
-        let snare = RhythmGenerator.euclidean(pulses: 2, steps: steps, rotation: 4, note: .pitch(38), instrument: 1, velocity: 100, name: "Snare")
-        let hat = RhythmGenerator.euclidean(pulses: 11, steps: steps, rotation: 1, note: .pitch(42), instrument: 2, velocity: 70, name: "Hat")
-        let pattern = PatternGenerator.assemble(
-            device: device, name: "Starter", tempo: tempo, steps: steps, seed: seed, tracks: [kick, snare, hat]
-        )
-        editor = PatternEditor(pattern: pattern)
+    /// The seed behind the pattern on screen, when it came from the generator.
+    var currentSeed: UInt64? { editor.pattern.metadata.seed }
+
+    /// Generates a fresh beat. Each press rolls a new seed, so you get something
+    /// different every time; the seed is kept with the pattern, so any beat can
+    /// be made again. Undoable, so a generate never loses your work.
+    func generate(seed: UInt64? = nil, steps: Int = 16) {
+        let used = seed ?? UInt64.random(in: 1...UInt64(UInt32.max))
+        let pattern = BeatGenerator.beat(device: device, name: "Generated", tempo: tempo, steps: steps, seed: used)
+        editor.replace(with: pattern)
+        diagnostics.log("Generated a beat from seed \(used).", category: "app")
     }
 
     var canUndo: Bool { editor.canUndo }
