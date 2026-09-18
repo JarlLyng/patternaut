@@ -31,7 +31,7 @@ struct ContentView: View {
         .frame(minWidth: 900, minHeight: 480)
         .onAppear {
             gridFocused = true
-            model.refreshMIDIDestinations()
+            model.startMIDIWatch()
         }
         .sheet(isPresented: $showingLog) {
             DiagnosticsView(diagnostics: model.diagnostics)
@@ -40,7 +40,7 @@ struct ContentView: View {
 
     private var showsStatusBar: Bool {
         !model.issues.isEmpty || model.lastExportPath != nil || model.midiStatus != nil
-            || model.cursorHint != nil || model.currentSeed != nil
+            || model.cursorHint != nil || model.lineage != nil
     }
 
     /// Every effect the device supports, applied to the lane under the cursor.
@@ -72,14 +72,14 @@ struct ContentView: View {
             .fixedSize()
 
             HStack(spacing: 4) {
-                Text("Tempo")
+                Text("Tempo").fixedSize()
                 TextField("", value: $model.tempo, format: .number)
                     .frame(width: 52)
                     .textFieldStyle(.roundedBorder)
             }
 
             HStack(spacing: 4) {
-                Text("Oct")
+                Text("Oct").fixedSize()
                 Stepper(value: $model.baseOctave, in: 0...8) { Text("\(model.baseOctave)") }
                     .fixedSize()
             }
@@ -103,7 +103,7 @@ struct ContentView: View {
                 .labelsHidden()
                 .fixedSize()
                 HStack(spacing: 4) {
-                    Text("Ch")
+                    Text("Ch").fixedSize()
                     Stepper(value: $model.midiChannel, in: 1...16) { Text("\(model.midiChannel)") }
                         .fixedSize()
                 }
@@ -114,12 +114,13 @@ struct ContentView: View {
             Button("Log") { showingLog = true }
         }
         .padding(8)
+        .lineLimit(1)
     }
 
     private var issueBar: some View {
         VStack(alignment: .leading, spacing: 2) {
-            if let seed = model.currentSeed {
-                Label("Seed \(seed)", systemImage: "dice")
+            if let lineage = model.lineage {
+                Label(lineage, systemImage: "dice")
                     .foregroundStyle(.secondary)
             }
             if let hint = model.cursorHint {
@@ -193,7 +194,7 @@ struct ContentView: View {
         panel.allowsMultipleSelection = true
         panel.allowedContentTypes = [.wav]
         panel.prompt = "Load"
-        panel.message = "Choose 16-bit WAV samples"
+        panel.message = "Choose WAV samples. 24-bit and other sample rates are converted for you."
         if panel.runModal() == .OK {
             for url in panel.urls { model.loadSample(from: url) }
         }

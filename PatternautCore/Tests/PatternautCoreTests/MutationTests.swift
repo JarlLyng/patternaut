@@ -43,7 +43,7 @@ struct MutationTests {
         let m = Mutation.mutate(p, strength: .subtle, seed: 3)
         #expect(m.metadata.parentID == p.id)
         #expect(m.metadata.version == p.metadata.version + 1)
-        #expect(m.metadata.seed == 3)
+        #expect(m.metadata.mutationSeed == 3)
         #expect(m.id != p.id)
     }
 

@@ -118,11 +118,14 @@ public struct Instrument: Sendable, Equatable {
 
     // MARK: Construction
 
-    /// Creates an instrument from a 16-bit PCM WAV, matching `createInstrument`
-    /// defaults (one-shot, full range, envelope 0 enabled).
+    /// Creates an instrument from a WAV, matching `createInstrument` defaults
+    /// (one-shot, full range, envelope 0 enabled).
+    ///
+    /// The audio is converted to the 16-bit, 44.1 kHz PCM a `.pti` stores, so
+    /// 24-bit and float sources (most of a modern sample library) load as they
+    /// are.
     public static func new(wav: Data, filename: String = "untitled") throws -> Instrument {
-        let info = try WavFile.info(wav)
-        let pcm = try WavFile.pcmData(wav)
+        let (pcm, info) = try WavFile.pcm16(wav)
         let automations = (0..<6).map { i in
             Automation(enabled: i == 0, isLFO: false, envelope: Envelope(), lfo: LFO())
         }

@@ -12,7 +12,8 @@ public enum MutationStrength: String, Sendable, CaseIterable {
 /// result, so variants are reproducible.
 public enum Mutation {
     /// A single mutated variant. Records lineage (`parentID`, bumped `version`,
-    /// `seed`) so versions can be compared and traced.
+    /// `mutationSeed`) so versions can be compared and traced. The original's
+    /// generator `seed` is left intact.
     public static func mutate(_ pattern: Pattern, strength: MutationStrength, seed: UInt64) -> Pattern {
         var rng = SeededGenerator(seed: seed)
         var result = pattern
@@ -20,7 +21,7 @@ public enum Mutation {
         result.tracks = pattern.tracks.map { mutateTrack($0, strength: strength, rng: &rng) }
         result.metadata.parentID = pattern.id
         result.metadata.version = pattern.metadata.version + 1
-        result.metadata.seed = seed
+        result.metadata.mutationSeed = seed
         return result
     }
 

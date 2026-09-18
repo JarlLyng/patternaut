@@ -12,6 +12,10 @@ public struct PatternMetadata: Equatable, Sendable, Codable {
     public var isFavorite: Bool
     public var createdAt: Date
     public var modifiedAt: Date
+    /// Seed of the mutation that produced this pattern, when it came from one.
+    /// Kept apart from ``seed`` so a mutated pattern still records the seed its
+    /// original was generated from.
+    public var mutationSeed: UInt64?
     /// The pattern this one was derived from (mutation/transformation lineage).
     public var parentID: UUID?
     /// Monotonic version counter for this pattern's history.
@@ -25,6 +29,7 @@ public struct PatternMetadata: Equatable, Sendable, Codable {
         isFavorite: Bool = false,
         createdAt: Date = Date(),
         modifiedAt: Date = Date(),
+        mutationSeed: UInt64? = nil,
         parentID: UUID? = nil,
         version: Int = 1
     ) {
@@ -35,6 +40,7 @@ public struct PatternMetadata: Equatable, Sendable, Codable {
         self.isFavorite = isFavorite
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
+        self.mutationSeed = mutationSeed
         self.parentID = parentID
         self.version = version
     }

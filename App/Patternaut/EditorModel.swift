@@ -53,8 +53,16 @@ final class EditorModel {
         newPattern()
     }
 
-    /// The seed behind the pattern on screen, when it came from the generator.
-    var currentSeed: UInt64? { editor.pattern.metadata.seed }
+    /// What the pattern on screen came from: its generator seed, plus how many
+    /// mutations have been applied on top. A mutation keeps the original seed,
+    /// so this stays truthful after mutating.
+    var lineage: String? {
+        let metadata = editor.pattern.metadata
+        guard let seed = metadata.seed else { return nil }
+        let mutations = max(0, metadata.version - 1)
+        guard mutations > 0 else { return "Seed \(seed)" }
+        return "Seed \(seed), mutated \(mutations == 1 ? "once" : "\(mutations) times")"
+    }
 
     /// Generates a fresh beat. Each press rolls a new seed, so you get something
     /// different every time; the seed is kept with the pattern, so any beat can
@@ -87,6 +95,13 @@ final class EditorModel {
         let tracks = pattern.tracks
         guard sendTrackIndex >= 0, sendTrackIndex < tracks.count else { return "track" }
         return tracks[sendTrackIndex].name
+    }
+
+    /// Starts watching for MIDI devices being plugged in or removed, so a
+    /// Tracker connected after launch shows up without restarting the app.
+    func startMIDIWatch() {
+        midi?.onSetupChanged = { [weak self] in self?.refreshMIDIDestinations() }
+        refreshMIDIDestinations()
     }
 
     func refreshMIDIDestinations() {
@@ -140,27 +155,41 @@ final class EditorModel {
 
     // MARK: - Samples / instruments
 
-    /// Loads a 16-bit PCM WAV as a sample instrument. Reports a friendly error
-    /// on unsupported files instead of throwing.
+    /// Loads a WAV as a sample instrument, converting bit depth and sample rate
+    /// to what the Tracker plays. Reports a friendly error instead of throwing.
     func loadSample(from url: URL) {
         do {
             let data = try Data(contentsOf: url)
-            let info = try WavFile.info(data)
-            guard info.bitsPerSample == 16 else {
-                sampleError = "\(url.lastPathComponent): needs a 16-bit WAV (got \(info.bitsPerSample)-bit)."
-                return
-            }
+            let source = try WavFile.info(data)
             let name = url.deletingPathExtension().lastPathComponent
             let instrument = try Instrument.new(wav: data, filename: String(name.prefix(31)))
             instruments.append(LoadedInstrument(name: name, instrument: instrument))
             sampleError = nil
-            diagnostics.log("Loaded sample \"\(name)\" (\(instrument.sample.channels == 2 ? "stereo" : "mono"), \(instrument.sample.length) frames).", category: "samples")
+
+            var converted: [String] = []
+            if source.bitsPerSample != 16 || source.isFloat {
+                converted.append("\(source.bitsPerSample)-bit\(source.isFloat ? " float" : "") to 16-bit")
+            }
+            if source.sampleRate != WavFile.trackerSampleRate {
+                converted.append("\(source.sampleRate) Hz to \(WavFile.trackerSampleRate) Hz")
+            }
+            let note = converted.isEmpty ? "" : ", converted \(converted.joined(separator: " and "))"
+            diagnostics.log("Loaded sample \"\(name)\" (\(instrument.sample.channels == 2 ? "stereo" : "mono"), \(instrument.sample.length) frames\(note)).", category: "samples")
         } catch let error as WavFile.WavError {
-            sampleError = "\(url.lastPathComponent): not a supported WAV (\(error)). Use 16-bit PCM."
+            sampleError = message(for: error, file: url.lastPathComponent)
             diagnostics.log("Sample load failed: \(url.lastPathComponent) — \(error).", level: .error, category: "samples")
         } catch {
             sampleError = "Couldn't load \(url.lastPathComponent)."
             diagnostics.log("Sample load failed: \(url.lastPathComponent) — \(error.localizedDescription)", level: .error, category: "samples")
+        }
+    }
+
+    private func message(for error: WavFile.WavError, file: String) -> String {
+        switch error {
+        case .notRIFF: return "\(file): not a WAV file."
+        case .noFormatChunk, .noDataChunk: return "\(file): the WAV is missing audio data."
+        case .unsupportedFormat(let bits, let isFloat):
+            return "\(file): \(bits)-bit\(isFloat ? " float" : "") WAV isn't supported. 16, 24 or 32-bit works."
         }
     }
 

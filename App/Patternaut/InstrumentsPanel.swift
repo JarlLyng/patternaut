@@ -7,6 +7,7 @@ import PatternautCore
 struct InstrumentsPanel: View {
     @Bindable var model: EditorModel
     let onAdd: () -> Void
+    @State private var isDropTarget = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -14,7 +15,7 @@ struct InstrumentsPanel: View {
                 Text("Instruments").font(.headline)
                 Spacer()
                 Button(action: onAdd) { Image(systemName: "plus") }
-                    .help("Load 16-bit WAV samples")
+                    .help("Load WAV samples, or drop them here")
             }
 
             if model.instruments.isEmpty {
@@ -36,6 +37,25 @@ struct InstrumentsPanel: View {
             }
         }
         .padding(8)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
+        .background(isDropTarget ? Color.accentColor.opacity(0.12) : Color.clear)
+        .overlay {
+            if isDropTarget {
+                RoundedRectangle(cornerRadius: 6)
+                    .strokeBorder(Color.accentColor, style: StrokeStyle(lineWidth: 2, dash: [6]))
+                    .padding(4)
+            }
+        }
+        .dropDestination(for: URL.self) { urls, _ in
+            let wavs = urls.filter { $0.pathExtension.lowercased() == "wav" }
+            guard !wavs.isEmpty else {
+                model.sampleError = "Only WAV files can become instruments."
+                return false
+            }
+            for url in wavs { model.loadSample(from: url) }
+            return true
+        } isTargeted: { isDropTarget = $0 }
     }
 
     private var emptyState: some View {
@@ -45,7 +65,7 @@ struct InstrumentsPanel: View {
                 .foregroundStyle(.secondary)
             Text("No samples")
                 .foregroundStyle(.secondary)
-            Text("Load 16-bit WAVs to build .pti instruments.\nExported into the project's Instruments folder;\nassign them to slots on the Tracker.")
+            Text("Drop WAVs here, or use +, to build .pti instruments.\n24-bit and other sample rates are converted.\nExported into the project's Instruments folder;\nassign them to slots on the Tracker.")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)

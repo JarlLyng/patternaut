@@ -50,7 +50,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Live MIDI output (CoreMIDI): send **one track at a time** into the Tracker in record mode. The
   Tracker records incoming MIDI into its currently selected track only, so a whole-pattern
   multi-channel send does not work (community-confirmed, matches the manual).
-- Sample loading: 16-bit WAV becomes a `.pti` instrument.
+- Sample loading: WAV becomes a `.pti` instrument, by file picker or drag and drop. 8/16/24/32-bit
+  integer and 32/64-bit float are converted to the 16-bit 44.1 kHz PCM the device stores;
+  other sample rates are resampled (linear interpolation).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
   log panel with copy.
 

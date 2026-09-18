@@ -19,12 +19,33 @@ final class MIDIOutput {
     private var port = MIDIPortRef()
     private var timebase = mach_timebase_info_data_t()
 
+    /// Holds the setup-change handler for the CoreMIDI notification block, which
+    /// runs on CoreMIDI's own thread. The handler is only ever read and written
+    /// on the main thread, which is what makes the unchecked conformance safe.
+    private final class SetupObserver: @unchecked Sendable {
+        var handler: (() -> Void)?
+    }
+
+    private let observer = SetupObserver()
+
+    /// Called on the main queue when CoreMIDI's setup changes, so the app can
+    /// pick up a Tracker that was plugged in after launch.
+    var onSetupChanged: (() -> Void)? {
+        get { observer.handler }
+        set { observer.handler = newValue }
+    }
+
     init?() {
         mach_timebase_info(&timebase)
-        guard MIDIClientCreateWithBlock("Patternaut" as CFString, &client, { _ in }) == noErr,
-              MIDIOutputPortCreate(client, "Patternaut Out" as CFString, &port) == noErr else {
-            return nil
+        var created = MIDIClientRef()
+        let observer = self.observer
+        let status = MIDIClientCreateWithBlock("Patternaut" as CFString, &created) { notification in
+            guard notification.pointee.messageID == .msgSetupChanged else { return }
+            DispatchQueue.main.async { observer.handler?() }
         }
+        guard status == noErr else { return nil }
+        client = created
+        guard MIDIOutputPortCreate(client, "Patternaut Out" as CFString, &port) == noErr else { return nil }
     }
 
     func destinations() -> [MIDIDestination] {
