@@ -8,6 +8,7 @@ struct InstrumentsPanel: View {
     @Bindable var model: EditorModel
     let onAdd: () -> Void
     @State private var isDropTarget = false
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -42,11 +43,11 @@ struct InstrumentsPanel: View {
         .padding(8)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
-        .background(isDropTarget ? Color.accentColor.opacity(0.12) : Color.clear)
+        .background(isDropTarget ? Design.accentSubtle(scheme) : Color.clear)
         .overlay {
             if isDropTarget {
-                RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(Color.accentColor, style: StrokeStyle(lineWidth: 2, dash: [6]))
+                RoundedRectangle(cornerRadius: Design.Radius.sm)
+                    .strokeBorder(Design.accent(scheme), style: StrokeStyle(lineWidth: 2, dash: [6]))
                     .padding(4)
             }
         }
@@ -86,7 +87,7 @@ struct InstrumentsPanel: View {
                 .foregroundStyle(.primary)
                 .padding(.horizontal, 5)
                 .padding(.vertical, 2)
-                .background(Color.secondary.opacity(0.15), in: RoundedRectangle(cornerRadius: 4))
+                .background(Color.secondary.opacity(0.15), in: RoundedRectangle(cornerRadius: Design.Radius.sm))
                 .help("Instrument \(String(format: "%02d", index)). Type this number in a step's instrument column to play this sample.")
 
             VStack(alignment: .leading, spacing: 1) {

@@ -6,6 +6,10 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- The app and the site take their colour, spacing and radius from `iamjarl-design` (v1.9.1)
+  instead of their own copies. The tracker grid keeps its own treatment, which is deliberate.
+
 ## [0.5.0] — 2026-09-19
 Fifth TestFlight build, and the first aimed at review: the keyboard is documented, the controls are
 arranged by purpose, and launching lands in a blank document.

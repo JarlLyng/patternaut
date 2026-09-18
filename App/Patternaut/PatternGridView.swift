@@ -6,6 +6,7 @@ import PatternautCore
 /// ``ContentView``.
 struct PatternGridView: View {
     @Bindable var model: EditorModel
+    @Environment(\.colorScheme) private var scheme
 
     private let columns = PatternEditor.Column.allCases
 
@@ -77,8 +78,8 @@ struct PatternGridView: View {
             .foregroundStyle(active ? .primary : .secondary)
             .padding(.horizontal, 3)
             .padding(.vertical, 1)
-            .background(isCursor ? Color.accentColor.opacity(0.35) : Color.clear)
-            .overlay(isCursor ? RoundedRectangle(cornerRadius: 2).stroke(Color.accentColor, lineWidth: 1) : nil)
+            .background(isCursor ? Design.accentSubtle(scheme) : Color.clear)
+            .overlay(isCursor ? RoundedRectangle(cornerRadius: 2).stroke(Design.accent(scheme), lineWidth: 1) : nil)
     }
 
     private func text(step: Step?, column: PatternEditor.Column) -> String {

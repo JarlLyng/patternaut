@@ -9,6 +9,9 @@ options:
 packages:
   PatternautCore:
     path: ../PatternautCore
+  IAMJARLDesign:
+    url: https://github.com/jarllyng/iamjarl-design.git
+    from: 1.9.1
 
 targets:
   Patternaut:
@@ -19,6 +22,8 @@ targets:
     dependencies:
       - package: PatternautCore
         product: PatternautCore
+      - package: IAMJARLDesign
+        product: IAMJARLDesignTokens
     info:
       path: Patternaut/Info.plist
       properties:

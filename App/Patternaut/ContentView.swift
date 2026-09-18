@@ -104,7 +104,7 @@ struct ContentView: View {
     /// document are not obvious from an empty tracker grid, and one of them is
     /// easily confused with File > Open.
     private var emptyState: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: Design.Space.lg) {
             HStack {
                 Spacer()
                 Button {
@@ -133,8 +133,8 @@ struct ContentView: View {
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
         }
-        .padding(20)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .padding(Design.Space.xl)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: Design.Radius.md))
         .padding()
     }
 

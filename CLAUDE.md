@@ -97,7 +97,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 
 ## Conventions
 - Privacy-first: the only telemetry permitted is anonymous crash reporting (none today).
-- Design: adopting `iamjarl-design` tokens is a TODO (the app and site currently use their
-  own styles).
+- Design: `iamjarl-design` is adopted. The app depends on `IAMJARLDesignTokens` (SPM, from
+  1.9.1) and uses it for accent, spacing and radius; the site pins the same version from the CDN
+  with subresource integrity and uses `<ij-footer>`. The tracker grid keeps its own monospaced,
+  high-contrast treatment on purpose: it imitates the hardware.
 - Branches: app changes go to `main` and `release`; docs/site-only changes go to `main` only
   (so they don't trigger Xcode Cloud app builds).

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		17D98BB2B54AF50B3AD382BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E84D35258A28FFF54312DCC /* Assets.xcassets */; };
 		205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDCC653F6211947718B51E /* ContentView.swift */; };
+		2DE72D1443BAF0B3DF968684 /* IAMJARLDesignTokens in Frameworks */ = {isa = PBXBuildFile; productRef = 73E8F2529EE0072772DEA4CB /* IAMJARLDesignTokens */; };
 		3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF648219753A5D350CCCC59 /* PatternGridView.swift */; };
+		51F31F369EE9362C396054FE /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A945B71950A46D5F2CC2FB3C /* DesignSystem.swift */; };
 		63DE7C99FCF0276C8E5722D7 /* PatternautDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */; };
 		80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD13308432A86D508BCEC6D2 /* EditorModel.swift */; };
 		83CABA08652153406E608F41 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */; };
@@ -32,6 +34,7 @@
 		716914B1B674CA0B9B73A502 /* ShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsView.swift; sourceTree = "<group>"; };
 		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96B153C56DD2BF851C7CDB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A945B71950A46D5F2CC2FB3C /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
 		BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautDocument.swift; sourceTree = "<group>"; };
 		BD13308432A86D508BCEC6D2 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EB100002C0FB399C479C54 /* PatternautCore in Frameworks */,
+				2DE72D1443BAF0B3DF968684 /* IAMJARLDesignTokens in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +85,7 @@
 			children = (
 				8E84D35258A28FFF54312DCC /* Assets.xcassets */,
 				F8EDCC653F6211947718B51E /* ContentView.swift */,
+				A945B71950A46D5F2CC2FB3C /* DesignSystem.swift */,
 				639F39DD1EB442B34815FE7C /* Diagnostics.swift */,
 				F4A6E8E169F3F81FAED8FC0B /* DiagnosticsView.swift */,
 				BD13308432A86D508BCEC6D2 /* EditorModel.swift */,
@@ -114,6 +119,7 @@
 			name = Patternaut;
 			packageProductDependencies = (
 				2B916700499670B44836604C /* PatternautCore */,
+				73E8F2529EE0072772DEA4CB /* IAMJARLDesignTokens */,
 			);
 			productName = Patternaut;
 			productReference = 2967431FB755A4431EE7B42D /* Patternaut.app */;
@@ -144,6 +150,7 @@
 			mainGroup = 641509F73B35BE32C32EF5E9;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				BB20E9DC0C2E3A8E75B95C85 /* XCRemoteSwiftPackageReference "iamjarl-design" */,
 				A26185BA1B5C43F905411BD6 /* XCLocalSwiftPackageReference "../PatternautCore" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -173,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */,
+				51F31F369EE9362C396054FE /* DesignSystem.swift in Sources */,
 				F63F92E6C82A23F7A8F97B8D /* Diagnostics.swift in Sources */,
 				D8198E42F82C29D484798BCF /* DiagnosticsView.swift in Sources */,
 				80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */,
@@ -391,10 +399,26 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		BB20E9DC0C2E3A8E75B95C85 /* XCRemoteSwiftPackageReference "iamjarl-design" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jarllyng/iamjarl-design.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		2B916700499670B44836604C /* PatternautCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PatternautCore;
+		};
+		73E8F2529EE0072772DEA4CB /* IAMJARLDesignTokens */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB20E9DC0C2E3A8E75B95C85 /* XCRemoteSwiftPackageReference "iamjarl-design" */;
+			productName = IAMJARLDesignTokens;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
