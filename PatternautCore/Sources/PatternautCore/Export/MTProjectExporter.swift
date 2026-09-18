@@ -8,8 +8,15 @@ import Foundation
 /// header@0, song@16, delay@0x11a, tempo@0x1c0, reverb floats@0x418,
 /// track names@0x428 (8×21) and @0x603 (8×8), volumes@0x538, project name@0x810.
 public enum MTProjectExporter {
-    public static func export(_ project: MTProject) -> Data {
-        var b = MTProjectTemplate.bytes
+    /// Serializes a project, optionally patching into an existing `.mt` file.
+    ///
+    /// - Parameter base: Bytes of a `project.mt` already on the card. Everything
+    ///   this writer does not model (the instrument pool, mixer levels, delay and
+    ///   reverb settings, synth patch references) is kept from it, so writing
+    ///   into a project does not quietly reset the parts of it we do not
+    ///   understand. Ignored unless it is the same layout as the template.
+    public static func export(_ project: MTProject, base: Data? = nil) -> Data {
+        var b = usableBase(base) ?? MTProjectTemplate.bytes
 
         // Header @0
         let id = Array(project.header.idFile.utf8.prefix(2))
@@ -58,6 +65,21 @@ public enum MTProjectExporter {
         writeASCII(&b, 0x810, project.projectName, length: TrackerFormat.projectNameLength)
 
         return Data(b)
+    }
+
+    /// True when `data` is a `.mt` of the layout this writer patches. An older
+    /// or unknown file is left alone rather than written into at our offsets.
+    public static func canPatch(_ data: Data) -> Bool {
+        usableBase(data) != nil
+    }
+
+    private static func usableBase(_ data: Data?) -> [UInt8]? {
+        guard let data, data.count == MTProjectTemplate.bytes.count else { return nil }
+        let bytes = [UInt8](data)
+        guard String(decoding: bytes[0..<2], as: UTF8.self) == "MT" else { return nil }
+        // The file-structure version must match, or our offsets mean something else.
+        guard Array(bytes[8..<12]) == Array(MTProjectTemplate.bytes[8..<12]) else { return nil }
+        return bytes
     }
 
     // MARK: - Helpers

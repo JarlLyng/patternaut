@@ -188,4 +188,78 @@ struct ProjectBundleTests {
         #expect(onDisk == instrument.data())
         #expect(String(decoding: [UInt8](onDisk)[0..<2], as: UTF8.self) == "TI")
     }
+
+    // MARK: Writing into a project that already exists
+
+    @Test("Exporting into an existing project keeps what the app does not model")
+    func keepsExistingSettings() throws {
+        let root = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("patternaut-overwrite-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+
+        // A project as it might be on a card, with settings we never touch:
+        // the instrument pool, the mixer and the synth patch names.
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "First", steps: 16, seed: 2)
+        let first = try ProjectBundleWriter.write(patterns: [pattern, pattern, pattern],
+                                                   projectName: "Live Set", device: .trackerPlus,
+                                                   tempo: 120, to: root)
+        #expect(first.keptExistingSettings == false)
+
+        var onCard = [UInt8](try Data(contentsOf: first.projectFile))
+        let poolOffset = 0x75C          // where the device keeps its patch names
+        for (index, byte) in Array("MyKit".utf8).enumerated() { onCard[poolOffset + index] = byte }
+        try Data(onCard).write(to: first.projectFile)
+
+        // Export again, with fewer patterns and a different name.
+        let second = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Live Set",
+                                                   device: .trackerPlus, tempo: 150, to: root)
+        #expect(second.keptExistingSettings)
+
+        let after = [UInt8](try Data(contentsOf: second.projectFile))
+        #expect(String(decoding: after[poolOffset..<(poolOffset + 5)], as: UTF8.self) == "MyKit")
+
+        // What the app does own is still updated.
+        let project = try MTProjectImporter.parse(Data(after))
+        #expect(project.globalTempo == 150)
+        #expect(project.playlist[0] == 1)
+        #expect(project.playlist[1] == 0)
+    }
+
+    @Test("Pattern files from a longer version of the project are cleared out")
+    func removesStalePatterns() throws {
+        let root = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("patternaut-stale-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "P", steps: 16, seed: 2)
+
+        _ = try ProjectBundleWriter.write(patterns: Array(repeating: pattern, count: 4),
+                                          projectName: "Set", device: .trackerPlus, to: root)
+        let second = try ProjectBundleWriter.write(patterns: [pattern, pattern],
+                                                   projectName: "Set", device: .trackerPlus, to: root)
+
+        #expect(second.removedFiles.count == 2)
+        let left = try FileManager.default.contentsOfDirectory(
+            atPath: second.patternFiles[0].deletingLastPathComponent().path
+        ).filter { $0.hasSuffix(".mtp") }.sorted()
+        #expect(left == ["pattern_01.mtp", "pattern_02.mtp"])
+    }
+
+    @Test("A project.mt from another firmware is replaced rather than written into")
+    func refusesToPatchUnknownLayout() throws {
+        let root = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("patternaut-oldmt-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "P", steps: 16, seed: 2)
+        let first = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Old",
+                                                   device: .trackerPlus, to: root)
+        // Shrink project.mt to the size older firmware wrote.
+        try Data(try Data(contentsOf: first.projectFile).prefix(1572)).write(to: first.projectFile)
+
+        let second = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Old",
+                                                    device: .trackerPlus, tempo: 133, to: root)
+        #expect(second.keptExistingSettings == false)
+        // And the result is a valid, current project rather than a hybrid.
+        let project = try MTProjectImporter.parse(Data(contentsOf: second.projectFile))
+        #expect(project.globalTempo == 133)
+    }
 }

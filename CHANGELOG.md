@@ -6,6 +6,16 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- **Exporting into a project that already exists no longer destroys it.** `project.mt` was
+  rebuilt from the bundled template every time, which wiped the instrument pool, the mixer, and
+  the delay and reverb settings of any project on the card. The existing file is now written
+  into, so everything Patternaut does not model survives. A `project.mt` from another firmware
+  is replaced rather than patched at offsets that would mean something else.
+- Pattern files left over from a longer version of a project are removed, instead of lingering
+  as slots the playlist no longer refers to.
+- Exporting over an existing project asks first, and says what it will replace and what it keeps.
+
 ## [0.3.0] — 2026-09-19
 Third TestFlight build. Work can be saved, projects can be brought in from the card, and a
 document holds a whole set of patterns.

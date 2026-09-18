@@ -32,6 +32,12 @@ public enum ProjectBundleWriter {
         public let patternFiles: [URL]
         public let metadataFile: URL
         public let instrumentFiles: [URL]
+        /// True when an existing `project.mt` was written into rather than
+        /// replaced, so the device's own settings survived.
+        public let keptExistingSettings: Bool
+        /// Pattern files that were in the folder before and are not part of this
+        /// project any more.
+        public let removedFiles: [URL]
     }
 
     /// A named instrument to write into the project's `Instruments` folder.
@@ -114,6 +120,27 @@ public enum ProjectBundleWriter {
         let metadataFile = patternsDir.appendingPathComponent("patternsMetadata")
         try metadata.data().write(to: metadataFile)
 
+        // Writing into a project that already exists must not throw away the
+        // parts of it this app does not model: the instrument pool, the mixer,
+        // delay and reverb. So the existing file is used as the base when it has
+        // a layout we understand.
+        let projectFile = projectDir.appendingPathComponent("project.mt")
+        let existing = try? Data(contentsOf: projectFile)
+        let keptExistingSettings = existing.map { MTProjectExporter.canPatch($0) } ?? false
+
+        // Pattern files from a previous, longer version of this project would
+        // otherwise linger and no longer match the playlist.
+        var removed: [URL] = []
+        // Compare by name: the same file can be spelled differently as a URL
+        // (/var against /private/var, for one).
+        let writtenNames = Set(patternURLs.map(\.lastPathComponent))
+        let stale = (try? fileManager.contentsOfDirectory(at: patternsDir, includingPropertiesForKeys: nil))?
+            .filter { $0.pathExtension.lowercased() == "mtp" && !writtenNames.contains($0.lastPathComponent) } ?? []
+        for url in stale {
+            try fileManager.removeItem(at: url)
+            removed.append(url)
+        }
+
         // project.mt with a linear song playlist referencing the patterns.
         var project = MTProject.new(name: projectName, device: device)
         project.globalTempo = tempo
@@ -134,8 +161,7 @@ public enum ProjectBundleWriter {
         }
         project.playlist = playlist
 
-        let projectFile = projectDir.appendingPathComponent("project.mt")
-        try project.data().write(to: projectFile)
+        try project.data(base: keptExistingSettings ? existing : nil).write(to: projectFile)
 
         // macOS keeps a file's extended attributes on a FAT card in a companion
         // "._name" file. The Tracker reads everything in patterns/, so those
@@ -150,6 +176,7 @@ public enum ProjectBundleWriter {
         }
 
         return Result(projectDirectory: projectDir, projectFile: projectFile, patternFiles: patternURLs,
-                      metadataFile: metadataFile, instrumentFiles: instrumentURLs)
+                      metadataFile: metadataFile, instrumentFiles: instrumentURLs,
+                      keptExistingSettings: keptExistingSettings, removedFiles: removed)
     }
 }

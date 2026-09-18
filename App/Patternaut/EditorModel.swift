@@ -31,6 +31,8 @@ final class EditorModel: @unchecked Sendable {
     /// Last validation issues from an export attempt.
     var issues: [ValidationIssue] = []
     var lastExportPath: String?
+    /// What the export did beyond writing files, when that is worth knowing.
+    var exportNote: String?
 
     /// Diagnostics log (unified logging + in-app panel).
     let diagnostics = Diagnostics()
@@ -350,7 +352,15 @@ final class EditorModel: @unchecked Sendable {
                 tempo: Float(tempo), instruments: namedInstruments(), to: directory
             )
             lastExportPath = result.projectDirectory.path
-            diagnostics.log("Exported \"\(exportProjectName)\" (\(patterns.count) patterns, \(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
+            var notes: [String] = []
+            if result.keptExistingSettings {
+                notes.append("kept the project's own instruments and mixer")
+            }
+            if !result.removedFiles.isEmpty {
+                notes.append("removed \(result.removedFiles.count) leftover pattern file(s)")
+            }
+            exportNote = notes.isEmpty ? nil : notes.joined(separator: ", ")
+            diagnostics.log("Exported \"\(exportProjectName)\" (\(patterns.count) patterns, \(instruments.count) instruments) to \(result.projectDirectory.path). \(exportNote ?? "")", category: "export")
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]
             diagnostics.log("Export failed: \(error.localizedDescription)", level: .error, category: "export")

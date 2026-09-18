@@ -107,6 +107,7 @@ public struct MTProject: Sendable, Equatable {
         )
     }
 
-    /// Serializes to `.mt` bytes.
-    public func data() -> Data { MTProjectExporter.export(self) }
+    /// Serializes to `.mt` bytes, keeping everything this writer does not model
+    /// from `base` when one is given (see ``MTProjectExporter/export(_:base:)``).
+    public func data(base: Data? = nil) -> Data { MTProjectExporter.export(self, base: base) }
 }

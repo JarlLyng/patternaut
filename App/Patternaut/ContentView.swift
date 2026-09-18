@@ -295,7 +295,8 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
             }
             if let path = model.lastExportPath {
-                Label("Exported to \(path)", systemImage: "checkmark.circle")
+                Label("Exported to \(path)\(model.exportNote.map { " (\($0))" } ?? "")",
+                      systemImage: "checkmark.circle")
                     .foregroundStyle(.green)
             }
             ForEach(Array(model.issues.enumerated()), id: \.offset) { _, issue in
@@ -343,6 +344,20 @@ struct ContentView: View {
 
     // MARK: Export
 
+    /// Asks before writing into a project that is already there. Overwriting a
+    /// project on a card is not something to do silently.
+    private func confirmOverwrite(of url: URL) -> Bool {
+        guard FileManager.default.fileExists(atPath: url.path) else { return true }
+        let alert = NSAlert()
+        alert.messageText = "\"\(url.lastPathComponent)\" already exists"
+        alert.informativeText = "Its patterns will be replaced by this document's "
+            + "\(model.patternCount), and pattern files left over from a longer version will be "
+            + "removed.\n\nThe project's own instruments, mixer, delay and reverb are kept."
+        alert.addButton(withTitle: "Replace Patterns")
+        alert.addButton(withTitle: "Cancel")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+
     private func exportBundle() {
         // A save panel rather than a folder picker, so the project gets its name
         // here: the name becomes the folder on the card and what the Tracker shows.
@@ -352,7 +367,7 @@ struct ContentView: View {
         panel.nameFieldStringValue = model.exportProjectName
         panel.prompt = "Export"
         panel.message = "Name the project and choose where to put it, e.g. your SD card's Projects/User folder."
-        if panel.runModal() == .OK, let url = panel.url {
+        if panel.runModal() == .OK, let url = panel.url, confirmOverwrite(of: url) {
             model.export(to: url.deletingLastPathComponent(), named: url.lastPathComponent)
         }
     }
