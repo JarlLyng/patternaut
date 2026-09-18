@@ -57,7 +57,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool { true }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        guard NSDocumentController.shared.documents.isEmpty else { return }
-        NSDocumentController.shared.newDocument(nil)
+        // A document asked for at launch (double-clicked, or passed on the
+        // command line) is opened after this runs, so checking immediately would
+        // add an empty window beside it. Look again once that has settled.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            guard NSDocumentController.shared.documents.isEmpty else { return }
+            NSDocumentController.shared.newDocument(nil)
+        }
     }
 }

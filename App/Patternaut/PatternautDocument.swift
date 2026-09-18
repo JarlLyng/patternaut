@@ -26,6 +26,9 @@ final class PatternautDocument: ReferenceFileDocument {
             throw ProjectFile.DocumentError.unreadable
         }
         model = EditorModel(file: try ProjectFile.decoded(from: data))
+        #if DEBUG
+        model.applyScreenshotArguments()
+        #endif
     }
 
     /// Taken on the main actor before writing, so the file is a consistent

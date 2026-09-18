@@ -89,10 +89,10 @@ struct ContentView: View {
             model.undoManager = undoManager
         }
         .onChange(of: undoManager) { _, new in model.undoManager = new }
-        .sheet(isPresented: $showingLog) {
+        .sheet(isPresented: $showingLog, onDismiss: { gridFocused = true }) {
             DiagnosticsView(diagnostics: model.diagnostics)
         }
-        .sheet(isPresented: $showingShortcuts) {
+        .sheet(isPresented: $showingShortcuts, onDismiss: { gridFocused = true }) {
             ShortcutsView()
         }
         .onReceive(NotificationCenter.default.publisher(for: .showKeyboardShortcuts)) { _ in

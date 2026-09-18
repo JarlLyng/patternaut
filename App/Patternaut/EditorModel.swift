@@ -115,6 +115,27 @@ final class EditorModel: @unchecked Sendable {
         set { edit("Rename Pattern") { editor.renamePattern(newValue) } }
     }
 
+    #if DEBUG
+    /// Puts the app into a fixed state for App Store captures, driven by launch
+    /// arguments so a screenshot is repeatable rather than a matter of clicking
+    /// in the right order. See the hub's DESIGN.md. Debug builds only.
+    func applyScreenshotArguments(_ arguments: [String] = ProcessInfo.processInfo.arguments) {
+        guard arguments.contains("-screenshots") else { return }
+        guard let index = arguments.firstIndex(of: "-cursor"), index + 1 < arguments.count else { return }
+        // "track,row,column" with column one of note/instrument/fx1/fx2.
+        let parts = arguments[index + 1].split(separator: ",")
+        guard parts.count == 3, let track = Int(parts[0]), let row = Int(parts[1]) else { return }
+        let column: PatternEditor.Column
+        switch parts[2] {
+        case "instrument": column = .instrument
+        case "fx1": column = .fx1
+        case "fx2": column = .fx2
+        default: column = .note
+        }
+        editor.setCursor(track: track, row: row, column: column)
+    }
+    #endif
+
     /// Restores a saved document.
     convenience init(file: ProjectFile) {
         self.init(device: file.device)
