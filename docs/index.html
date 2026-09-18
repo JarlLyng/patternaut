@@ -85,14 +85,23 @@
     ]
   }
   </script>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.9.1/dist/css/tokens.css"
+    integrity="sha384-UmQPoKzrUIRKm2GUXJx0Ag8SzJl3mA/JAeXIERGaZs69VDU6kcaI+JUmXbpucyYi"
+    crossorigin="anonymous">
+  <script type="module"
+    src="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.9.1/dist/components/ij-footer.js"
+    integrity="sha384-avlTqQgXGscVdy3DgtXfWAM1br+CNIZw3n7dC+jVHCHyB/PgYFGZrVxKeidbLxBX"
+    crossorigin="anonymous"></script>
   <style>
     :root {
-      --bg: #0e0f13; --panel: #16181f; --border: #262a35;
-      --text: #e7e9ee; --muted: #9aa1b1; --accent: #5eead4; --accent-2: #a5b4fc;
-      --radius: 14px; --maxw: 720px; color-scheme: dark;
-    }
-    @media (prefers-color-scheme: light) {
-      :root { --bg: #f7f8fa; --panel: #fff; --border: #e4e7ee; --text: #14161c; --muted: #5b6474; --accent: #0d9488; --accent-2: #4f46e5; color-scheme: light; }
+      /* Mapped to the design system rather than picked again here. */
+      --bg: var(--ij-color-background); --panel: var(--ij-color-surface);
+      --border: var(--ij-color-border); --text: var(--ij-color-text-primary);
+      --muted: var(--ij-color-text-secondary); --accent: var(--ij-color-primary);
+      --accent-2: var(--ij-color-secondary);
+      --radius: var(--ij-radius-lg); --maxw: 720px;
+      color-scheme: light dark;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -219,16 +228,29 @@
     </main>
 
     <footer>
-      <p><a href="/support">Support</a> · <a href="/privacy">Privacy</a></p>
-      <p>Made by one person, in the open. More at <a href="https://iamjarl.com">iamjarl.com</a>.</p>
-      <p>My other tools for people who make music with hardware:
-        <a href="https://tonvault.iamjarl.com">TonVault</a>,
-        <a href="https://echolume.iamjarl.com">Echolume</a>,
-        <a href="https://itsmonoyo.iamjarl.com">It's mono, yo!</a> and
-        <a href="https://its404yo.iamjarl.com">It's 404, yo!</a>.</p>
-      <p><a href="https://madebyhuman.iamjarl.com">Made by Human</a></p>
-      <p class="disclaimer">Not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+
-        and Tracker Mini are trademarks of their respective owners.</p>
+      <ij-footer app="patternaut" tagline="An IAMJARL app. Pay once, own it.">
+        <a slot="links" href="/privacy">Privacy</a>
+        <a slot="links" href="/support">Support</a>
+
+      <!-- IAMJARL cross-links for Patternaut — generated, do not edit -->
+      <!-- design system v1.9.1, registry updated 2026-09-19 -->
+      <!-- Paste inside <ij-footer app="patternaut">. Rebuild to refresh. -->
+      <a slot="cross-links" href="https://echolume.iamjarl.com">Echolume</a>
+      <a slot="cross-links" href="https://its404yo.iamjarl.com">It's 404, yo!</a>
+      <a slot="cross-links" href="https://itsmonoyo.iamjarl.com">It's mono, yo!</a>
+      <a slot="cross-links" href="https://tonvault.iamjarl.com">TonVault</a>
+      <a slot="cross-links" href="https://madebyhuman.iamjarl.com">Made by Human</a>
+      <a slot="cross-links" href="https://iamjarl.com">All projects</a>
+
+        <p slot="fineprint">&copy; 2026 IAMJARL. Patternaut is an independent companion app and is
+          not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+ and Tracker Mini
+          are trademarks of their respective owners.</p>
+
+        <!-- No slot: the fallback, shown only if the script never loads. -->
+        <p>&copy; 2026 IAMJARL &middot; <a href="/privacy">Privacy</a> &middot;
+          <a href="/support">Support</a> &middot;
+          <a href="https://madebyhuman.iamjarl.com">Made by Human</a></p>
+      </ij-footer>
     </footer>
   </div>
 </body>
