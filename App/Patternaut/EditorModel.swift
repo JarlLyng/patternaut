@@ -97,6 +97,11 @@ final class EditorModel {
     /// are just the ones people actually reach for.
     static let lengthChoices = [8, 16, 24, 32, 48, 64, 96, 128]
 
+    /// Renames a track (undoable). Names travel to the device in `project.mt`.
+    func renameTrack(_ name: String, at index: Int) {
+        editor.renameTrack(name, at: index)
+    }
+
     var canUndo: Bool { editor.canUndo }
     var canRedo: Bool { editor.canRedo }
     func undo() { editor.undo() }

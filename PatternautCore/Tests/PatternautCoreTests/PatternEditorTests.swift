@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import PatternautCore
 
@@ -116,5 +117,41 @@ struct PatternEditorTests {
         // Base octave 4 → C4 = MIDI 60.
         #expect(NoteKeyMap.note(for: "z", baseOctave: 4) == .pitch(60))
         #expect(NoteKeyMap.note(for: "q", baseOctave: 4) == .pitch(72))
+    }
+
+    @Test("Renaming a track is undoable and fits the device's name fields")
+    func renameTrack() {
+        var editor = PatternEditor(pattern: DeviceProfile.trackerPlus.makeEmptyPattern(name: "P", stepCount: 16))
+        editor.renameTrack("Kick", at: 0)
+        #expect(editor.pattern.tracks[0].name == "Kick")
+        editor.undo()
+        #expect(editor.pattern.tracks[0].name != "Kick")
+
+        // A sample track gets 21 bytes in project.mt, a MIDI track 8, and one
+        // byte of each is left for the terminator.
+        editor.renameTrack(String(repeating: "a", count: 40), at: 0)
+        #expect(editor.pattern.tracks[0].name.count == 20)
+        editor.renameTrack(String(repeating: "b", count: 40), at: 9)
+        #expect(editor.pattern.tracks[9].name.count == 7)
+
+        // Out of range does nothing, and renaming to the same name is not an edit.
+        editor.renameTrack("X", at: 99)
+        let before = editor.canUndo
+        editor.renameTrack(editor.pattern.tracks[0].name, at: 0)
+        #expect(editor.canUndo == before)
+    }
+
+    @Test("A renamed track reaches project.mt")
+    func renamedTrackExports() throws {
+        var editor = PatternEditor(pattern: DeviceProfile.trackerPlus.makeEmptyPattern(name: "P", stepCount: 16))
+        editor.renameTrack("Rimshot", at: 2)
+        let root = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("patternaut-rename-\(UUID().uuidString)", isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let result = try ProjectBundleWriter.write(
+            patterns: [editor.pattern], projectName: "Named", device: .trackerPlus, to: root
+        )
+        let project = try MTProjectImporter.parse(Data(contentsOf: result.projectFile))
+        #expect(project.trackNames[2] == "Rimshot")
     }
 }

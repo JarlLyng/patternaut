@@ -30,6 +30,14 @@ public struct Track: Equatable, Sendable, Codable, Identifiable {
     }
 
     /// Creates a track of `length` empty steps.
+    /// How long a track's name may be to survive the trip to the device.
+    ///
+    /// `project.mt` stores the first eight names in 21 bytes each and the MIDI
+    /// track names in 8; one byte is left for the terminator.
+    public static func nameLimit(forTrack index: Int) -> Int {
+        index < TrackerFormat.universalTrackCount ? 20 : 7
+    }
+
     public static func empty(name: String, role: TrackRole = .universal, length: Int) -> Track {
         Track(name: name, role: role, length: length, steps: Array(repeating: .empty, count: length))
     }

@@ -78,6 +78,7 @@ struct InstrumentsPanel: View {
             Text(String(format: "I%02d", index))
                 .font(.system(.caption, design: .monospaced))
                 .foregroundStyle(.secondary)
+                .help("Instrument \(String(format: "%02d", index)): type this number in a step's instrument column to play this sample. Written to the card as \"\(index + 1) <name>.pti\".")
 
             VStack(alignment: .leading, spacing: 1) {
                 TextField("name", text: nameBinding(for: instrument))

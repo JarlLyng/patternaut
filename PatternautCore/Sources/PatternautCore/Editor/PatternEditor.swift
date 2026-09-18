@@ -142,6 +142,20 @@ public struct PatternEditor: Sendable {
         setFXDisplayValue(lane: lane, command.displayValue + delta)
     }
 
+    /// Renames a track, in one undoable step.
+    ///
+    /// Names travel to the device in `project.mt`, which gives the first eight
+    /// tracks 21 bytes each and the MIDI tracks 8. The name is trimmed to one
+    /// less than that so there is always room for a terminating zero.
+    public mutating func renameTrack(_ name: String, at index: Int) {
+        guard index >= 0, index < pattern.tracks.count else { return }
+        let limit = Track.nameLimit(forTrack: index)
+        let trimmed = String(name.prefix(limit))
+        guard trimmed != pattern.tracks[index].name else { return }
+        snapshot()
+        pattern.tracks[index].name = trimmed
+    }
+
     /// Changes the pattern's length, in one undoable step.
     ///
     /// Shortening drops the steps past the new end; lengthening pads with empty

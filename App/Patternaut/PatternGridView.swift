@@ -27,11 +27,16 @@ struct PatternGridView: View {
             Text("")
                 .frame(width: 34)
             ForEach(Array(model.pattern.tracks.enumerated()), id: \.offset) { index, track in
-                Text(track.name)
-                    .lineLimit(1)
-                    .frame(width: cellGroupWidth, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 4)
+                TextField("", text: Binding(
+                    get: { track.name },
+                    set: { model.renameTrack($0, at: index) }
+                ))
+                .textFieldStyle(.plain)
+                .lineLimit(1)
+                .frame(width: cellGroupWidth, alignment: .leading)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+                .help("Track name. It is written into the project, so the Tracker shows it. Up to \(Track.nameLimit(forTrack: index)) characters.")
             }
         }
         .padding(.bottom, 4)
