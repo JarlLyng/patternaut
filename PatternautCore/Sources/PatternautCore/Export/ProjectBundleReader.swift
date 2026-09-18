@@ -15,14 +15,24 @@ public enum ProjectBundleReader {
         public let projectName: String
         public let tempo: Double
         public let patterns: [Pattern]
-        /// Names of the `.pti` files found, in slot order. Not loaded as audio.
-        public let instrumentNames: [String]
+        /// The instruments found, in slot order.
+        public let instruments: [ImportedInstrument]
+        /// Names of the `.pti` files found, in slot order.
+        public var instrumentNames: [String] { instruments.map(\.name) }
         /// What could not be read but did not stop the import.
         public let warnings: [String]
     }
 
     /// Used when a project's own settings cannot be read.
     public static let defaultTempo: Double = 130
+
+    /// An instrument read off the card. `name` has the device's slot prefix
+    /// removed, because the slot is this entry's position in the list; writing
+    /// the project back puts the prefix on again.
+    public struct ImportedInstrument: Sendable, Equatable {
+        public let name: String
+        public let instrument: Instrument
+    }
 
     public enum ReadError: Error, Equatable, LocalizedError {
         case notAProject(String)
@@ -111,12 +121,22 @@ public enum ProjectBundleReader {
             return pattern
         }
 
-        var instrumentNames: [String] = []
+        var instruments: [ImportedInstrument] = []
         if let instrumentsDir = try directory(named: "instruments", in: url, fileManager: fileManager) {
-            instrumentNames = try fileManager.contentsOfDirectory(at: instrumentsDir, includingPropertiesForKeys: nil)
+            let files = try fileManager.contentsOfDirectory(at: instrumentsDir, includingPropertiesForKeys: nil)
                 .filter { $0.pathExtension.lowercased() == "pti" && !$0.lastPathComponent.hasPrefix("._") }
-                .map { $0.deletingPathExtension().lastPathComponent }
-                .sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+                // The device prefixes the slot number, so sorting by name in
+                // number order puts each instrument back in its own slot.
+                .sorted { $0.lastPathComponent.localizedStandardCompare($1.lastPathComponent) == .orderedAscending }
+            for file in files {
+                let label = file.deletingPathExtension().lastPathComponent
+                do {
+                    let instrument = try PTIImporter.parse(try Data(contentsOf: file))
+                    instruments.append(ImportedInstrument(name: withoutSlotPrefix(label), instrument: instrument))
+                } catch {
+                    warnings.append("Could not read the instrument \"\(label)\": \(error.localizedDescription)")
+                }
+            }
         }
 
         // Old projects keep their audio as plain WAVs in a samples folder.
@@ -127,17 +147,22 @@ public enum ProjectBundleReader {
            patternURLs.count > 0, wasShort(patternURLs[0], device: device) {
             warnings.append("It was made for 8 tracks; the extra tracks are empty.")
         }
-        if !instrumentNames.isEmpty {
-            warnings.append("Its \(instrumentNames.count) instrument(s) stay on the card; Patternaut does not read .pti yet.")
-        }
 
         let name = project.map { $0.projectName.isEmpty ? url.lastPathComponent : $0.projectName }
             ?? url.lastPathComponent
         return Result(projectName: name, tempo: tempo, patterns: patterns,
-                      instrumentNames: instrumentNames, warnings: warnings)
+                      instruments: instruments, warnings: warnings)
     }
 
     // MARK: - Private
+
+    /// Drops the device's slot number from an instrument filename, so
+    /// "4 kick_zapper" reads as "kick_zapper".
+    private static func withoutSlotPrefix(_ name: String) -> String {
+        let parts = name.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: false)
+        guard parts.count == 2, Int(parts[0]) != nil, !parts[1].isEmpty else { return name }
+        return String(parts[1])
+    }
 
     /// Finds the project folder from whatever was picked. Landing inside
     /// `patterns` or on a file in it is an easy mistake, and the folder above is

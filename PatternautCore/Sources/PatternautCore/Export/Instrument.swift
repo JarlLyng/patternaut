@@ -112,7 +112,12 @@ public struct Instrument: Sendable, Equatable {
     }
     public enum FilterType: Int, Sendable { case lowPass = 0, highPass, bandPass }
     public enum LFOShape: Int, Sendable { case revSaw = 0, saw, triangle, square, random }
-    public enum LFOSpeed: Int, Sendable { case s4 = 10 } // full table exists on device; default only
+    /// LFO rate, as note divisions. Values from `tracker-lib` `LFO_SPEED`.
+    public enum LFOSpeed: Int, Sendable, CaseIterable {
+        case s128 = 0, s96, s64, s48, s32, s24, s16, s12, s8, s6, s4, s3, s2
+        case s3over2, s1, s3over4, s1over2, s3over8, s1over3, s1over4, s3over16
+        case s1over6, s1over8, s1over12, s1over16, s1over24, s1over32, s1over48, s1over64
+    }
     public enum GranularShape: Int, Sendable { case square = 0, triangle, gauss }
     public enum GranularType: Int, Sendable { case forward = 0, backward, pingPong }
 

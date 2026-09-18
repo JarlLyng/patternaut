@@ -33,9 +33,12 @@ struct ProjectBundleReaderTests {
         #expect(result.patterns[1].metadata.name == "Break")
         // Track names come from project.mt, since the pattern files hold none.
         #expect(result.patterns[0].tracks[0].name == "Kick")
-        #expect(result.instrumentNames == ["1 kick"])
-        // The audio staying behind is worth saying out loud, not hiding.
-        #expect(result.warnings.contains { $0.contains("does not read .pti") })
+        // Instruments come back with their audio, in slot order, and without the
+        // slot number, which the writer puts back on.
+        #expect(result.instrumentNames == ["kick"])
+        #expect(result.instruments.count == 1)
+        #expect(result.instruments[0].instrument.sample.filename == "kick")
+        #expect(result.instruments[0].instrument.pcm == instrument.pcm)
     }
 
     @Test("The notes and effects survive the trip to disk and back")
@@ -56,6 +59,36 @@ struct ProjectBundleReaderTests {
         }
         let fx = reloaded.tracks.flatMap { $0.steps.prefix($0.length) }.flatMap { $0.fx }
         #expect(fx.contains { $0.type == .volume })
+    }
+
+    @Test("An imported project can be written straight back out unchanged")
+    func importExportImport() throws {
+        let root = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let wav = WavFile.make(pcm: Data((0..<400).map { UInt8($0 % 256) }), channels: 1)
+        let instrument = try Instrument.new(wav: wav, filename: "clap")
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "Verse", steps: 32, seed: 12)
+        _ = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Cycle",
+                                          device: .trackerPlus, tempo: 138,
+                                          instruments: [.init(name: "clap", instrument: instrument)], to: root)
+
+        let first = try ProjectBundleReader.read(at: root.appendingPathComponent("Cycle"))
+        let out = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: out) }
+        _ = try ProjectBundleWriter.write(
+            patterns: first.patterns, projectName: first.projectName, device: .trackerPlus,
+            tempo: Float(first.tempo),
+            instruments: first.instruments.map { .init(name: $0.name, instrument: $0.instrument) },
+            to: out
+        )
+        let second = try ProjectBundleReader.read(at: out.appendingPathComponent("Cycle"))
+
+        // Names do not accumulate slot prefixes, and nothing musical changes.
+        #expect(second.instrumentNames == ["clap"])
+        #expect(second.instruments[0].instrument.pcm == first.instruments[0].instrument.pcm)
+        #expect(second.tempo == first.tempo)
+        #expect(second.patterns.map { $0.metadata.name } == first.patterns.map { $0.metadata.name })
+        #expect(second.patterns[0].tracks.map(\.name) == first.patterns[0].tracks.map(\.name))
     }
 
     @Test("A project from older firmware still gives up its patterns")

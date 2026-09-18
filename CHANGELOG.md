@@ -6,6 +6,13 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- `.pti` instruments are read. Importing a project now brings its samples in with their audio,
+  in slot order, so instrument 00 in the grid is instrument 00 on the device, and the whole
+  project can be taken in, changed and written back. Verified against all 260 instruments on a
+  real card, and by a full round trip of a Polyend demo project: patterns, track names, tempo
+  and sample audio all identical afterwards.
+
 ### Fixed
 - **Exporting into a project that already exists no longer destroys it.** `project.mt` was
   rebuilt from the bundled template every time, which wiped the instrument pool, the mixer, and

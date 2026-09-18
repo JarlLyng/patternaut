@@ -270,11 +270,21 @@ final class EditorModel: @unchecked Sendable {
             projectName = result.projectName
             tempo = result.tempo
             issues = []
-            let missing = result.instrumentNames.isEmpty
-                ? ""
-                : " Its \(result.instrumentNames.count) instrument(s) stay on the card; Patternaut does not read .pti yet."
-            importStatus = "Imported \(result.patterns.count) pattern(s) from \"\(result.projectName)\".\(missing)"
-            diagnostics.log("Imported \"\(result.projectName)\": \(result.patterns.count) patterns at \(Int(result.tempo)) BPM, instruments on card: \(result.instrumentNames.joined(separator: ", ")).", category: "export")
+
+            // Instruments arrive in slot order, so index 0 here is instrument 00
+            // in the grid, the same as the device.
+            instruments = result.instruments.map { imported in
+                let audio = imported.instrument.sample
+                return LoadedInstrument(
+                    name: imported.name,
+                    instrument: imported.instrument,
+                    wav: WavFile.make(pcm: imported.instrument.pcm, channels: audio.channels)
+                )
+            }
+
+            let extras = result.warnings.isEmpty ? "" : " " + result.warnings.joined(separator: " ")
+            importStatus = "Imported \(result.patterns.count) pattern(s) and \(instruments.count) instrument(s) from \"\(result.projectName)\".\(extras)"
+            diagnostics.log("Imported \"\(result.projectName)\": \(result.patterns.count) patterns at \(Int(result.tempo)) BPM, \(instruments.count) instruments.\(extras)", category: "export")
         } catch {
             importStatus = error.localizedDescription
             diagnostics.log("Import failed: \(error.localizedDescription)", level: .error, category: "export")

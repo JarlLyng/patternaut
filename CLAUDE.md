@@ -37,7 +37,8 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 
 - Many patterns per document, with a pattern bar to switch/add/duplicate/remove/name them; export
   writes them all with a playlist in that order. Import reads a Tracker project folder back
-  (`ProjectBundleReader`): patterns, pattern names, track names and tempo. Verified by reading
+  (`ProjectBundleReader`): patterns, pattern names, track names, tempo and `.pti` instruments
+  with their audio. Verified by reading
   every project on a real card: 47 projects, 538 patterns, including ones from older firmware.
 - A document app: work is saved as `.patternaut` (JSON, UTI `com.iamjarl.patternaut.project`),
   holding the pattern, settings, seed and the loaded samples as canonical WAVs. `DocumentGroup`
@@ -71,8 +72,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
   auto-assigned to instrument slots on the device yet.
 - No song/arrangement mode beyond a linear playlist of the document's patterns.
-- Import does not read `.pti` audio (no parser yet), so an imported project arrives without its
-  samples; the instrument numbers in its patterns are preserved.
+- Reading a `.pti` the device wrote and writing it back differs in three fields this model does
+  not carry (the old extension left after the name's terminator, the reserved bytes at offset 56,
+  and `FF FF` end padding). `tracker-lib` writes those the same way Patternaut does.
 - No account, cloud, sync, analytics, ads, or subscription.
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.
