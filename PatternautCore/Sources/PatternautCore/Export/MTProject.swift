@@ -27,7 +27,10 @@ public struct MTProject: Sendable, Equatable {
         public var fileStructureVersion: [UInt8]
         public var size: Int
 
-        public init(idFile: String = "MT", type: Int = 1, fwVersion: [UInt8] = [1, 9, 2, 255],
+        /// `type` defaults to `0`, which is what a Tracker+ writes. `tracker-lib`'s
+        /// `createProject` uses `1`; the device is the authority, so the oracle
+        /// tests pass that value explicitly.
+        public init(idFile: String = "MT", type: Int = 0, fwVersion: [UInt8] = [1, 9, 2, 255],
                     fileStructureVersion: [UInt8] = [17, 17, 17, 17], size: Int = 2324) {
             self.idFile = idFile
             self.type = type

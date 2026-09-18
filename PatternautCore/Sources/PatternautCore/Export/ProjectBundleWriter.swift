@@ -7,7 +7,7 @@ import Foundation
 ///     project.mt
 ///     patterns/pattern_01.mtp, pattern_02.mtp, …
 ///     patterns/patternsMetadata
-///     instruments/<name>.pti
+///     instruments/1 <name>.pti, 2 <name>.pti, …
 /// ```
 ///
 /// This is the concrete "Vej B" deliverable — drop the folder onto an SD card's
@@ -17,9 +17,11 @@ import Foundation
 /// `patterns/` and `instruments/`, and a `patternsMetadata` beside the patterns,
 /// which that library treats as essential and refuses to load a project without.
 ///
-/// - Note: The project's instrument pool comes from the embedded `.mt` template.
-///   The `.pti` files are written into the project, but which slot each one
-///   occupies is still assigned on the device.
+/// Instrument files carry their slot in the filename, as a 1-based number
+/// followed by a space (`4 kick_zapper.pti` is instrument index 3 in a pattern).
+/// That is the convention the device itself uses, read off a real card, so the
+/// instrument numbers in an exported pattern line up with the samples without
+/// anyone reassigning them by hand.
 public enum ProjectBundleWriter {
     public struct Result: Sendable, Equatable {
         public let projectDirectory: URL
@@ -65,8 +67,10 @@ public enum ProjectBundleWriter {
         if !instruments.isEmpty {
             let instrumentsDir = projectDir.appendingPathComponent("instruments", isDirectory: true)
             try fileManager.createDirectory(at: instrumentsDir, withIntermediateDirectories: true)
-            for named in instruments {
-                let url = instrumentsDir.appendingPathComponent("\(named.name).pti")
+            for (index, named) in instruments.enumerated() {
+                // Slot numbers in filenames are 1-based; pattern instrument
+                // indices are 0-based, so slot N + 1 is instrument N.
+                let url = instrumentsDir.appendingPathComponent("\(index + 1) \(named.name).pti")
                 try named.instrument.data().write(to: url)
                 instrumentURLs.append(url)
             }

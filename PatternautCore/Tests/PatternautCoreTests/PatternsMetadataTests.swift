@@ -17,14 +17,14 @@ struct PatternsMetadataTests {
     func matchesOracle() throws {
         for testCase in try Self.loadCases() {
             let expected = Data(base64Encoded: testCase.bytes)!
-            let actual = PatternsMetadata(patternNames: testCase.names).data()
+            let actual = PatternsMetadata(patternNames: testCase.names).rawData()
             #expect(actual == expected, "names: \(testCase.names)")
         }
     }
 
     @Test("Header says what it should")
     func header() {
-        let data = [UInt8](PatternsMetadata(patternNames: ["A", "B"]).data())
+        let data = [UInt8](PatternsMetadata(patternNames: ["A", "B"]).rawData())
         #expect(String(decoding: data[0..<4], as: UTF8.self) == "PAMD")
         #expect(data[4] == 1 && data[5] == 0)            // version
         #expect(data[6] == 0 && data[7] == 0)            // unused
@@ -37,7 +37,7 @@ struct PatternsMetadataTests {
     func roundTrip() throws {
         let long = String(repeating: "x", count: 60)
         let original = PatternsMetadata(patternNames: ["Kick", "", "Break 3", long])
-        let parsed = try PatternsMetadata.parse(original.data())
+        let parsed = try PatternsMetadata.parse(original.rawData())
         #expect(parsed.patternNames.count == 4)
         #expect(parsed.patternNames[0] == "Kick")
         #expect(parsed.patternNames[1] == "")
@@ -45,17 +45,32 @@ struct PatternsMetadataTests {
         #expect(parsed.patternNames[3] == String(repeating: "x", count: 31))
     }
 
+    @Test("The written file has the same shape as one from the device")
+    func matchesHardwareShape() throws {
+        // Every patternsMetadata on a real card is 12816 bytes: 256 records,
+        // whatever the project actually uses.
+        let data = PatternsMetadata(patternNames: ["Generated"]).data()
+        #expect(data.count == 12816)
+        let parsed = try PatternsMetadata.parse(data)
+        #expect(parsed.patternNames.count == 256)
+        #expect(parsed.patternNames[0] == "Generated")
+        #expect(parsed.patternNames[1...].allSatisfy { $0.isEmpty })
+
+        let size = [UInt8](data)[8...11].enumerated().reduce(UInt32(0)) { $0 | (UInt32($1.element) << (8 * $1.offset)) }
+        #expect(size == 12816)
+    }
+
     @Test("A file that isn't patterns metadata is rejected")
-    func rejectsGarbage() {
+    func rejectsGarbage() throws {
         #expect(throws: PatternsMetadata.MetadataError.tooShort) {
             try PatternsMetadata.parse(Data([0, 1, 2]))
         }
-        var wrong = [UInt8](PatternsMetadata(patternNames: []).data())
+        var wrong = [UInt8](PatternsMetadata(patternNames: []).rawData())
         wrong[0] = UInt8(ascii: "X")
         #expect(throws: PatternsMetadata.MetadataError.badIdentifier("XAMD")) {
             try PatternsMetadata.parse(Data(wrong))
         }
-        var oldVersion = [UInt8](PatternsMetadata(patternNames: []).data())
+        var oldVersion = [UInt8](PatternsMetadata(patternNames: []).rawData())
         oldVersion[4] = 9
         #expect(throws: PatternsMetadata.MetadataError.unsupportedVersion(9)) {
             try PatternsMetadata.parse(Data(oldVersion))

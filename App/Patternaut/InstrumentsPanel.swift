@@ -65,7 +65,7 @@ struct InstrumentsPanel: View {
                 .foregroundStyle(.secondary)
             Text("No samples")
                 .foregroundStyle(.secondary)
-            Text("Drop WAVs here, or use +, to build .pti instruments.\n24-bit and other sample rates are converted.\nExported into the project's Instruments folder;\nassign them to slots on the Tracker.")
+            Text("Drop WAVs here, or use +, to build .pti instruments.\n24-bit and other sample rates are converted.\nThe order here is the instrument number in the grid:\nthe first is 00, the next 01.")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)

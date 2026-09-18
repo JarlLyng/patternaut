@@ -119,8 +119,11 @@ struct ProjectBundleTests {
         #expect(result.patternFiles[0].deletingLastPathComponent().lastPathComponent == "patterns")
         #expect(FileManager.default.fileExists(atPath: result.metadataFile.path))
 
+        // The device writes the full 256-slot table; ours names the slots in use.
         let metadata = try PatternsMetadata.parse(Data(contentsOf: result.metadataFile))
-        #expect(metadata.patternNames == ["A", "B"])
+        #expect(metadata.patternNames.count == PatternsMetadata.slotCount)
+        #expect(Array(metadata.patternNames.prefix(2)) == ["A", "B"])
+        #expect(metadata.patternNames[2...].allSatisfy { $0.isEmpty })
 
         // project.mt parses with the expected song + tempo.
         let project = try MTProjectImporter.parse(Data(contentsOf: result.projectFile))
@@ -155,7 +158,9 @@ struct ProjectBundleTests {
         )
 
         #expect(result.instrumentFiles.count == 1)
-        #expect(result.instrumentFiles[0].lastPathComponent == "kick808.pti")
+        // The device's own convention: the 1-based slot number prefixes the name,
+        // so this file is instrument 0 in the pattern grid.
+        #expect(result.instrumentFiles[0].lastPathComponent == "1 kick808.pti")
         #expect(result.instrumentFiles[0].deletingLastPathComponent().lastPathComponent == "instruments")
         let onDisk = try Data(contentsOf: result.instrumentFiles[0])
         #expect(onDisk == instrument.data())

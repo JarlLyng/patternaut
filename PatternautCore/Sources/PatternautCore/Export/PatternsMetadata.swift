@@ -15,6 +15,10 @@ public struct PatternsMetadata: Equatable, Sendable {
     public static let recordSize = 50
     public static let nameLength = 31
 
+    /// The number of records a Tracker writes: every slot, named or not.
+    /// Read off a real card, where every `patternsMetadata` is 12816 bytes.
+    public static let slotCount = 256
+
     /// One name per pattern slot, in slot order. Empty names are allowed.
     public var patternNames: [String]
     /// Kept for round-tripping; `tracker-lib` writes 0.
@@ -26,7 +30,20 @@ public struct PatternsMetadata: Equatable, Sendable {
     }
 
     /// The file's bytes: 16-byte header followed by one record per pattern.
-    public func data() -> Data {
+    ///
+    /// - Parameter slots: How many records to write. Defaults to ``slotCount``,
+    ///   matching the device, which always writes the full table and pads the
+    ///   unused slots with empty names.
+    public func data(slots: Int = PatternsMetadata.slotCount) -> Data {
+        var padded = self
+        let count = max(slots, patternNames.count)
+        padded.patternNames = patternNames + Array(repeating: "", count: count - patternNames.count)
+        return padded.rawData()
+    }
+
+    /// Writes exactly the records it holds, with no padding. This is what
+    /// `tracker-lib` does, and what the oracle test compares against.
+    func rawData() -> Data {
         var b = [UInt8]()
         b.append(contentsOf: Array(PatternsMetadata.fileIdentifier.utf8.prefix(4)))
         appendU16LE(&b, PatternsMetadata.version)

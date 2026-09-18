@@ -38,8 +38,20 @@ struct MTPRoundTripTests {
     func optionsRoundTrip() throws {
         let pattern = DeviceProfile.trackerPlus.makeEmptyPattern(name: "X", stepCount: 16)
 
-        let defaultDoc = try MTPImporter.parse(MTPExporter.export(pattern))
-        #expect(defaultDoc.options == MTPExportOptions.default)
+        let exported = MTPExporter.export(pattern)
+        let defaultDoc = try MTPImporter.parse(exported)
+        // A parsed file carries a concrete size where the defaults leave it nil,
+        // so compare field by field and check the size is the file's own.
+        #expect(defaultDoc.options.idFile == MTPExportOptions.default.idFile)
+        #expect(defaultDoc.options.type == MTPExportOptions.default.type)
+        #expect(defaultDoc.options.fwVersion == MTPExportOptions.default.fwVersion)
+        #expect(defaultDoc.options.fileStructureVersion == MTPExportOptions.default.fileStructureVersion)
+        #expect(defaultDoc.options.crc == MTPExportOptions.default.crc)
+        #expect(defaultDoc.options.size == exported.count)
+        // What a Tracker+ on firmware 1.9.2 writes, read off a real card.
+        #expect(defaultDoc.options.idFile == "KS")
+        #expect(defaultDoc.options.type == 2)
+        #expect(exported.count == 12336)
 
         let custom = MTPExportOptions(
             idFile: "PM", type: 2, fwVersion: [1, 9, 2, 3],

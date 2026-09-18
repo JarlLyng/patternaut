@@ -3,26 +3,34 @@ import Foundation
 /// Options controlling the `.mtp` file header and trailer. Defaults match the
 /// values `tracker-lib` `createPattern` emits, so output is byte-identical to
 /// the official library.
+/// Header values written into a `.mtp` file.
+///
+/// The defaults are what a Tracker+ on firmware 1.9.2 writes itself, read off a
+/// real SD card: signature `KS`, type 2, and a `size` field holding the actual
+/// file size. `tracker-lib`'s own writer defaults differ (`PM`, type 0, size 0);
+/// the device is the authority here, so those values are passed explicitly when
+/// checking our bytes against that library.
 public struct MTPExportOptions: Sendable, Equatable {
-    /// 2-byte ASCII file signature. `"PM"` for patterns.
+    /// 2-byte ASCII file signature. The device writes `"KS"`.
     public var idFile: String
-    /// Header `type` field (uint16).
+    /// Header `type` field (uint16). The device writes `2`.
     public var type: Int
     /// Firmware version bytes `[major, minor, patch, beta]`.
     public var fwVersion: [UInt8]
-    /// File-structure version bytes (stored as 4 bytes).
+    /// File-structure version bytes (stored as 4 bytes). `5` is the 16-track layout.
     public var fileStructureVersion: [UInt8]
-    /// Header `size` field (uint16). `tracker-lib` leaves this `0`.
-    public var size: Int
+    /// Header `size` field (uint16). `nil` writes the file's actual size, which
+    /// is what the device does; `tracker-lib` writes `0`.
+    public var size: Int?
     /// Trailer CRC. `tracker-lib` stores `0` (see ``CRC32``).
     public var crc: UInt32
 
     public init(
-        idFile: String = "PM",
-        type: Int = 0,
-        fwVersion: [UInt8] = [1, 9, 0, 0],
+        idFile: String = "KS",
+        type: Int = 2,
+        fwVersion: [UInt8] = [1, 9, 2, 1],
         fileStructureVersion: [UInt8] = [5, 5, 5, 5],
-        size: Int = 0,
+        size: Int? = nil,
         crc: UInt32 = 0
     ) {
         self.idFile = idFile
@@ -68,7 +76,10 @@ public enum MTPExporter {
         var bytes: [UInt8] = []
         bytes.reserveCapacity(estimatedSize(trackCount: tracks.count))
 
-        writeHeader(into: &bytes, options: options)
+        // The device stores the finished file's size in the header, so resolve
+        // `nil` to what this file will actually weigh.
+        writeHeader(into: &bytes, options: options,
+                    size: options.size ?? estimatedSize(trackCount: tracks.count))
 
         // Padding (2) + reserved/unused (12), all zero.
         bytes.append(contentsOf: repeatElement(0, count: TrackerFormatLayout.paddingSize + TrackerFormatLayout.unusedSize))
@@ -92,7 +103,7 @@ public enum MTPExporter {
             + TrackerFormatLayout.crcSize
     }
 
-    private static func writeHeader(into bytes: inout [UInt8], options: MTPExportOptions) {
+    private static func writeHeader(into bytes: inout [UInt8], options: MTPExportOptions, size: Int) {
         // id_file: exactly 2 ASCII bytes.
         let idBytes = Array(options.idFile.utf8.prefix(2))
         bytes.append(contentsOf: idBytes)
@@ -103,7 +114,7 @@ public enum MTPExporter {
         for i in 0..<4 { bytes.append(i < options.fwVersion.count ? options.fwVersion[i] : 0) }
         for i in 0..<4 { bytes.append(i < options.fileStructureVersion.count ? options.fileStructureVersion[i] : 0) }
 
-        appendUInt16LE(options.size, into: &bytes)
+        appendUInt16LE(size, into: &bytes)
     }
 
     private static func writeTrack(_ track: Track, into bytes: inout [UInt8]) {
