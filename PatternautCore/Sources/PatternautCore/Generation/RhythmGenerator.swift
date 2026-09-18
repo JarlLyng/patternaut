@@ -18,7 +18,8 @@ public enum RhythmGenerator {
         let stepData = hits.map { hit -> Step in
             guard hit else { return .empty }
             var step = Step(note: note, instrument: instrument)
-            if let velocity { step.velocity = velocity }
+            // The device's Volume/Velocity effect is 0...100.
+            if let velocity { step.velocity = min(max(velocity, 0), 100) }
             return step
         }
         return Track(name: name, role: role, length: steps, steps: stepData)
@@ -45,7 +46,7 @@ public enum RhythmGenerator {
             let roll = Double.random(in: 0..<1, using: &rng)
             guard roll < clampedDensity else { return .empty }
             var step = Step(note: note, instrument: instrument)
-            if let velocity { step.velocity = velocity }
+            if let velocity { step.velocity = min(max(velocity, 0), 100) }
             if let chance { step.probability = chance }
             return step
         }

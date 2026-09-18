@@ -167,6 +167,16 @@ struct ProjectBundleTests {
         // so this file is instrument 0 in the pattern grid.
         #expect(result.instrumentFiles[0].lastPathComponent == "1 kick808.pti")
         #expect(result.instrumentFiles[0].deletingLastPathComponent().lastPathComponent == "instruments")
+        // Nothing macOS-specific is left beside the files: a "._name" companion
+        // in patterns/ would look like another pattern to the device.
+        for url in result.patternFiles + result.instrumentFiles + [result.projectFile, result.metadataFile] {
+            let companion = url.deletingLastPathComponent()
+                .appendingPathComponent("._" + url.lastPathComponent)
+            #expect(!FileManager.default.fileExists(atPath: companion.path))
+        }
+        let contents = try FileManager.default.contentsOfDirectory(atPath: result.patternFiles[0].deletingLastPathComponent().path)
+        #expect(contents.allSatisfy { !$0.hasPrefix("._") })
+
         let onDisk = try Data(contentsOf: result.instrumentFiles[0])
         #expect(onDisk == instrument.data())
         #expect(String(decoding: [UInt8](onDisk)[0..<2], as: UTF8.self) == "TI")

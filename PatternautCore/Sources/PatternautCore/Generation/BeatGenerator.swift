@@ -43,7 +43,7 @@ public enum BeatGenerator {
         var kick = RhythmGenerator.euclidean(
             pulses: kickPulses, steps: length,
             rotation: Bool.random(using: &rng) ? 0 : Int.random(in: 0...2, using: &rng),
-            note: .pitch(36), instrument: 0, velocity: Int.random(in: 100...115, using: &rng),
+            note: .pitch(36), instrument: 0, velocity: Int.random(in: 92...100, using: &rng),
             name: "Kick"
         )
 
@@ -52,7 +52,7 @@ public enum BeatGenerator {
         var snare = RhythmGenerator.euclidean(
             pulses: snarePulses, steps: length,
             rotation: [4, 4, 8, 6].randomElement(using: &rng)! * scale,
-            note: .pitch(38), instrument: 1, velocity: Int.random(in: 90...105, using: &rng),
+            note: .pitch(38), instrument: 1, velocity: Int.random(in: 84...98, using: &rng),
             name: "Snare"
         )
 
@@ -66,7 +66,9 @@ public enum BeatGenerator {
         )
 
         // Groove. Swing lands on the hat, humanising on all three, and the two
-        // together stay inside the device's two-FX-per-step limit.
+        // together stay inside the device's two-FX-per-step limit. Velocities are
+        // chosen below 100 so the jitter has somewhere to go: the device's
+        // Volume/Velocity effect tops out at 100 and anything above is clamped.
         let swingAmount = [0, 0, 8, 12, 18, 25].randomElement(using: &rng)!
         if swingAmount > 0 { hat = Groove.swing(hat, amount: swingAmount) }
         let velocityJitter = Int.random(in: 4...14, using: &rng)
@@ -100,7 +102,7 @@ public enum BeatGenerator {
                 pulses: bassPulses, steps: length,
                 rotation: Int.random(in: 0...3, using: &rng),
                 note: .pitch(UInt8(available.first ?? 36)), instrument: 4,
-                velocity: Int.random(in: 85...105, using: &rng),
+                velocity: Int.random(in: 82...96, using: &rng),
                 name: "Bass"
             )
             // Mostly the root, sometimes a degree above it, so the line has shape

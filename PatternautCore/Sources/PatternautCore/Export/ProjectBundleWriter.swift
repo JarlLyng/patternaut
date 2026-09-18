@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(Darwin)
+import Darwin
+#endif
 
 /// Writes a complete, hardware-loadable project folder to disk:
 ///
@@ -39,6 +42,27 @@ public enum ProjectBundleWriter {
             self.name = name
             self.instrument = instrument
         }
+    }
+
+    /// Strips the extended attributes a sandboxed macOS app leaves on written
+    /// files (quarantine, provenance) and deletes the `._name` companion the
+    /// filesystem creates for them on a FAT card. No-op off Apple platforms.
+    private static func stripMacMetadata(from url: URL, fileManager: FileManager) {
+        #if canImport(Darwin)
+        url.withUnsafeFileSystemRepresentation { pointer in
+            guard let pointer else { return }
+            let length = listxattr(pointer, nil, 0, XATTR_NOFOLLOW)
+            guard length > 0 else { return }
+            var buffer = [CChar](repeating: 0, count: length)
+            guard listxattr(pointer, &buffer, length, XATTR_NOFOLLOW) > 0 else { return }
+            for name in buffer.split(separator: 0).map({ String(cString: Array($0) + [0]) }) {
+                _ = removexattr(pointer, name, XATTR_NOFOLLOW)
+            }
+        }
+        let companion = url.deletingLastPathComponent()
+            .appendingPathComponent("._" + url.lastPathComponent)
+        try? fileManager.removeItem(at: companion)
+        #endif
     }
 
     /// Writes `patterns` and a `project.mt` whose song plays them in order.
@@ -101,6 +125,13 @@ public enum ProjectBundleWriter {
 
         let projectFile = projectDir.appendingPathComponent("project.mt")
         try project.data().write(to: projectFile)
+
+        // macOS keeps a file's extended attributes on a FAT card in a companion
+        // "._name" file. The Tracker reads everything in patterns/, so those
+        // companions would turn up as junk patterns. Remove both.
+        for url in patternURLs + instrumentURLs + [projectFile, metadataFile] {
+            stripMacMetadata(from: url, fileManager: fileManager)
+        }
 
         return Result(projectDirectory: projectDir, projectFile: projectFile, patternFiles: patternURLs,
                       metadataFile: metadataFile, instrumentFiles: instrumentURLs)

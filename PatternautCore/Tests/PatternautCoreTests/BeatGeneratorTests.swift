@@ -48,6 +48,30 @@ struct BeatGeneratorTests {
         }
     }
 
+    @Test("Generated beats raise no validation issues at all, not just no errors")
+    func noWarnings() {
+        for device in DeviceModel.allCases {
+            for seed in UInt64(1)...40 {
+                let issues = device.profile.validate(BeatGenerator.beat(device: device, seed: seed))
+                #expect(issues.isEmpty, "seed \(seed) on \(device): \(issues.map(\.message))")
+            }
+        }
+    }
+
+    @Test("Every generated effect value is inside the device's range")
+    func effectValuesInRange() {
+        for seed in UInt64(1)...40 {
+            for track in BeatGenerator.beat(device: .trackerPlus, seed: seed).tracks {
+                for step in track.steps {
+                    for command in step.fx where command.type != .none {
+                        #expect(command.isInRange,
+                                "seed \(seed): \(command.type) = \(command.value)")
+                    }
+                }
+            }
+        }
+    }
+
     @Test("No step exceeds the device's two FX lanes")
     func fxBudget() {
         for seed in UInt64(1)...30 {
