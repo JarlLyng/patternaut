@@ -93,7 +93,10 @@ public extension DeviceProfile {
                     }
                 }
 
-                if let instrument = step.instrument {
+                // Only a step that actually triggers a note plays an instrument.
+                // A file stores 0 in the instrument byte of every empty step, so
+                // checking those would flag a whole imported project.
+                if let instrument = step.instrument, step.note.isPitched {
                     guard let kind = InstrumentKind(index: instrument) else {
                         issues.append(ValidationIssue(
                             severity: .error,
@@ -102,14 +105,6 @@ public extension DeviceProfile {
                             stepIndex: stepIndex
                         ))
                         continue
-                    }
-                    if kind == .sample && role == .midiSynth {
-                        issues.append(ValidationIssue(
-                            severity: .error,
-                            message: "Track is MIDI/synth only and cannot play a sample instrument.",
-                            trackIndex: trackIndex,
-                            stepIndex: stepIndex
-                        ))
                     }
                     if kind == .sample && instrument >= instrumentCount {
                         issues.append(ValidationIssue(

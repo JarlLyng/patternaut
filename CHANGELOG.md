@@ -6,6 +6,15 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- Validation claimed tracks 9-16 cannot play sample instruments. Polyend's own demo projects do
+  exactly that, so the rule was wrong and blocked exporting anything imported from those.
+- Validation checked the instrument on steps that play no note. Every empty step in a file
+  stores instrument 0, so importing a project raised hundreds of false errors.
+- Importing a project from older firmware no longer fails outright: its `project.mt` has a
+  different layout, so the patterns are read and the tempo and track names are reported missing.
+  Patterns made for 8 tracks are padded to the device's 16.
+
 ### Added
 - A document holds many patterns, not one. A pattern bar above the grid switches between them,
   adds, duplicates and removes, and names each one; the names are what the Tracker lists.

@@ -34,6 +34,8 @@ struct ProjectBundleReaderTests {
         // Track names come from project.mt, since the pattern files hold none.
         #expect(result.patterns[0].tracks[0].name == "Kick")
         #expect(result.instrumentNames == ["1 kick"])
+        // The audio staying behind is worth saying out loud, not hiding.
+        #expect(result.warnings.contains { $0.contains("does not read .pti") })
     }
 
     @Test("The notes and effects survive the trip to disk and back")
@@ -54,6 +56,45 @@ struct ProjectBundleReaderTests {
         }
         let fx = reloaded.tracks.flatMap { $0.steps.prefix($0.length) }.flatMap { $0.fx }
         #expect(fx.contains { $0.type == .volume })
+    }
+
+    @Test("A project from older firmware still gives up its patterns")
+    func olderFirmware() throws {
+        let root = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "Old", steps: 16, seed: 9)
+        let written = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Legacy",
+                                                    device: .trackerPlus, tempo: 175, to: root)
+        // A 1572-byte project.mt, the size older firmware wrote.
+        let truncated = try Data(contentsOf: written.projectFile).prefix(1572)
+        try truncated.write(to: written.projectFile)
+
+        let result = try ProjectBundleReader.read(at: root.appendingPathComponent("Legacy"))
+        #expect(result.patterns.count == 1)
+        #expect(result.patterns[0].metadata.name == "Old")
+        #expect(result.projectName == "Legacy")           // falls back to the folder
+        #expect(result.tempo == ProjectBundleReader.defaultTempo)
+        #expect(result.warnings.contains { $0.contains("older firmware") })
+    }
+
+    @Test("An 8-track pattern is padded to the device it is imported into")
+    func padsShortPatterns() throws {
+        let root = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        // Write a pattern with only 8 tracks, as older hardware did.
+        let short = Pattern(metadata: PatternMetadata(name: "Old"), device: .trackerPlus,
+                            tracks: Array(BeatGenerator.beat(device: .trackerPlus, steps: 16, seed: 4).tracks.prefix(8)))
+        let dir = root.appendingPathComponent("Short/patterns", isDirectory: true)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        try MTPExporter.export(short).write(to: dir.appendingPathComponent("pattern_01.mtp"))
+        try MTProject.new(name: "Short", device: .trackerPlus).data()
+            .write(to: root.appendingPathComponent("Short/project.mt"))
+
+        let result = try ProjectBundleReader.read(at: root.appendingPathComponent("Short"))
+        #expect(result.patterns[0].tracks.count == DeviceProfile.trackerPlus.trackCount)
+        #expect(result.patterns[0].tracks[0].steps.contains { $0.isActive })
+        #expect(result.patterns[0].tracks[15].steps.allSatisfy { !$0.isActive })
+        #expect(result.warnings.contains { $0.contains("8 tracks") })
     }
 
     @Test("A folder that isn't a project says so")

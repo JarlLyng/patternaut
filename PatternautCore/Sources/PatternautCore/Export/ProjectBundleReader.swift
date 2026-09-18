@@ -17,7 +17,12 @@ public enum ProjectBundleReader {
         public let patterns: [Pattern]
         /// Names of the `.pti` files found, in slot order. Not loaded as audio.
         public let instrumentNames: [String]
+        /// What could not be read but did not stop the import.
+        public let warnings: [String]
     }
+
+    /// Used when a project's own settings cannot be read.
+    public static let defaultTempo: Double = 130
 
     public enum ReadError: Error, Equatable, LocalizedError {
         case notAProject(String)
@@ -44,7 +49,18 @@ public enum ProjectBundleReader {
     ) throws -> Result {
         let projectFile = try locate("project.mt", in: url, fileManager: fileManager)
         guard let projectFile else { throw ReadError.notAProject(url.lastPathComponent) }
-        let project = try MTProjectImporter.parse(Data(contentsOf: projectFile))
+
+        // Projects from older firmware have a smaller, differently laid out
+        // project.mt (1284 or 1572 bytes against today's 2324). The patterns
+        // themselves are still readable, so a project like that is imported
+        // without its tempo and track names rather than refused.
+        var project: MTProject?
+        var warnings: [String] = []
+        do {
+            project = try MTProjectImporter.parse(Data(contentsOf: projectFile))
+        } catch {
+            warnings.append("Its project.mt is from an older firmware, so the tempo and track names could not be read.")
+        }
 
         guard let patternsDir = try directory(named: "patterns", in: url, fileManager: fileManager) else {
             throw ReadError.noPatterns
@@ -62,17 +78,32 @@ public enum ProjectBundleReader {
             .sorted { $0.lastPathComponent.localizedStandardCompare($1.lastPathComponent) == .orderedAscending }
         guard !patternURLs.isEmpty else { throw ReadError.noPatterns }
 
+        let tempo = project.map { Double($0.globalTempo) } ?? defaultTempo
         let patterns = try patternURLs.enumerated().map { index, patternURL -> Pattern in
             let document = try MTPImporter.parse(Data(contentsOf: patternURL))
             let fallback = patternURL.deletingPathExtension().lastPathComponent
             let slotName = index < names.count && !names[index].isEmpty ? names[index] : fallback
             var pattern = document.makePattern(
-                device: device, name: slotName, tempo: Double(project.globalTempo)
+                device: device, name: slotName, tempo: tempo
             )
             // Track names live in project.mt, so put them back on the tracks.
-            for trackIndex in pattern.tracks.indices where trackIndex < project.trackNames.count {
-                let name = project.trackNames[trackIndex]
-                if !name.isEmpty { pattern.tracks[trackIndex].name = name }
+            if let names = project?.trackNames {
+                for trackIndex in pattern.tracks.indices where trackIndex < names.count {
+                    let name = names[trackIndex]
+                    if !name.isEmpty { pattern.tracks[trackIndex].name = name }
+                }
+            }
+            // Files from the 8-track era arrive short. Pad them to the profile
+            // so the pattern can be edited and written back out for this device.
+            let profile = device.profile
+            if pattern.tracks.count < profile.trackCount {
+                let names = profile.defaultTrackNames
+                for index in pattern.tracks.count..<profile.trackCount {
+                    pattern.tracks.append(Track.empty(
+                        name: names[index], role: profile.role(forTrack: index),
+                        length: pattern.tracks.first?.length ?? 16
+                    ))
+                }
             }
             return pattern
         }
@@ -85,12 +116,32 @@ public enum ProjectBundleReader {
                 .sorted { $0.localizedStandardCompare($1) == .orderedAscending }
         }
 
-        let name = project.projectName.isEmpty ? url.lastPathComponent : project.projectName
-        return Result(projectName: name, tempo: Double(project.globalTempo),
-                      patterns: patterns, instrumentNames: instrumentNames)
+        // Old projects keep their audio as plain WAVs in a samples folder.
+        if try directory(named: "samples", in: url, fileManager: fileManager) != nil {
+            warnings.append("Its samples are in a samples folder, which Patternaut does not read.")
+        }
+        if let first = patterns.first, first.tracks.count == device.profile.trackCount,
+           patternURLs.count > 0, wasShort(patternURLs[0], device: device) {
+            warnings.append("It was made for 8 tracks; the extra tracks are empty.")
+        }
+        if !instrumentNames.isEmpty {
+            warnings.append("Its \(instrumentNames.count) instrument(s) stay on the card; Patternaut does not read .pti yet.")
+        }
+
+        let name = project.map { $0.projectName.isEmpty ? url.lastPathComponent : $0.projectName }
+            ?? url.lastPathComponent
+        return Result(projectName: name, tempo: tempo, patterns: patterns,
+                      instrumentNames: instrumentNames, warnings: warnings)
     }
 
     // MARK: - Private
+
+    /// True when the file on disk holds fewer tracks than the device profile.
+    private static func wasShort(_ url: URL, device: DeviceModel) -> Bool {
+        guard let data = try? Data(contentsOf: url),
+              let document = try? MTPImporter.parse(data) else { return false }
+        return document.tracks.count < device.profile.trackCount
+    }
 
     /// Finds a file by name, case-insensitively: cards written on different
     /// systems disagree about capitalisation.

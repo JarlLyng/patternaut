@@ -86,7 +86,7 @@ public struct DeviceProfile: Sendable, Identifiable {
         maxFXPerStep: TrackerFormat.maxFXPerStep,
         supportedFX: Set(FXType.allCases),
         formatGeneration: .miniPlus,
-        firmwareNote: "16 tracks; tracks 9–16 are MIDI/synth only (no sample playback)."
+        firmwareNote: "16 tracks. Tracks 9-16 are named for MIDI, but play samples too: Polyend's own demo projects do it."
     )
 
     // MARK: - Pattern construction
