@@ -6,6 +6,10 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-09-19
+Sixth TestFlight build, and the last one before submission.
+
+
 ### Changed
 - The app and the site take their colour, spacing and radius from `iamjarl-design` (v1.9.1)
   instead of their own copies. The tracker grid keeps its own treatment, which is deliberate.
