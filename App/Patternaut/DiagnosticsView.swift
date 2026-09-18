@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 /// A simple log viewer sheet: monospaced entries with Copy/Clear, so a TestFlight
-/// tester can capture and share what happened (MIDI sends, exports, errors).
+/// tester can capture and share what happened (exports, sample loads, errors).
 struct DiagnosticsView: View {
     let diagnostics: Diagnostics
     @Environment(\.dismiss) private var dismiss

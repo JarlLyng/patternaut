@@ -14,8 +14,7 @@ beta (macOS 14+).
 - A keyboard-first tracker grid editor.
 - Byte-exact export to SD card as real Tracker files (`.mtp` patterns, `.mt` projects, `.pti`
   instruments), verified against the official [`polyend/tracker-lib`](https://github.com/polyend/tracker-lib).
-- Live MIDI output into the Tracker in record mode.
-- Sample loading (16-bit WAV becomes a `.pti` instrument).
+- Sample loading (WAV becomes a `.pti` instrument; 24-bit and other sample rates are converted).
 
 It runs locally. No account, no cloud, no tracking. It is a companion to the hardware, not a
 replacement for it.
@@ -23,7 +22,7 @@ replacement for it.
 ## Repository layout
 
 - `PatternautCore/` — the engine, a Swift package (model, generators, mutation, editor logic,
-  MIDI, and file export). Run the tests with `cd PatternautCore && swift test`.
+  MIDI sequencing, and file export). Run the tests with `cd PatternautCore && swift test`.
 - `App/` — the macOS SwiftUI app. The Xcode project is generated from `App/project.yml` with
   [xcodegen](https://github.com/yonaskolb/XcodeGen): `cd App && xcodegen generate`.
 - `docs/` — the marketing site (GitHub Pages).

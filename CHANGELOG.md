@@ -63,6 +63,5 @@ First TestFlight build (macOS, private beta).
 - Pattern mutation (subtle / moderate / strong / chaotic).
 - Byte-exact export to SD card: `.mtp` patterns, `.mt` projects, `.pti` instruments, written
   as a loadable project folder. Verified against the official `polyend/tracker-lib`.
-- Live MIDI output via CoreMIDI.
 - Sample loading: 16-bit WAV becomes a `.pti` instrument.
 - Diagnostics: unified logging plus an in-app log panel.

@@ -50,14 +50,11 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Byte-exact hardware export verified against the official `polyend/tracker-lib`: `.mtp`
   patterns, `.mt` projects, `.pti` instruments and `patterns/patternsMetadata`, written as a
   loadable SD-card project folder (`project.mt` + lowercase `patterns/` and `instruments/`).
-- Live MIDI output (CoreMIDI): send **one track at a time** into the Tracker in record mode. The
-  Tracker records incoming MIDI into its currently selected track only, so a whole-pattern
-  multi-channel send does not work (community-confirmed, matches the manual).
 - Sample loading: WAV becomes a `.pti` instrument, by file picker or drag and drop. 8/16/24/32-bit
   integer and 32/64-bit float are converted to the 16-bit 44.1 kHz PCM the device stores;
   other sample rates are resampled (linear interpolation).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
-  log panel with copy.
+  log panel with copy (categories: export, samples, app).
 
 ### Features that do NOT exist (common hallucination targets)
 - No audio engine and no in-app sample playback / preview.
@@ -69,8 +66,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.
 - No AI features inside the shipped app.
-- Live MIDI send is NOT yet verified against a physical Tracker (the SD-card route is: a
-  generated project loads and plays on a Tracker+, confirmed 2026-09-18).
+- **No live MIDI output in the app.** It was removed on 2026-09-18: the SD-card route carries FX,
+  track names and samples and is verified on hardware, while MIDI reached one track at a time
+  with pitch and velocity only. `MIDISequencer` stays in the core, tested, as the basis for a
+  possible MIDI file export for DAWs.
 
 ## Requirements
 - macOS 14 or later. Xcode 26 toolchain, `xcodegen` for regenerating the app project.

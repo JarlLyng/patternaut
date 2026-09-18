@@ -29,17 +29,14 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 480)
-        .onAppear {
-            gridFocused = true
-            model.startMIDIWatch()
-        }
+        .onAppear { gridFocused = true }
         .sheet(isPresented: $showingLog) {
             DiagnosticsView(diagnostics: model.diagnostics)
         }
     }
 
     private var showsStatusBar: Bool {
-        !model.issues.isEmpty || model.lastExportPath != nil || model.midiStatus != nil
+        !model.issues.isEmpty || model.lastExportPath != nil
             || model.cursorHint != nil || model.lineage != nil
     }
 
@@ -125,20 +122,6 @@ struct ContentView: View {
             Button("Undo") { model.undo() }.disabled(!model.canUndo).keyboardShortcut("z")
             Button("Redo") { model.redo() }.disabled(!model.canRedo).keyboardShortcut("z", modifiers: [.command, .shift])
             Spacer()
-            if !model.midiDestinations.isEmpty {
-                Picker("MIDI", selection: $model.selectedDestinationID) {
-                    ForEach(model.midiDestinations) { Text($0.name).tag(Optional($0.id)) }
-                }
-                .labelsHidden()
-                .fixedSize()
-                HStack(spacing: 4) {
-                    Text("Ch").fixedSize()
-                    Stepper(value: $model.midiChannel, in: 1...16) { Text("\(model.midiChannel)") }
-                        .fixedSize()
-                }
-                Button("Send \(model.sendTrackName)") { model.sendLive() }
-                    .help("Send the track your cursor is on as live MIDI. The Tracker records into its selected track, so send one track at a time. It must be in [Rec]+[Play], with Config > MIDI > Notes In set to USB, which is Off by default.")
-            }
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }
         }
@@ -159,10 +142,6 @@ struct ContentView: View {
             if let path = model.lastExportPath {
                 Label("Exported to \(path)", systemImage: "checkmark.circle")
                     .foregroundStyle(.green)
-            }
-            if let status = model.midiStatus {
-                Label(status, systemImage: "pianokeys")
-                    .foregroundStyle(.secondary)
             }
             ForEach(Array(model.issues.enumerated()), id: \.offset) { _, issue in
                 Label(issue.message, systemImage: issue.severity == .error ? "xmark.octagon" : "exclamationmark.triangle")
