@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy, Patternaut</title>
+  <meta name="description" content="Patternaut collects nothing. It has no account, makes no network requests, and keeps your work on your own Mac." />
+  <link rel="canonical" href="https://patternaut.iamjarl.com/privacy" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23111'/%3E%3Cg fill='%235eead4'%3E%3Ccircle cx='4' cy='4' r='1.4'/%3E%3Ccircle cx='12' cy='4' r='1.4'/%3E%3Ccircle cx='8' cy='8' r='1.4'/%3E%3Ccircle cx='4' cy='12' r='1.4'/%3E%3Ccircle cx='12' cy='12' r='1.4'/%3E%3C/g%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0e0f13; --panel: #16181f; --border: #262a35;
+      --text: #e7e9ee; --muted: #9aa1b1; --accent: #5eead4; --accent-2: #a5b4fc;
+      --radius: 14px; --maxw: 720px; color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f7f8fa; --panel: #fff; --border: #e4e7ee; --text: #14161c; --muted: #5b6474; --accent: #0d9488; --accent-2: #4f46e5; color-scheme: light; }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1100px 560px at 72% -12%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%), var(--bg);
+      line-height: 1.62; -webkit-font-smoothing: antialiased;
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    a { color: var(--accent); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+    header.nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; font-size: 18px; }
+    .brand .dot { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
+    .nav .tag { color: var(--muted); font-size: 13px; }
+    .hero { padding: 52px 0 34px; }
+    .badge { display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
+    h1 { font-size: clamp(40px, 8vw, 68px); line-height: 1.03; letter-spacing: -0.03em; margin: 0 0 14px; }
+    .tagline { font-size: clamp(18px, 3vw, 23px); font-weight: 600; margin: 0 0 22px; }
+    p { font-size: 17px; color: var(--text); }
+    .muted { color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 22px 0 4px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 10px; border: 1px solid transparent; }
+    .btn.primary { background: var(--accent); color: #06231f; }
+    @media (prefers-color-scheme: light) { .btn.primary { color: #fff; } }
+    .btn.ghost { border-color: var(--border); color: var(--text); }
+    .grid-art { margin: 40px 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); overflow-x: auto; }
+    .grid-art pre { margin: 0; padding: 20px 22px; font-size: 13px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .grid-art .hit { color: var(--accent); } .grid-art .fx { color: var(--accent-2); }
+    section { padding: 26px 0; }
+    h2 { font-size: clamp(22px, 4vw, 28px); letter-spacing: -0.02em; margin: 0 0 12px; }
+    footer { border-top: 1px solid var(--border); margin-top: 30px; padding: 28px 0 52px; color: var(--muted); font-size: 14px; }
+    footer p { margin: 8px 0; font-size: 14px; }
+    .disclaimer { font-size: 12.5px; opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <p><a href="/">Patternaut</a></p>
+      <h1>Privacy</h1>
+      <p><strong>Patternaut collects nothing.</strong> There is no account, no analytics, no
+        crash reporting, no advertising and no tracking of any kind.</p>
+      <p>The app makes no network requests. It has never needed to, so it does not ask for the
+        permission and would have nowhere to send anything if it did.</p>
+      <p>Your work stays where you put it. Documents are ordinary files on your Mac, and exported
+        projects are written to the folder or SD card you choose. Patternaut reads a folder only
+        when you point it at one, and it writes only where you say.</p>
+      <p>If you buy the app from the App Store, Apple handles the purchase and tells me nothing
+        about you beyond the anonymous sales figures every developer sees. Apple's own privacy
+        terms cover that part.</p>
+      <p>There is no data to request, correct or delete, because none is held.</p>
+      <p>Questions are welcome at <a href="mailto:hello@iamjarl.com">hello@iamjarl.com</a>.</p>
+      <p class="muted">Last updated 19 September 2026.</p>
+    </main>
+    <footer>
+      <p>Made by one person, in the open. More at <a href="https://iamjarl.com">iamjarl.com</a>.</p>
+      <p>Co-created with AI. <a href="https://madebyhuman.iamjarl.com">How that works</a>.</p>
+      <p class="disclaimer">Not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+
+        and Tracker Mini are trademarks of their respective owners.</p>
+    </footer>
+  </div>
+</body>
+</html>
