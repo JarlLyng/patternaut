@@ -69,8 +69,8 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.
 - No AI features inside the shipped app.
-- Hardware round-trip (loading a generated project / receiving live MIDI) is NOT yet verified
-  on a physical Tracker.
+- Live MIDI send is NOT yet verified against a physical Tracker (the SD-card route is: a
+  generated project loads and plays on a Tracker+, confirmed 2026-09-18).
 
 ## Requirements
 - macOS 14 or later. Xcode 26 toolchain, `xcodegen` for regenerating the app project.

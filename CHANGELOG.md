@@ -6,6 +6,10 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Verified
+- A generated project exported to an SD card loads and plays on a Tracker+, with its patterns,
+  FX, track names and sample intact. This was the assumption the whole app rested on.
+
 ### Changed
 - Project folders now use the names `tracker-lib` reads back: lowercase `patterns/` and
   `instruments/`, and `pattern_01.mtp` rather than `Pattern_01.mtp`.
