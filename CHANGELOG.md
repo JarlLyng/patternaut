@@ -12,6 +12,12 @@ All notable changes to Patternaut are documented here. The format follows
 - The instrument column takes two digits, so instruments past 9 can be reached. An imported
   project routinely has twelve or more, and they were unreachable from the keyboard.
 
+### Fixed
+- Launching really does open a blank document now. The setting that suppresses macOS's open
+  panel is read as a user default rather than from the app bundle, so putting it in Info.plist
+  did nothing; it is now registered at startup, with a delegate that creates an untitled
+  document if none opened.
+
 ### Changed
 - The toolbar is arranged by what things are rather than as one row of everything. The top row is
   the project (device, name, tempo, octave) and the transfer buttons; the second row is the

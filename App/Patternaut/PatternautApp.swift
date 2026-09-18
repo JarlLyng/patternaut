@@ -2,6 +2,15 @@ import SwiftUI
 
 @main
 struct PatternautApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
+
+    init() {
+        // macOS shows document apps an open panel at launch. The Info.plist key
+        // for that is read as a user default, not from the bundle, so it has to
+        // be set here to have any effect.
+        UserDefaults.standard.register(defaults: ["NSShowAppCentricOpenPanelInsteadOfUntitledFile": false])
+    }
+
     var body: some Scene {
         DocumentGroup(newDocument: { PatternautDocument() }) { file in
             ContentView(model: file.document.model)
@@ -40,4 +49,15 @@ private struct ImportProjectButton: View {
 extension Notification.Name {
     /// Posted by the Help menu; the front window shows the sheet.
     static let showKeyboardShortcuts = Notification.Name("PatternautShowKeyboardShortcuts")
+}
+
+/// Makes sure launching lands in a blank document rather than a file picker,
+/// whatever the system default happens to be.
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool { true }
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        guard NSDocumentController.shared.documents.isEmpty else { return }
+        NSDocumentController.shared.newDocument(nil)
+    }
 }
