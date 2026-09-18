@@ -6,6 +6,10 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-09-19
+Third TestFlight build. Work can be saved, projects can be brought in from the card, and a
+document holds a whole set of patterns.
+
 ### Fixed
 - Import accepts whatever you point at inside a project: the `patterns` folder, a `.mtp` file or
   `project.mt` all resolve to the project they belong to, instead of being refused. The panel
