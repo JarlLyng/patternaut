@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Patternaut, a Mac companion for the Polyend Tracker+ and Mini</title>
-  <meta name="description" content="I built Patternaut to prepare Polyend Tracker patterns on my Mac: generate and mutate ideas, then send them to the hardware. A one-time purchase, no subscription." />
+  <meta name="description" content="I built Patternaut to prepare Polyend Tracker patterns on my Mac. Generate and vary them, then write them to the SD card as the files the machine already reads. A one-time purchase, no subscription." />
   <meta property="og:title" content="Patternaut" />
   <meta property="og:description" content="Build the pattern. Break the pattern. Take it to the Tracker. A native Mac companion for the Polyend Tracker+ and Tracker Mini." />
   <meta property="og:type" content="website" />
@@ -78,17 +78,17 @@
 
     <main>
       <section class="hero">
-        <span class="badge">Private beta · macOS</span>
+        <span class="badge">macOS</span>
         <h1>Patternaut</h1>
         <p class="tagline">Build the pattern. Break the pattern. Take it to the Tracker.</p>
         <p>I make music on a Polyend Tracker, and I built Patternaut to do the fiddly parts on my
-          Mac first. It generates and mutates patterns, then gets them onto the hardware, so I
-          spend less time programming steps and more time playing.</p>
-        <p class="muted">When it ships it will be a one-time purchase. No subscription, no account,
-          nothing sent to a server.</p>
+          Mac first. It generates and varies patterns, and writes them to the SD card as the files
+          the machine already reads, so I spend less time programming steps and more time playing.</p>
+        <p class="muted">A one-time purchase when it arrives on the Mac App Store. No subscription,
+          no account, nothing sent to a server.</p>
         <div class="cta">
-          <a class="btn primary" href="#beta">In TestFlight beta</a>
-          <a class="btn ghost" href="#what">What it does</a>
+          <a class="btn primary" href="#what">What it does</a>
+          <a class="btn ghost" href="#hardware">How it reaches the Tracker</a>
         </div>
 
         <div class="grid-art" aria-hidden="true">
@@ -103,25 +103,39 @@
 
       <section id="what">
         <h2>What it does</h2>
-        <p>Patternaut works the way the Tracker does. Sixteen tracks, per-step FX, monophonic
-          voices. You generate a rhythm (Euclidean, probability, swing and humanize) or program
-          the grid by keyboard, then shape it with rotates, transforms, and mutation that can stay
-          subtle or go fully off the rails. Everything is reproducible from a seed, so a pattern
-          you like is a pattern you can get back.</p>
-        <p>When an idea is ready, Patternaut writes it straight to your SD card as real Tracker
-          files (<span class="mono">.mtp</span> patterns, <span class="mono">.mt</span> projects,
-          <span class="mono">.pti</span> instruments), the way the machine writes them itself. Drop
-          in a WAV and it becomes an instrument.</p>
-        <p>It is not a replacement for the Tracker, and it is not trying to be. It gets ideas ready
-          for the machine and then stays out of the way. It runs locally on your Mac, with no
-          account and nothing sent anywhere.</p>
+        <p>Press Generate and you get a beat. Kick, snare, hat, usually some percussion carrying
+          the device's own Chance effect so it keeps varying while it plays, often a bass line in
+          the key you picked. Every press is a different one, and every result is reproducible from
+          its seed, so a pattern you liked is a pattern you can have back. Mutate takes what is
+          there and nudges it, gently or until it falls apart.</p>
+        <p>The editor is a tracker grid and works like one. Notes on the keyboard rows, sixteen
+          tracks, both effect lanes per step with the device's own symbols and value ranges, undo
+          on everything. A document holds a whole set of patterns, not one.</p>
+        <p>It has no audio engine, so it does not play your patterns back. The hardware is where
+          you hear them. It is a companion to the machine rather than a replacement for it, and it
+          has no song mode.</p>
       </section>
 
-      <section id="beta">
-        <h2>Try the beta</h2>
-        <p>Patternaut is early. It is in a private TestFlight beta for macOS 14 and later, and I am
-          still shaping it. If you use a Tracker+ or Tracker Mini and want to try it, get in touch.</p>
-        <div class="cta"><a class="btn primary" href="https://iamjarl.com">Get in touch</a></div>
+      <section id="hardware">
+        <h2>How it reaches the Tracker</h2>
+        <p>Patternaut writes a real project folder to your card: <span class="mono">.mtp</span>
+          patterns, an <span class="mono">.mt</span> project and <span class="mono">.pti</span>
+          instruments, laid out the way the machine lays them out itself. Drop in a WAV and it
+          becomes an instrument, converted to what the hardware plays.</p>
+        <p>It reads the same files back. Point it at a project you already made on the Tracker and
+          it brings in the patterns, their names, the track names, the tempo and the samples with
+          their audio. Change what you like, write it back into the same project, and the
+          instrument assignments, mixer and effects the machine keeps for itself are left alone.</p>
+        <p>The formats are checked against Polyend's own open-source library and against projects
+          written by the hardware, and the round trip is tested on a Tracker+.</p>
+      </section>
+
+      <section id="news">
+        <h2>When it ships</h2>
+        <p>Patternaut is finished and on its way to the Mac App Store, for macOS 14 and later. If
+          you use a Tracker+ or Tracker Mini and want to know when it is there, or you have
+          something you want it to do, write to me.</p>
+        <div class="cta"><a class="btn primary" href="mailto:hello@iamjarl.com">Write to me</a></div>
       </section>
     </main>
 
