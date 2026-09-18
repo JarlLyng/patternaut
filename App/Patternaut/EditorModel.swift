@@ -169,6 +169,11 @@ final class EditorModel {
         midiStatus = "Sent \(name), \(events.count) events, on channel \(midiChannel) to \(dest.name)."
         diagnostics.log("Sent track \(index + 1) \"\(name)\", \(events.count) events, channel \(midiChannel), to \"\(dest.name)\" at \(Int(tempo)) BPM\(errors > 0 ? "; \(errors) send errors" : "").",
                         level: errors > 0 ? .error : .info, category: "midi")
+        // The device ignores incoming notes until its input routing is on, and
+        // that setting is Off out of the box, so nothing arriving is the normal
+        // first experience rather than a fault.
+        diagnostics.log("If nothing was recorded: on the Tracker, Config > MIDI > Notes In must be USB (it is Off by default), Notes Input Channel must match, and the device must be in [Rec]+[Play] on the target track.",
+                        category: "midi")
     }
 
     private var mutationCounter: UInt64 = 0

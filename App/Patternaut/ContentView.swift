@@ -137,7 +137,7 @@ struct ContentView: View {
                         .fixedSize()
                 }
                 Button("Send \(model.sendTrackName)") { model.sendLive() }
-                    .help("Send the track your cursor is on as live MIDI. The Tracker records into its selected track, so send one track at a time.")
+                    .help("Send the track your cursor is on as live MIDI. The Tracker records into its selected track, so send one track at a time. It must be in [Rec]+[Play], with Config > MIDI > Notes In set to USB, which is Off by default.")
             }
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }
