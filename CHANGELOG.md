@@ -6,6 +6,13 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.6.1] — 2026-09-19
+
+### Fixed
+- The app's copyright line is the brand name, `© 2026 IAMJARL`, rather than a personal name in
+  the wrong format.
+
+
 ## [0.6.0] — 2026-09-19
 Sixth TestFlight build, and the last one before submission.
 

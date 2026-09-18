@@ -14,7 +14,7 @@ generates, mutates and shapes tracker patterns on the Mac, then gets them onto t
 - **Website:** [patternaut.iamjarl.com](https://patternaut.iamjarl.com)
 - **License:** [MIT](LICENSE) — open source (repo currently private during beta).
 - **Price:** $8.99 one-time, no subscription.
-- **Status:** private TestFlight beta, v0.6.0 (macOS).
+- **Status:** private TestFlight beta, v0.6.1 (macOS).
 - **Sister apps:** the IAMJARL music tools (It's mono, yo!, It's 404, yo!, Echolume, TonVault).
 
 ## Strategy lives in the private hub
