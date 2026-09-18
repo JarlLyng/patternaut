@@ -174,8 +174,12 @@ struct ProjectBundleTests {
                 .appendingPathComponent("._" + url.lastPathComponent)
             #expect(!FileManager.default.fileExists(atPath: companion.path))
         }
-        let contents = try FileManager.default.contentsOfDirectory(atPath: result.patternFiles[0].deletingLastPathComponent().path)
-        #expect(contents.allSatisfy { !$0.hasPrefix("._") })
+        for directory in [result.projectDirectory,
+                          result.patternFiles[0].deletingLastPathComponent(),
+                          result.instrumentFiles[0].deletingLastPathComponent()] {
+            let contents = try FileManager.default.contentsOfDirectory(atPath: directory.path)
+            #expect(contents.allSatisfy { !$0.hasPrefix("._") }, "\(directory.lastPathComponent): \(contents)")
+        }
 
         let onDisk = try Data(contentsOf: result.instrumentFiles[0])
         #expect(onDisk == instrument.data())

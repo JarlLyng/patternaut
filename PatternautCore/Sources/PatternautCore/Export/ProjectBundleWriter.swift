@@ -129,7 +129,12 @@ public enum ProjectBundleWriter {
         // macOS keeps a file's extended attributes on a FAT card in a companion
         // "._name" file. The Tracker reads everything in patterns/, so those
         // companions would turn up as junk patterns. Remove both.
-        for url in patternURLs + instrumentURLs + [projectFile, metadataFile] {
+        // Directories get companions too, so clean those alongside the files.
+        var written = patternURLs + instrumentURLs + [projectFile, metadataFile, patternsDir, projectDir]
+        if !instrumentURLs.isEmpty {
+            written.append(instrumentURLs[0].deletingLastPathComponent())
+        }
+        for url in written {
             stripMacMetadata(from: url, fileManager: fileManager)
         }
 
