@@ -19,7 +19,6 @@ final class PatternautDocument: ReferenceFileDocument {
 
     init() {
         model = EditorModel()
-        model.generate()
     }
 
     init(configuration: ReadConfiguration) throws {

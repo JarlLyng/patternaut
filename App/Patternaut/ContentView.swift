@@ -2,6 +2,33 @@ import SwiftUI
 import PatternautCore
 import UniformTypeIdentifiers
 
+/// Lets the File menu reach the document in the front window.
+struct EditorModelKey: FocusedValueKey {
+    typealias Value = EditorModel
+}
+
+extension FocusedValues {
+    var editorModel: EditorModel? {
+        get { self[EditorModelKey.self] }
+        set { self[EditorModelKey.self] = newValue }
+    }
+}
+
+/// Opening a Tracker project folder is separate from opening a Patternaut
+/// document, so it gets its own panel and its own wording everywhere.
+enum ProjectImport {
+    static func run(into model: EditorModel) {
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.prompt = "Import"
+        panel.message = "Choose a Tracker project folder (the one holding project.mt), e.g. on your SD card under Projects/User."
+        if panel.runModal() == .OK, let url = panel.url {
+            model.importProject(at: url)
+        }
+    }
+}
+
 struct ContentView: View {
     @Bindable var model: EditorModel
     @Environment(\.undoManager) private var undoManager
@@ -32,6 +59,7 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 480)
+        .focusedSceneValue(\.editorModel, model)
         .onAppear {
             gridFocused = true
             model.undoManager = undoManager
@@ -176,8 +204,8 @@ struct ContentView: View {
             .fixedSize()
             fxMenu
             Spacer()
-            Button("Import…") { importProject() }
-                .help("Open a Tracker project from an SD card. Its patterns replace what is in this document.")
+            Button("Import…") { ProjectImport.run(into: model) }
+                .help("Import a Tracker project folder from an SD card. Its patterns replace what is in this document. This is not the same as File > Open, which opens Patternaut's own documents.")
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }
         }
@@ -259,17 +287,6 @@ struct ContentView: View {
         panel.message = "Name the project and choose where to put it, e.g. your SD card's Projects/User folder."
         if panel.runModal() == .OK, let url = panel.url {
             model.export(to: url.deletingLastPathComponent(), named: url.lastPathComponent)
-        }
-    }
-
-    private func importProject() {
-        let panel = NSOpenPanel()
-        panel.canChooseDirectories = true
-        panel.canChooseFiles = false
-        panel.prompt = "Import"
-        panel.message = "Choose a Tracker project folder, e.g. on your SD card under Projects/User."
-        if panel.runModal() == .OK, let url = panel.url {
-            model.importProject(at: url)
         }
     }
 

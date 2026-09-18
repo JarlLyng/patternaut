@@ -7,6 +7,11 @@ All notable changes to Patternaut are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- Launching opens a blank document instead of an open panel, and a new document starts empty
+  rather than pre-filled with a generated beat.
+- Importing a Tracker project is now in the File menu as "Import Tracker Project…" (⇧⌘I), next
+  to Open. Open takes a Patternaut document; Import takes a folder off the card. Having only a
+  toolbar button made the two look like the same thing.
 - Validation claimed tracks 9-16 cannot play sample instruments. Polyend's own demo projects do
   exactly that, so the rule was wrong and blocked exporting anything imported from those.
 - Validation checked the instrument on steps that play no note. Every empty step in a file

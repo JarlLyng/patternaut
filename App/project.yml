@@ -23,6 +23,8 @@ targets:
       path: Patternaut/Info.plist
       properties:
         CFBundleDisplayName: Patternaut
+        # Start with a blank document instead of an open panel.
+        NSShowAppCentricOpenPanelInsteadOfUntitledFile: false
         # Must follow the build settings, or TestFlight uploads all claim 1.0 (1).
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
