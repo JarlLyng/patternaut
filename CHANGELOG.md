@@ -6,6 +6,11 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-09-19
+Fourth TestFlight build. A whole project can now be brought in from the card, changed, and written
+back without losing anything.
+
+
 ### Added
 - `.pti` instruments are read. Importing a project now brings its samples in with their audio,
   in slot order, so instrument 00 in the grid is instrument 00 on the device, and the whole
