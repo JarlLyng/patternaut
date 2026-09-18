@@ -9,7 +9,8 @@ Patternaut is a native macOS companion app for the Polyend Tracker+ and Tracker 
 generates, mutates and shapes tracker patterns on the Mac, then gets them onto the hardware
 (byte-exact SD-card files, or live MIDI). It runs locally: no accounts, no cloud, no tracking.
 
-- **Developer:** Jarl Lyng / [IAMJARL](https://iamjarl.com)
+- **Developer:** Jarl / [IAMJARL](https://iamjarl.com). The public identity is IAMJARL; the
+  full personal name is not used (see the hub's `BRAND_LEGAL.md`).
 - **Website:** [patternaut.iamjarl.com](https://patternaut.iamjarl.com)
 - **License:** [MIT](LICENSE) — open source (repo currently private during beta).
 - **Price:** $8.99 one-time, no subscription.

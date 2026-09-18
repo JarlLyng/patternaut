@@ -36,7 +36,7 @@ targets:
         LSApplicationCategoryType: public.app-category.music
         ITSAppUsesNonExemptEncryption: false
         LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
-        NSHumanReadableCopyright: "Copyright © 2026 Jarl Lyng"
+        NSHumanReadableCopyright: "© 2026 IAMJARL"
         UTExportedTypeDeclarations:
           - UTTypeIdentifier: com.iamjarl.patternaut.project
             UTTypeDescription: Patternaut Project
