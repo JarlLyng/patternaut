@@ -7,6 +7,11 @@ All notable changes to Patternaut are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- Import accepts whatever you point at inside a project: the `patterns` folder, a `.mtp` file or
+  `project.mt` all resolve to the project they belong to, instead of being refused. The panel
+  also opens at a mounted Tracker card's Projects folder.
+- An untouched document offers the two ways to fill it, Generate and Import, rather than leaving
+  an empty grid and no hint that Import is not File > Open.
 - Launching opens a blank document instead of an open panel, and a new document starts empty
   rather than pre-filled with a generated beat.
 - Importing a Tracker project is now in the File menu as "Import Tracker Project…" (⇧⌘I), next

@@ -31,7 +31,7 @@ public enum ProjectBundleReader {
         public var errorDescription: String? {
             switch self {
             case .notAProject(let name):
-                return "\(name) does not look like a Tracker project (no project.mt)."
+                return "\"\(name)\" is not a Tracker project. Choose the project folder itself, the one holding project.mt."
             case .noPatterns:
                 return "That project has no pattern files."
             }
@@ -43,12 +43,15 @@ public enum ProjectBundleReader {
     /// - Parameter device: Which profile to attach to the patterns. The files
     ///   themselves only imply a track count, not a model.
     public static func read(
-        at url: URL,
+        at selection: URL,
         device: DeviceModel = .trackerPlus,
         fileManager: FileManager = .default
     ) throws -> Result {
-        let projectFile = try locate("project.mt", in: url, fileManager: fileManager)
-        guard let projectFile else { throw ReadError.notAProject(url.lastPathComponent) }
+        let url = try projectRoot(for: selection, fileManager: fileManager)
+            ?? { throw ReadError.notAProject(selection.lastPathComponent) }()
+        guard let projectFile = try locate("project.mt", in: url, fileManager: fileManager) else {
+            throw ReadError.notAProject(selection.lastPathComponent)
+        }
 
         // Projects from older firmware have a smaller, differently laid out
         // project.mt (1284 or 1572 bytes against today's 2324). The patterns
@@ -135,6 +138,22 @@ public enum ProjectBundleReader {
     }
 
     // MARK: - Private
+
+    /// Finds the project folder from whatever was picked. Landing inside
+    /// `patterns` or on a file in it is an easy mistake, and the folder above is
+    /// unambiguous, so there is no reason to refuse.
+    private static func projectRoot(for url: URL, fileManager: FileManager) throws -> URL? {
+        var isDirectory: ObjCBool = false
+        guard fileManager.fileExists(atPath: url.path, isDirectory: &isDirectory) else { return nil }
+        let directory = isDirectory.boolValue ? url : url.deletingLastPathComponent()
+
+        if try locate("project.mt", in: directory, fileManager: fileManager) != nil { return directory }
+        let parent = directory.deletingLastPathComponent()
+        if parent != directory, try locate("project.mt", in: parent, fileManager: fileManager) != nil {
+            return parent
+        }
+        return nil
+    }
 
     /// True when the file on disk holds fewer tracks than the device profile.
     private static func wasShort(_ url: URL, device: DeviceModel) -> Bool {

@@ -20,12 +20,31 @@ enum ProjectImport {
     static func run(into model: EditorModel) {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
-        panel.canChooseFiles = false
+        // A pattern file is a fine thing to point at; the reader works out which
+        // project it belongs to.
+        panel.canChooseFiles = true
         panel.prompt = "Import"
-        panel.message = "Choose a Tracker project folder (the one holding project.mt), e.g. on your SD card under Projects/User."
+        panel.message = "Choose a project on your Tracker's card, e.g. Projects/User/my song."
+        if let card = mountedCardProjects() { panel.directoryURL = card }
         if panel.runModal() == .OK, let url = panel.url {
             model.importProject(at: url)
         }
+    }
+
+    /// The Projects folder of a mounted Tracker card, so the panel opens where
+    /// the projects actually are.
+    private static func mountedCardProjects() -> URL? {
+        let volumes = (try? FileManager.default.contentsOfDirectory(
+            at: URL(fileURLWithPath: "/Volumes"), includingPropertiesForKeys: nil)) ?? []
+        for volume in volumes {
+            let projects = volume.appendingPathComponent("Projects", isDirectory: true)
+            let marker = volume.appendingPathComponent("trackerConfig")
+            if FileManager.default.fileExists(atPath: marker.path),
+               FileManager.default.fileExists(atPath: projects.path) {
+                return projects
+            }
+        }
+        return nil
     }
 }
 

@@ -97,6 +97,20 @@ struct ProjectBundleReaderTests {
         #expect(result.warnings.contains { $0.contains("8 tracks") })
     }
 
+    @Test("Picking the patterns folder, or a file in it, still finds the project")
+    func forgivingSelection() throws {
+        let root = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "P", steps: 16, seed: 8)
+        let written = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Inside",
+                                                    device: .trackerPlus, to: root)
+        let patternsDir = written.patternFiles[0].deletingLastPathComponent()
+
+        #expect(try ProjectBundleReader.read(at: patternsDir).projectName == "Inside")
+        #expect(try ProjectBundleReader.read(at: written.patternFiles[0]).projectName == "Inside")
+        #expect(try ProjectBundleReader.read(at: written.projectFile).projectName == "Inside")
+    }
+
     @Test("A folder that isn't a project says so")
     func rejectsNonProject() throws {
         let root = temporaryRoot()
