@@ -12,6 +12,8 @@ struct ContentView: View {
         VStack(spacing: 0) {
             controls
             Divider()
+            patternBar
+            Divider()
             HSplitView {
                 VStack(spacing: 0) {
                     PatternGridView(model: model)
@@ -40,8 +42,57 @@ struct ContentView: View {
         }
     }
 
+    /// The patterns in this document, and the one being edited. A Tracker
+    /// project holds many; this is how you move between them.
+    private var patternBar: some View {
+        HStack(spacing: 8) {
+            Picker("Pattern", selection: $model.currentPatternIndex) {
+                ForEach(Array(model.patterns.enumerated()), id: \.offset) { index, pattern in
+                    Text(String(format: "%02d  %@", index + 1, pattern.metadata.name)).tag(index)
+                }
+            }
+            .labelsHidden()
+            .fixedSize()
+
+            TextField("Pattern name", text: $model.patternName)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 180)
+                .help("Shown in the Tracker's pattern list.")
+
+            Button {
+                model.addPattern()
+            } label: {
+                Image(systemName: "plus")
+            }
+            .help("Add an empty pattern after this one")
+
+            Button {
+                model.duplicatePattern()
+            } label: {
+                Image(systemName: "plus.square.on.square")
+            }
+            .help("Duplicate this pattern, e.g. to mutate the copy")
+
+            Button {
+                model.removeCurrentPattern()
+            } label: {
+                Image(systemName: "minus")
+            }
+            .disabled(model.patternCount < 2)
+            .help("Remove this pattern")
+
+            Spacer()
+
+            Text(model.patternCount == 1 ? "1 pattern" : "\(model.patternCount) patterns, exported in this order")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
+    }
+
     private var showsStatusBar: Bool {
-        !model.issues.isEmpty || model.lastExportPath != nil
+        !model.issues.isEmpty || model.lastExportPath != nil || model.importStatus != nil
             || model.cursorHint != nil || model.lineage != nil
     }
 
@@ -125,6 +176,8 @@ struct ContentView: View {
             .fixedSize()
             fxMenu
             Spacer()
+            Button("Import…") { importProject() }
+                .help("Open a Tracker project from an SD card. Its patterns replace what is in this document.")
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }
         }
@@ -140,6 +193,10 @@ struct ContentView: View {
             }
             if let hint = model.cursorHint {
                 Text(hint)
+                    .foregroundStyle(.secondary)
+            }
+            if let status = model.importStatus {
+                Label(status, systemImage: "square.and.arrow.down")
                     .foregroundStyle(.secondary)
             }
             if let path = model.lastExportPath {
@@ -202,6 +259,17 @@ struct ContentView: View {
         panel.message = "Name the project and choose where to put it, e.g. your SD card's Projects/User folder."
         if panel.runModal() == .OK, let url = panel.url {
             model.export(to: url.deletingLastPathComponent(), named: url.lastPathComponent)
+        }
+    }
+
+    private func importProject() {
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.prompt = "Import"
+        panel.message = "Choose a Tracker project folder, e.g. on your SD card under Projects/User."
+        if panel.runModal() == .OK, let url = panel.url {
+            model.importProject(at: url)
         }
     }
 

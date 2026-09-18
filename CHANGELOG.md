@@ -7,6 +7,12 @@ All notable changes to Patternaut are documented here. The format follows
 ## [Unreleased]
 
 ### Added
+- A document holds many patterns, not one. A pattern bar above the grid switches between them,
+  adds, duplicates and removes, and names each one; the names are what the Tracker lists.
+  Exporting writes them all, with a playlist that plays them in order. Each pattern keeps its
+  own undo history.
+- Import a Tracker project from an SD card: patterns, their names, the track names and the tempo
+  come across. `.pti` audio stays on the card, since the format is written but not yet read.
 - Patternaut is a document app. Work is saved to a `.patternaut` file with Save, Open, recent
   documents, autosave and versions, and reopens exactly as it was: pattern, track names, seed,
   key, length, tempo and the loaded samples, which travel inside the document. Until now

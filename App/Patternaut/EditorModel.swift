@@ -9,7 +9,11 @@ import PatternautCore
 ///   Every member is touched from the UI only, on the main thread.
 @Observable
 final class EditorModel: @unchecked Sendable {
-    var editor: PatternEditor
+    /// One editor per pattern, each with its own undo history, so switching
+    /// patterns does not throw away what you did in the last one.
+    var editors: [PatternEditor]
+    /// Which pattern is on screen.
+    var currentPatternIndex: Int = 0
     var device: DeviceModel
     /// The window's undo manager. Editing registers with it so ⌘Z works from the
     /// Edit menu and, just as importantly, so the document knows it has changed
@@ -50,8 +54,56 @@ final class EditorModel: @unchecked Sendable {
     init(device: DeviceModel = .trackerPlus) {
         self.device = device
         self.tempo = 130
-        let pattern = device.profile.makeEmptyPattern(name: "Untitled", tempo: 130, stepCount: 32)
-        self.editor = PatternEditor(pattern: pattern)
+        let pattern = device.profile.makeEmptyPattern(name: "Pattern 1", tempo: 130, stepCount: 32)
+        self.editors = [PatternEditor(pattern: pattern)]
+    }
+
+    /// The editor for the pattern on screen.
+    var editor: PatternEditor {
+        get { editors[min(max(currentPatternIndex, 0), editors.count - 1)] }
+        set { editors[min(max(currentPatternIndex, 0), editors.count - 1)] = newValue }
+    }
+
+    /// Every pattern in the document, in playlist order.
+    var patterns: [Pattern] { editors.map(\.pattern) }
+    var patternCount: Int { editors.count }
+
+    /// Adds a pattern after the current one and switches to it.
+    func addPattern() {
+        let pattern = device.profile.makeEmptyPattern(
+            name: "Pattern \(editors.count + 1)", tempo: tempo, stepCount: editor.rowCount
+        )
+        let index = currentPatternIndex + 1
+        editors.insert(PatternEditor(pattern: pattern), at: index)
+        currentPatternIndex = index
+        diagnostics.log("Added pattern \(index + 1) of \(editors.count).", category: "app")
+    }
+
+    /// Duplicates the current pattern, which is how most variations start.
+    func duplicatePattern() {
+        var copy = editor.pattern
+        copy.id = UUID()
+        copy.metadata.name = "\(editor.pattern.metadata.name) copy"
+        let index = currentPatternIndex + 1
+        editors.insert(PatternEditor(pattern: copy), at: index)
+        currentPatternIndex = index
+        diagnostics.log("Duplicated pattern into slot \(index + 1).", category: "app")
+    }
+
+    /// Removes the current pattern. A document always keeps at least one.
+    func removeCurrentPattern() {
+        guard editors.count > 1 else { return }
+        let removed = editor.pattern.metadata.name
+        editors.remove(at: currentPatternIndex)
+        currentPatternIndex = min(currentPatternIndex, editors.count - 1)
+        diagnostics.log("Removed pattern \"\(removed)\"; \(editors.count) left.", category: "app")
+    }
+
+    /// The current pattern's name, which is what the device shows in its
+    /// pattern list (stored in `patternsMetadata`).
+    var patternName: String {
+        get { editor.pattern.metadata.name }
+        set { edit("Rename Pattern") { editor.renamePattern(newValue) } }
     }
 
     /// Restores a saved document.
@@ -61,8 +113,9 @@ final class EditorModel: @unchecked Sendable {
         baseOctave = file.baseOctave
         key = file.key
         projectName = file.projectName
-        if let pattern = file.patterns.first {
-            editor = PatternEditor(pattern: pattern)
+        if !file.patterns.isEmpty {
+            editors = file.patterns.map { PatternEditor(pattern: $0) }
+            currentPatternIndex = 0
         }
         for sample in file.instruments {
             guard let instrument = try? Instrument.new(wav: sample.wav, filename: String(sample.name.prefix(31))) else {
@@ -82,7 +135,7 @@ final class EditorModel: @unchecked Sendable {
             tempo: tempo,
             baseOctave: baseOctave,
             key: key,
-            patterns: [editor.pattern],
+            patterns: patterns,
             instruments: instruments.map { .init(name: $0.name, wav: $0.wav) }
         )
     }
@@ -128,7 +181,8 @@ final class EditorModel: @unchecked Sendable {
     // MARK: - Actions
 
     func newPattern(steps: Int = 32) {
-        editor = PatternEditor(pattern: device.profile.makeEmptyPattern(name: "Untitled", tempo: tempo, stepCount: steps))
+        editors = [PatternEditor(pattern: device.profile.makeEmptyPattern(name: "Pattern 1", tempo: tempo, stepCount: steps))]
+        currentPatternIndex = 0
     }
 
     func changeDevice(_ newDevice: DeviceModel) {
@@ -190,6 +244,37 @@ final class EditorModel: @unchecked Sendable {
         edit("Mutate") { editor.replace(with: mutated) }
     }
 
+    // MARK: - Import
+
+    /// Loads a Tracker project folder from an SD card into this document,
+    /// replacing what is here. Patterns, their names, the track names and the
+    /// tempo all come across; `.pti` audio does not, since the format is
+    /// written but not yet read.
+    func importProject(at url: URL) {
+        do {
+            let result = try ProjectBundleReader.read(at: url, device: device)
+            let restored = result.patterns.map { PatternEditor(pattern: $0) }
+            edit("Import Project") {
+                editors = restored
+                currentPatternIndex = 0
+            }
+            projectName = result.projectName
+            tempo = result.tempo
+            issues = []
+            let missing = result.instrumentNames.isEmpty
+                ? ""
+                : " Its \(result.instrumentNames.count) instrument(s) stay on the card; Patternaut does not read .pti yet."
+            importStatus = "Imported \(result.patterns.count) pattern(s) from \"\(result.projectName)\".\(missing)"
+            diagnostics.log("Imported \"\(result.projectName)\": \(result.patterns.count) patterns at \(Int(result.tempo)) BPM, instruments on card: \(result.instrumentNames.joined(separator: ", ")).", category: "export")
+        } catch {
+            importStatus = error.localizedDescription
+            diagnostics.log("Import failed: \(error.localizedDescription)", level: .error, category: "export")
+        }
+    }
+
+    /// Last import outcome, shown under the grid.
+    var importStatus: String?
+
     // MARK: - Samples / instruments
 
     /// Loads a WAV as a sample instrument, converting bit depth and sample rate
@@ -246,19 +331,19 @@ final class EditorModel: @unchecked Sendable {
         if let name, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             projectName = name
         }
-        issues = device.profile.validate(pattern)
+        issues = patterns.flatMap { device.profile.validate($0) }
         let errorCount = issues.filter { $0.severity == .error }.count
-        guard device.profile.isExportable(pattern) else {
+        guard patterns.allSatisfy({ device.profile.isExportable($0) }) else {
             diagnostics.log("Export blocked: \(errorCount) validation error(s).", level: .error, category: "export")
             return
         }
         do {
             let result = try ProjectBundleWriter.write(
-                patterns: [pattern], projectName: exportProjectName, device: device,
+                patterns: patterns, projectName: exportProjectName, device: device,
                 tempo: Float(tempo), instruments: namedInstruments(), to: directory
             )
             lastExportPath = result.projectDirectory.path
-            diagnostics.log("Exported \"\(exportProjectName)\" (\(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
+            diagnostics.log("Exported \"\(exportProjectName)\" (\(patterns.count) patterns, \(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]
             diagnostics.log("Export failed: \(error.localizedDescription)", level: .error, category: "export")

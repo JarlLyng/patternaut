@@ -35,6 +35,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 
 ## App features (be precise — do not invent features that don't exist)
 
+- Many patterns per document, with a pattern bar to switch/add/duplicate/remove/name them; export
+  writes them all with a playlist in that order. Import reads a Tracker project folder back
+  (`ProjectBundleReader`): patterns, pattern names, track names and tempo.
 - A document app: work is saved as `.patternaut` (JSON, UTI `com.iamjarl.patternaut.project`),
   holding the pattern, settings, seed and the loaded samples as canonical WAVs. `DocumentGroup`
   + `ReferenceFileDocument`, so Save/Open/recents/autosave are the system's. Editing registers
@@ -66,8 +69,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - No `.mtp`/`.mt` import UI (the core can read `.mtp`, but there is no import flow yet).
 - The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
   auto-assigned to instrument slots on the device yet.
-- Still only ONE pattern per document and per exported project; no song/arrangement.
-- No import: the core reads `.mtp`, but there is no way to open a project from the card.
+- No song/arrangement mode beyond a linear playlist of the document's patterns.
+- Import does not read `.pti` audio (no parser yet), so an imported project arrives without its
+  samples; the instrument numbers in its patterns are preserved.
 - No account, cloud, sync, analytics, ads, or subscription.
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.

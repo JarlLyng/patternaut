@@ -142,6 +142,15 @@ public struct PatternEditor: Sendable {
         setFXDisplayValue(lane: lane, command.displayValue + delta)
     }
 
+    /// Renames the pattern, in one undoable step. The name is what the device
+    /// lists in its pattern browser, stored in `patternsMetadata`.
+    public mutating func renamePattern(_ name: String) {
+        let trimmed = String(name.prefix(PatternsMetadata.nameLength - 1))
+        guard trimmed != pattern.metadata.name else { return }
+        snapshot()
+        pattern.metadata.name = trimmed
+    }
+
     /// Renames a track, in one undoable step.
     ///
     /// Names travel to the device in `project.mt`, which gives the first eight
