@@ -6,6 +6,14 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Patternaut is a document app. Work is saved to a `.patternaut` file with Save, Open, recent
+  documents, autosave and versions, and reopens exactly as it was: pattern, track names, seed,
+  key, length, tempo and the loaded samples, which travel inside the document. Until now
+  quitting lost everything that had not been exported to a card.
+- Undo and redo now run through the window, so the Edit menu names what it will undo
+  ("Undo Generate", "Undo Set Effect") and the toolbar no longer needs its own buttons.
+
 ## [0.2.0] — 2026-09-18
 Second TestFlight build. The SD-card route is now confirmed on real hardware.
 

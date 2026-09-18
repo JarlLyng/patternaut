@@ -5,18 +5,24 @@ import PatternautCore
 /// Observable shell around ``PatternEditor`` plus app-level context (device,
 /// tempo, base octave) and actions (generate, export). All editing logic lives
 /// in the tested core; this only bridges it to SwiftUI.
+/// - Note: `@unchecked Sendable` because `UndoManager` requires it of a target.
+///   Every member is touched from the UI only, on the main thread.
 @Observable
-final class EditorModel {
+final class EditorModel: @unchecked Sendable {
     var editor: PatternEditor
     var device: DeviceModel
-    var tempo: Double
+    /// The window's undo manager. Editing registers with it so ⌘Z works from the
+    /// Edit menu and, just as importantly, so the document knows it has changed
+    /// and will be saved.
+    var undoManager: UndoManager?
+    var tempo: Double { didSet { registerValueUndo(oldValue, "Change Tempo") { $0.tempo = $1 } } }
     /// Base octave for keyboard note entry.
-    var baseOctave: Int = 4
+    var baseOctave: Int = 4 { didSet { registerValueUndo(oldValue, "Change Octave") { $0.baseOctave = $1 } } }
     /// Root and scale used for the pitched parts of generated patterns.
-    var key = MusicalKey()
+    var key = MusicalKey() { didSet { registerValueUndo(oldValue, "Change Key") { $0.key = $1 } } }
     /// Name of the exported project: the folder on the card and the name the
     /// Tracker shows in its project browser.
-    var projectName: String = "Patternaut"
+    var projectName: String = "Patternaut" { didSet { registerValueUndo(oldValue, "Rename Project") { $0.projectName = $1 } } }
 
     /// Last validation issues from an export attempt.
     var issues: [ValidationIssue] = []
@@ -27,14 +33,16 @@ final class EditorModel {
 
     /// Loaded sample instruments (written as `.pti` on export). Their order is
     /// the sample-instrument slot: index 0 = instrument 0 in the pattern grid.
-    var instruments: [LoadedInstrument] = []
+    var instruments: [LoadedInstrument] = [] { didSet { registerValueUndo(oldValue, "Change Instruments") { $0.instruments = $1 } } }
     var sampleError: String?
 
     /// A sample loaded from a WAV, ready to export as a `.pti`.
-    struct LoadedInstrument: Identifiable {
+    struct LoadedInstrument: Identifiable, Sendable {
         let id = UUID()
         var name: String
         var instrument: Instrument
+        /// The converted audio, kept so the document can be saved and reopened.
+        var wav: Data
         var isStereo: Bool { instrument.sample.channels == 2 }
         var frames: Int { instrument.sample.length }
     }
@@ -46,7 +54,76 @@ final class EditorModel {
         self.editor = PatternEditor(pattern: pattern)
     }
 
+    /// Restores a saved document.
+    convenience init(file: ProjectFile) {
+        self.init(device: file.device)
+        tempo = file.tempo
+        baseOctave = file.baseOctave
+        key = file.key
+        projectName = file.projectName
+        if let pattern = file.patterns.first {
+            editor = PatternEditor(pattern: pattern)
+        }
+        for sample in file.instruments {
+            guard let instrument = try? Instrument.new(wav: sample.wav, filename: String(sample.name.prefix(31))) else {
+                diagnostics.log("Could not restore sample \"\(sample.name)\".", level: .error, category: "samples")
+                continue
+            }
+            instruments.append(LoadedInstrument(name: sample.name, instrument: instrument, wav: sample.wav))
+        }
+        diagnostics.log("Opened \"\(file.projectName)\": \(file.patterns.count) pattern(s), \(instruments.count) instrument(s).", category: "app")
+    }
+
+    /// The document as it should be written to disk.
+    var projectFile: ProjectFile {
+        ProjectFile(
+            projectName: projectName,
+            device: device,
+            tempo: tempo,
+            baseOctave: baseOctave,
+            key: key,
+            patterns: [editor.pattern],
+            instruments: instruments.map { .init(name: $0.name, wav: $0.wav) }
+        )
+    }
+
     var pattern: Pattern { editor.pattern }
+
+    // MARK: - Undo bridging
+
+    /// Runs an edit and tells the undo manager how to take it back. The editor
+    /// keeps its own history; this makes the window's Undo drive that history.
+    func edit(_ name: String, _ change: () -> Void) {
+        change()
+        registerEditorUndo(name)
+    }
+
+    private func registerEditorUndo(_ name: String) {
+        guard let undoManager else { return }
+        undoManager.registerUndo(withTarget: self) { model in
+            model.editor.undo()
+            model.registerEditorRedo(name)
+        }
+        undoManager.setActionName(name)
+    }
+
+    private func registerEditorRedo(_ name: String) {
+        guard let undoManager else { return }
+        undoManager.registerUndo(withTarget: self) { model in
+            model.editor.redo()
+            model.registerEditorUndo(name)
+        }
+        undoManager.setActionName(name)
+    }
+
+    /// Undo for a plain value: put the old one back. Restoring fires the same
+    /// `didSet`, which registers the opposite move, so redo works too.
+    private func registerValueUndo<Value: Sendable>(_ oldValue: Value, _ name: String,
+                                                    _ apply: @escaping @Sendable (EditorModel, Value) -> Void) {
+        guard let undoManager else { return }
+        undoManager.registerUndo(withTarget: self) { model in apply(model, oldValue) }
+        undoManager.setActionName(name)
+    }
 
     // MARK: - Actions
 
@@ -78,7 +155,7 @@ final class EditorModel {
         let pattern = BeatGenerator.beat(
             device: device, name: "Generated", tempo: tempo, steps: length, key: key, seed: used
         )
-        editor.replace(with: pattern)
+        edit("Generate") { editor.replace(with: pattern) }
         diagnostics.log("Generated a beat from seed \(used), \(length) steps, \(key.displayName).", category: "app")
     }
 
@@ -88,7 +165,7 @@ final class EditorModel {
         get { max(editor.rowCount, TrackerFormat.minSteps) }
         set {
             guard newValue != editor.rowCount else { return }
-            editor.setLength(newValue)
+            edit("Change Length") { editor.setLength(newValue) }
             diagnostics.log("Pattern length set to \(editor.rowCount) steps.", category: "app")
         }
     }
@@ -99,13 +176,9 @@ final class EditorModel {
 
     /// Renames a track (undoable). Names travel to the device in `project.mt`.
     func renameTrack(_ name: String, at index: Int) {
-        editor.renameTrack(name, at: index)
+        edit("Rename Track") { editor.renameTrack(name, at: index) }
     }
 
-    var canUndo: Bool { editor.canUndo }
-    var canRedo: Bool { editor.canRedo }
-    func undo() { editor.undo() }
-    func redo() { editor.redo() }
 
     private var mutationCounter: UInt64 = 0
 
@@ -114,7 +187,7 @@ final class EditorModel {
     func mutate(_ strength: MutationStrength) {
         mutationCounter &+= 1
         let mutated = Mutation.mutate(editor.pattern, strength: strength, seed: mutationCounter)
-        editor.replace(with: mutated)
+        edit("Mutate") { editor.replace(with: mutated) }
     }
 
     // MARK: - Samples / instruments
@@ -127,17 +200,23 @@ final class EditorModel {
             let source = try WavFile.info(data)
             let name = url.deletingPathExtension().lastPathComponent
             let instrument = try Instrument.new(wav: data, filename: String(name.prefix(31)))
-            instruments.append(LoadedInstrument(name: name, instrument: instrument))
+            // Keep the converted audio as a canonical WAV so the document can
+            // be saved and reopened without the original file.
+            let (pcm, audio) = try WavFile.pcm16(data)
+            instruments.append(LoadedInstrument(
+                name: name, instrument: instrument,
+                wav: WavFile.make(pcm: pcm, channels: audio.channels, sampleRate: audio.sampleRate)
+            ))
             sampleError = nil
 
-            var converted: [String] = []
+            var changes: [String] = []
             if source.bitsPerSample != 16 || source.isFloat {
-                converted.append("\(source.bitsPerSample)-bit\(source.isFloat ? " float" : "") to 16-bit")
+                changes.append("\(source.bitsPerSample)-bit\(source.isFloat ? " float" : "") to 16-bit")
             }
             if source.sampleRate != WavFile.trackerSampleRate {
-                converted.append("\(source.sampleRate) Hz to \(WavFile.trackerSampleRate) Hz")
+                changes.append("\(source.sampleRate) Hz to \(WavFile.trackerSampleRate) Hz")
             }
-            let note = converted.isEmpty ? "" : ", converted \(converted.joined(separator: " and "))"
+            let note = changes.isEmpty ? "" : ", converted \(changes.joined(separator: " and "))"
             diagnostics.log("Loaded sample \"\(name)\" (\(instrument.sample.channels == 2 ? "stereo" : "mono"), \(instrument.sample.length) frames\(note)).", category: "samples")
         } catch let error as WavFile.WavError {
             sampleError = message(for: error, file: url.lastPathComponent)
@@ -237,14 +316,14 @@ final class EditorModel {
     func setCursorFX(_ type: FXType) {
         guard let lane = editor.cursorFXLane else { return }
         resetFXDigits()
-        editor.setFXType(lane: lane, type)
+        edit("Set Effect") { editor.setFXType(lane: lane, type) }
     }
 
     /// Clears the lane under the cursor.
     func clearCursorFX() {
         guard let lane = editor.cursorFXLane else { return }
         resetFXDigits()
-        editor.setFX(lane: lane, nil)
+        edit("Clear Effect") { editor.setFX(lane: lane, nil) }
     }
 
     /// Nudges the value under the cursor: the FX value in an FX column, the note
@@ -253,10 +332,10 @@ final class EditorModel {
         if let lane = editor.cursorFXLane {
             guard editor.fx(lane: lane) != nil else { return false }
             resetFXDigits()
-            editor.adjustFXValue(lane: lane, by: delta)
+            edit("Change Effect Value") { editor.adjustFXValue(lane: lane, by: delta) }
             return true
         }
-        editor.transpose(by: delta)
+        edit("Transpose") { editor.transpose(by: delta) }
         return true
     }
 
@@ -286,13 +365,13 @@ final class EditorModel {
             if fxDigits.count >= 3 { fxDigits = "" }
             fxDigits.append(character)
             if let value = Int(fxDigits) {
-                editor.setFXDisplayValue(lane: lane, value)
+                edit("Set Effect Value") { editor.setFXDisplayValue(lane: lane, value) }
             }
             return true
         }
         if let type = FXKeyMap.fx(for: character) {
             resetFXDigits()
-            editor.setFXType(lane: lane, type)
+            edit("Set Effect") { editor.setFXType(lane: lane, type) }
             return true
         }
         return false
@@ -305,13 +384,13 @@ final class EditorModel {
         switch editor.cursor.column {
         case .note:
             if let note = NoteKeyMap.note(for: character, baseOctave: baseOctave) {
-                editor.setNote(note)
+                edit("Set Note") { editor.setNote(note) }
                 editor.moveDown()
                 return true
             }
         case .instrument:
             if let digit = character.wholeNumberValue, (0...9).contains(digit) {
-                editor.setInstrument(digit)
+                edit("Set Instrument") { editor.setInstrument(digit) }
                 return true
             }
         case .fx1:

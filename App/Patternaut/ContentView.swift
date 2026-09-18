@@ -3,7 +3,8 @@ import PatternautCore
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @State private var model = EditorModel()
+    @Bindable var model: EditorModel
+    @Environment(\.undoManager) private var undoManager
     @FocusState private var gridFocused: Bool
     @State private var showingLog = false
 
@@ -29,7 +30,11 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 480)
-        .onAppear { gridFocused = true }
+        .onAppear {
+            gridFocused = true
+            model.undoManager = undoManager
+        }
+        .onChange(of: undoManager) { _, new in model.undoManager = new }
         .sheet(isPresented: $showingLog) {
             DiagnosticsView(diagnostics: model.diagnostics)
         }
@@ -119,8 +124,6 @@ struct ContentView: View {
             }
             .fixedSize()
             fxMenu
-            Button("Undo") { model.undo() }.disabled(!model.canUndo).keyboardShortcut("z")
-            Button("Redo") { model.redo() }.disabled(!model.canRedo).keyboardShortcut("z", modifiers: [.command, .shift])
             Spacer()
             Button("Export…") { exportBundle() }
             Button("Log") { showingLog = true }
@@ -163,7 +166,11 @@ struct ContentView: View {
         case .rightArrow: model.editor.moveRight(); return .handled
         case .deleteForward, .delete:
             // In an FX column, delete clears just that lane, not the whole step.
-            if model.editor.cursorFXLane != nil { model.clearCursorFX() } else { model.editor.clearStep() }
+            if model.editor.cursorFXLane != nil {
+                model.clearCursorFX()
+            } else {
+                model.edit("Clear Step") { model.editor.clearStep() }
+            }
             return .handled
         default: break
         }

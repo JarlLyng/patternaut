@@ -35,6 +35,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 
 ## App features (be precise — do not invent features that don't exist)
 
+- A document app: work is saved as `.patternaut` (JSON, UTI `com.iamjarl.patternaut.project`),
+  holding the pattern, settings, seed and the loaded samples as canonical WAVs. `DocumentGroup`
+  + `ReferenceFileDocument`, so Save/Open/recents/autosave are the system's. Editing registers
+  with the window's `UndoManager`, which is also what marks the document as changed.
 - Device-neutral pattern model with Tracker Mini / Tracker+ device profiles (16 tracks).
 - Keyboard-first grid editor: cursor navigation, note/instrument entry, editable track names,
   undo/redo, and full
@@ -62,6 +66,8 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - No `.mtp`/`.mt` import UI (the core can read `.mtp`, but there is no import flow yet).
 - The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
   auto-assigned to instrument slots on the device yet.
+- Still only ONE pattern per document and per exported project; no song/arrangement.
+- No import: the core reads `.mtp`, but there is no way to open a project from the card.
 - No account, cloud, sync, analytics, ads, or subscription.
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.

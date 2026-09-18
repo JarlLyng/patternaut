@@ -10,6 +10,7 @@
 		17D98BB2B54AF50B3AD382BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E84D35258A28FFF54312DCC /* Assets.xcassets */; };
 		205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDCC653F6211947718B51E /* ContentView.swift */; };
 		3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF648219753A5D350CCCC59 /* PatternGridView.swift */; };
+		63DE7C99FCF0276C8E5722D7 /* PatternautDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */; };
 		80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD13308432A86D508BCEC6D2 /* EditorModel.swift */; };
 		83CABA08652153406E608F41 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */; };
 		B5EB100002C0FB399C479C54 /* PatternautCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B916700499670B44836604C /* PatternautCore */; };
@@ -28,7 +29,9 @@
 		4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsPanel.swift; sourceTree = "<group>"; };
 		639F39DD1EB442B34815FE7C /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96B153C56DD2BF851C7CDB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
+		BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautDocument.swift; sourceTree = "<group>"; };
 		BD13308432A86D508BCEC6D2 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
 		F4A6E8E169F3F81FAED8FC0B /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		F8EDCC653F6211947718B51E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,9 +82,11 @@
 				639F39DD1EB442B34815FE7C /* Diagnostics.swift */,
 				F4A6E8E169F3F81FAED8FC0B /* DiagnosticsView.swift */,
 				BD13308432A86D508BCEC6D2 /* EditorModel.swift */,
+				96B153C56DD2BF851C7CDB3C /* Info.plist */,
 				4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */,
 				351BF0C56ED67F247A792DCA /* Patternaut.entitlements */,
 				AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */,
+				BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */,
 				3DF648219753A5D350CCCC59 /* PatternGridView.swift */,
 				2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */,
 			);
@@ -171,6 +176,7 @@
 				BDD56922C19834CD5393B862 /* InstrumentsPanel.swift in Sources */,
 				3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */,
 				BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */,
+				63DE7C99FCF0276C8E5722D7 /* PatternautDocument.swift in Sources */,
 				83CABA08652153406E608F41 /* StepFormatting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,10 +196,8 @@
 				DEVELOPMENT_TEAM = KDWZ3WNLDK;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Patternaut;
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Patternaut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -282,10 +286,8 @@
 				DEVELOPMENT_TEAM = KDWZ3WNLDK;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Patternaut;
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Patternaut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
