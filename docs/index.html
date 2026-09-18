@@ -29,6 +29,62 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Patternaut play my patterns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It has no audio engine, so the hardware is where you hear them. It is a companion to the machine rather than a replacement for it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which hardware does it write files for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Polyend Tracker+ and Tracker Mini. The formats are checked against Polyend's own open-source library and against projects written by the hardware itself, and the round trip is tested on a Tracker+."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it open a project I already made on the Tracker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It reads a project folder off the card: the patterns, their names, the track names, the tempo and the instruments with their audio. You can write it back into the same project, and the instrument assignments, mixer and effects the machine keeps for itself are left alone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "$8.99, paid once, on the Mac App Store. No subscription, no account and no upgrade pricing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Mac running macOS 14 or later, and a way to reach your SD card."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it send anything anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Patternaut makes no network requests at all and collects nothing. Your work stays on your Mac and on your card."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #0e0f13; --panel: #16181f; --border: #262a35;
@@ -144,12 +200,33 @@
           there, or you have something you want it to do, write to me.</p>
         <div class="cta"><a class="btn primary" href="mailto:hello@iamjarl.com">Write to me</a></div>
       </section>
+
+      <section id="faq">
+        <h2>Questions</h2>
+        <h3>Does Patternaut play my patterns?</h3>
+        <p>No. It has no audio engine, so the hardware is where you hear them. It is a companion to the machine rather than a replacement for it.</p>
+        <h3>Which hardware does it write files for?</h3>
+        <p>Polyend Tracker+ and Tracker Mini. The formats are checked against Polyend's own open-source library and against projects written by the hardware itself, and the round trip is tested on a Tracker+.</p>
+        <h3>Can it open a project I already made on the Tracker?</h3>
+        <p>Yes. It reads a project folder off the card: the patterns, their names, the track names, the tempo and the instruments with their audio. You can write it back into the same project, and the instrument assignments, mixer and effects the machine keeps for itself are left alone.</p>
+        <h3>What does it cost?</h3>
+        <p>$8.99, paid once, on the Mac App Store. No subscription, no account and no upgrade pricing.</p>
+        <h3>What does it need?</h3>
+        <p>A Mac running macOS 14 or later, and a way to reach your SD card.</p>
+        <h3>Does it send anything anywhere?</h3>
+        <p>No. Patternaut makes no network requests at all and collects nothing. Your work stays on your Mac and on your card.</p>
+      </section>
     </main>
 
     <footer>
       <p><a href="/support">Support</a> · <a href="/privacy">Privacy</a></p>
       <p>Made by one person, in the open. More at <a href="https://iamjarl.com">iamjarl.com</a>.</p>
-      <p>Co-created with AI. <a href="https://madebyhuman.iamjarl.com">How that works</a>.</p>
+      <p>My other tools for people who make music with hardware:
+        <a href="https://tonvault.iamjarl.com">TonVault</a>,
+        <a href="https://echolume.iamjarl.com">Echolume</a>,
+        <a href="https://itsmonoyo.iamjarl.com">It's mono, yo!</a> and
+        <a href="https://its404yo.iamjarl.com">It's 404, yo!</a>.</p>
+      <p><a href="https://madebyhuman.iamjarl.com">Made by Human</a></p>
       <p class="disclaimer">Not affiliated with or endorsed by Polyend. Polyend, Tracker, Tracker+
         and Tracker Mini are trademarks of their respective owners.</p>
     </footer>
