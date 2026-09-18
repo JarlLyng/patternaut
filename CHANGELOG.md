@@ -24,6 +24,13 @@ All notable changes to Patternaut are documented here. The format follows
   selected track only, so the previous whole-pattern send could not work.
 
 ### Added
+- Pattern length is now editable (8 to 128 steps, or anything the device accepts via the core).
+  Changing it resizes the pattern on screen in one undoable step, and is what Generate uses.
+- Key and scale for generation: eleven scales, any root. Generated bass lines stay in the key;
+  drum tracks trigger samples, so they are unaffected. Same seed in a different key keeps the
+  same rhythm.
+- `MusicalKey` and `Scale` in the core, with `pitches(from:count:)` and `snap(_:)`.
+- `PatternEditor.setLength(_:)`.
 - Drag and drop WAVs onto the instruments panel.
 - `WavFile.pcm16(_:)`: converts 8/16/24/32-bit integer and 32/64-bit float WAVs to the 16-bit
   44.1 kHz PCM a `.pti` stores, resampling by linear interpolation when the rate differs.

@@ -43,7 +43,8 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Generators, all reproducible from a seed: whole beats (kick/snare/hat plus optional
   probability percussion and bass), Euclidean rhythms, probability, swing, humanize,
   rotate/reverse transforms. Generate rolls a new seed each press; the seed is stored with the
-  pattern and shown in the app.
+  pattern and shown in the app. Pattern length (8-128 steps) and key/scale (eleven scales, any
+  root) are set in the app and drive generation; pitched parts stay in key, drums are unaffected.
 - Mutation: subtle / moderate / strong / chaotic.
 - Byte-exact hardware export verified against the official `polyend/tracker-lib`: `.mtp`
   patterns, `.mt` projects, `.pti` instruments, written as a loadable SD-card project folder.

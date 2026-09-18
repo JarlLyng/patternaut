@@ -12,6 +12,8 @@ final class EditorModel {
     var tempo: Double
     /// Base octave for keyboard note entry.
     var baseOctave: Int = 4
+    /// Root and scale used for the pitched parts of generated patterns.
+    var key = MusicalKey()
     /// Last validation issues from an export attempt.
     var issues: [ValidationIssue] = []
     var lastExportPath: String?
@@ -67,12 +69,29 @@ final class EditorModel {
     /// Generates a fresh beat. Each press rolls a new seed, so you get something
     /// different every time; the seed is kept with the pattern, so any beat can
     /// be made again. Undoable, so a generate never loses your work.
-    func generate(seed: UInt64? = nil, steps: Int = 16) {
+    func generate(seed: UInt64? = nil) {
         let used = seed ?? UInt64.random(in: 1...UInt64(UInt32.max))
-        let pattern = BeatGenerator.beat(device: device, name: "Generated", tempo: tempo, steps: steps, seed: used)
+        let pattern = BeatGenerator.beat(
+            device: device, name: "Generated", tempo: tempo, steps: length, key: key, seed: used
+        )
         editor.replace(with: pattern)
-        diagnostics.log("Generated a beat from seed \(used).", category: "app")
+        diagnostics.log("Generated a beat from seed \(used), \(length) steps, \(key.displayName).", category: "app")
     }
+
+    /// Pattern length in steps. Setting it resizes the pattern on screen, in one
+    /// undoable step, and is what the next generate uses.
+    var length: Int {
+        get { max(editor.rowCount, TrackerFormat.minSteps) }
+        set {
+            guard newValue != editor.rowCount else { return }
+            editor.setLength(newValue)
+            diagnostics.log("Pattern length set to \(editor.rowCount) steps.", category: "app")
+        }
+    }
+
+    /// The step counts offered in the UI. Any length works on the device, these
+    /// are just the ones people actually reach for.
+    static let lengthChoices = [8, 16, 24, 32, 48, 64, 96, 128]
 
     var canUndo: Bool { editor.canUndo }
     var canRedo: Bool { editor.canRedo }

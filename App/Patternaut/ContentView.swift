@@ -43,6 +43,26 @@ struct ContentView: View {
             || model.cursorHint != nil || model.lineage != nil
     }
 
+    /// Length and key: what Generate builds, and what the pattern on screen is
+    /// resized to. Kept in one menu so the toolbar stays readable.
+    private var generateSettings: some View {
+        Menu("\(model.length) steps, \(model.key.displayName)") {
+            Picker("Length", selection: Binding(get: { model.length }, set: { model.length = $0 })) {
+                ForEach(EditorModel.lengthChoices, id: \.self) { Text("\($0) steps").tag($0) }
+            }
+            Picker("Key", selection: $model.key.root) {
+                ForEach(Array(MusicalKey.noteNames.enumerated()), id: \.offset) { index, name in
+                    Text(name).tag(index)
+                }
+            }
+            Picker("Scale", selection: $model.key.scale) {
+                ForEach(Scale.allCases, id: \.self) { Text($0.displayName).tag($0) }
+            }
+        }
+        .fixedSize()
+        .help("Pattern length, and the key the pitched parts are generated in. Changing the length resizes the pattern you have now.")
+    }
+
     /// Every effect the device supports, applied to the lane under the cursor.
     private var fxMenu: some View {
         Menu("FX") {
@@ -86,6 +106,7 @@ struct ContentView: View {
 
             Button("Generate") { model.generate() }
                 .help("Make a new beat. Every press is a different one, and Undo brings back what you had.")
+            generateSettings
             Menu("Mutate") {
                 ForEach(MutationStrength.allCases, id: \.self) { strength in
                     Button(strength.rawValue.capitalized) { model.mutate(strength) }

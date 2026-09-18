@@ -142,6 +142,28 @@ public struct PatternEditor: Sendable {
         setFXDisplayValue(lane: lane, command.displayValue + delta)
     }
 
+    /// Changes the pattern's length, in one undoable step.
+    ///
+    /// Shortening drops the steps past the new end; lengthening pads with empty
+    /// ones. Clamped to the device's range.
+    public mutating func setLength(_ steps: Int) {
+        let profile = pattern.device.profile
+        let length = min(max(steps, profile.stepRange.lowerBound), profile.stepRange.upperBound)
+        guard length != rowCount else { return }
+        snapshot()
+        for index in pattern.tracks.indices {
+            var track = pattern.tracks[index]
+            if track.steps.count > length {
+                track.steps = Array(track.steps.prefix(length))
+            } else {
+                track.steps.append(contentsOf: (track.steps.count..<length).map { _ in Step.empty })
+            }
+            track.length = length
+            pattern.tracks[index] = track
+        }
+        setCursor(track: cursor.track, row: cursor.row, column: cursor.column)
+    }
+
     /// Clears the step under the cursor (note, instrument, effects).
     public mutating func clearStep() {
         editStep { step in

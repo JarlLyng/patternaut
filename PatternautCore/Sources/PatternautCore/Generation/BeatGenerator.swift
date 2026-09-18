@@ -18,6 +18,8 @@ public enum BeatGenerator {
     ///
     /// - Parameters:
     ///   - steps: Pattern length. Clamped to the device's range.
+    ///   - key: Root and scale for the pitched parts. Drums trigger samples, so
+    ///     they are unaffected.
     ///   - seed: Everything below is derived from this, including which optional
     ///     parts appear.
     public static func beat(
@@ -25,6 +27,7 @@ public enum BeatGenerator {
         name: String = "Generated",
         tempo: Double = 130,
         steps: Int = 16,
+        key: MusicalKey = MusicalKey(),
         seed: UInt64
     ) -> Pattern {
         var rng = SeededGenerator(seed: seed)
@@ -88,25 +91,25 @@ public enum BeatGenerator {
             tracks.append(perc)
         }
 
-        // Bass, half the time: the same euclidean idea, with the root moving.
+        // Bass, half the time: the same euclidean idea, moving through the key.
         if Bool.random(using: &rng) {
-            let root = [33, 35, 36, 38, 40].randomElement(using: &rng)!
+            // Two octaves of the key from C1, so the line has somewhere to go.
+            let available = key.pitches(from: 24, count: key.scale.intervals.count * 2)
             let bassPulses = Int.random(in: 3...5, using: &rng) * scale
             var bass = RhythmGenerator.euclidean(
                 pulses: bassPulses, steps: length,
                 rotation: Int.random(in: 0...3, using: &rng),
-                note: .pitch(UInt8(root)), instrument: 4,
+                note: .pitch(UInt8(available.first ?? 36)), instrument: 4,
                 velocity: Int.random(in: 85...105, using: &rng),
                 name: "Bass"
             )
-            // Move some notes off the root so the line has shape.
-            let intervals = [0, 0, 0, 7, 12, -5]
+            // Mostly the root, sometimes a degree above it, so the line has shape
+            // without wandering out of the key.
+            let degrees = [0, 0, 0, 0, 2, 3, 4, key.scale.intervals.count]
             for index in bass.steps.indices where bass.steps[index].isActive {
-                let interval = intervals.randomElement(using: &rng)!
-                if interval != 0, case .pitch(let pitch) = bass.steps[index].note {
-                    let moved = min(max(Int(pitch) + interval, 0), 127)
-                    bass.steps[index].note = .pitch(UInt8(moved))
-                }
+                let degree = degrees.randomElement(using: &rng)!
+                guard degree > 0, degree < available.count else { continue }
+                bass.steps[index].note = .pitch(UInt8(available[degree]))
             }
             tracks.append(bass)
         }
