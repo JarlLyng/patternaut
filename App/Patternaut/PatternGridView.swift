@@ -36,6 +36,9 @@ struct PatternGridView: View {
                 .frame(width: cellGroupWidth, alignment: .leading)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
+                // Without something behind it, an editable name reads as a label
+                // and nobody discovers they can change it.
+                .background(Color.secondary.opacity(0.08), in: RoundedRectangle(cornerRadius: 3))
                 .help("Track name. It is written into the project, so the Tracker shows it. Up to \(Track.nameLimit(forTrack: index)) characters.")
             }
         }

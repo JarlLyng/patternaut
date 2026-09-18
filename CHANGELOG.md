@@ -6,6 +6,18 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- A keyboard reference, in Help > Keyboard Shortcuts (⌘/). The editor is keyboard-first and none
+  of that was written down anywhere.
+- The instrument column takes two digits, so instruments past 9 can be reached. An imported
+  project routinely has twelve or more, and they were unreachable from the keyboard.
+
+### Changed
+- The toolbar is arranged by what things are rather than as one row of everything. The top row is
+  the project (device, name, tempo, octave) and the transfer buttons; the second row is the
+  pattern you are on and everything that acts on it (generate, its settings, mutate, effects).
+- Track names in the grid header now look editable, instead of reading as plain labels.
+
 ## [0.4.0] — 2026-09-19
 Fourth TestFlight build. A whole project can now be brought in from the card, changed, and written
 back without losing anything.

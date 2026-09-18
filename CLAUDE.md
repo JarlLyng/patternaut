@@ -62,6 +62,7 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Sample loading: WAV becomes a `.pti` instrument, by file picker or drag and drop. 8/16/24/32-bit
   integer and 32/64-bit float are converted to the 16-bit 44.1 kHz PCM the device stores;
   other sample rates are resampled (linear interpolation).
+- A keyboard reference sheet (Help > Keyboard Shortcuts, ⌘/).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
   log panel with copy (categories: export, samples, app).
 

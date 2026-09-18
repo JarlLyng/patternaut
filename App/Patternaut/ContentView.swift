@@ -53,6 +53,7 @@ struct ContentView: View {
     @Environment(\.undoManager) private var undoManager
     @FocusState private var gridFocused: Bool
     @State private var showingLog = false
+    @State private var showingShortcuts = false
     /// Dismissed once for this window: someone who wants to type their own
     /// pattern should not have to argue with a panel about it.
     @State private var dismissedEmptyState = false
@@ -90,6 +91,12 @@ struct ContentView: View {
         .onChange(of: undoManager) { _, new in model.undoManager = new }
         .sheet(isPresented: $showingLog) {
             DiagnosticsView(diagnostics: model.diagnostics)
+        }
+        .sheet(isPresented: $showingShortcuts) {
+            ShortcutsView()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .showKeyboardShortcuts)) { _ in
+            showingShortcuts = true
         }
     }
 
@@ -176,14 +183,30 @@ struct ContentView: View {
             .disabled(model.patternCount < 2)
             .help("Remove this pattern")
 
-            Spacer()
-
-            Text(model.patternCount == 1 ? "1 pattern" : "\(model.patternCount) patterns, exported in this order")
+            Text(model.patternCount == 1 ? "1 pattern" : "\(model.patternCount) patterns")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .help("Patterns are exported in this order and played in that order on the device")
+
+            Divider().frame(height: 18)
+
+            Button("Generate") { model.generate() }
+                .help("Make a new beat in this pattern. Every press is a different one, and Undo brings back what you had.")
+            generateSettings
+            Menu("Mutate") {
+                ForEach(MutationStrength.allCases, id: \.self) { strength in
+                    Button(strength.rawValue.capitalized) { model.mutate(strength) }
+                }
+            }
+            .fixedSize()
+            .help("Vary this pattern, gently or not")
+            fxMenu
+
+            Spacer()
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
+        .lineLimit(1)
     }
 
     private var showsStatusBar: Bool {
@@ -229,6 +252,9 @@ struct ContentView: View {
 
     // MARK: Controls
 
+    /// The project: what is being made and for which machine. These settings
+    /// belong to the whole document, so they sit apart from the per-pattern row
+    /// below and from the buttons that move work to and from the card.
     private var controls: some View {
         HStack(spacing: 12) {
             Picker("Device", selection: Binding(
@@ -242,7 +268,7 @@ struct ContentView: View {
             HStack(spacing: 4) {
                 Text("Project").fixedSize()
                 TextField("Name", text: $model.projectName)
-                    .frame(width: 120)
+                    .frame(width: 130)
                     .textFieldStyle(.roundedBorder)
                     .help("The folder written to the card, and the name the Tracker shows.")
             }
@@ -258,23 +284,17 @@ struct ContentView: View {
                 Text("Oct").fixedSize()
                 Stepper(value: $model.baseOctave, in: 0...8) { Text("\(model.baseOctave)") }
                     .fixedSize()
+                    .help("Which octave the note keys play in")
             }
 
-            Button("Generate") { model.generate() }
-                .help("Make a new beat. Every press is a different one, and Undo brings back what you had.")
-            generateSettings
-            Menu("Mutate") {
-                ForEach(MutationStrength.allCases, id: \.self) { strength in
-                    Button(strength.rawValue.capitalized) { model.mutate(strength) }
-                }
-            }
-            .fixedSize()
-            fxMenu
             Spacer()
+
             Button("Import…") { ProjectImport.run(into: model) }
                 .help("Import a Tracker project folder from an SD card. Its patterns replace what is in this document. This is not the same as File > Open, which opens Patternaut's own documents.")
             Button("Export…") { exportBundle() }
+                .help("Write this document to a card as a Tracker project")
             Button("Log") { showingLog = true }
+                .help("What the app has been doing, ready to copy")
         }
         .padding(8)
         .lineLimit(1)

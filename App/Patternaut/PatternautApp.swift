@@ -11,6 +11,11 @@ struct PatternautApp: App {
                 ImportProjectButton()
             }
             CommandGroup(replacing: .help) {
+                Button("Keyboard Shortcuts") {
+                    NotificationCenter.default.post(name: .showKeyboardShortcuts, object: nil)
+                }
+                .keyboardShortcut("/", modifiers: .command)
+                Divider()
                 Link("Patternaut Website", destination: URL(string: "https://patternaut.iamjarl.com")!)
             }
         }
@@ -30,4 +35,9 @@ private struct ImportProjectButton: View {
         .keyboardShortcut("i", modifiers: [.command, .shift])
         .disabled(model == nil)
     }
+}
+
+extension Notification.Name {
+    /// Posted by the Help menu; the front window shows the sheet.
+    static let showKeyboardShortcuts = Notification.Name("PatternautShowKeyboardShortcuts")
 }

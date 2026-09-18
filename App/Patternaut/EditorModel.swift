@@ -410,6 +410,10 @@ final class EditorModel: @unchecked Sendable {
     /// cursor starts over.
     private var fxDigits = ""
     private var fxDigitsCell: PatternEditor.Cursor?
+    /// The same idea for the instrument column: instruments run past 9, so a
+    /// single digit cannot reach them.
+    private var instrumentDigits = ""
+    private var instrumentDigitsCell: PatternEditor.Cursor?
 
     /// A one-line description of the cell under the cursor, shown under the grid
     /// so the single-letter FX symbols are never a guessing game.
@@ -501,8 +505,17 @@ final class EditorModel: @unchecked Sendable {
                 return true
             }
         case .instrument:
-            if let digit = character.wholeNumberValue, (0...9).contains(digit) {
-                edit("Set Instrument") { editor.setInstrument(digit) }
+            if let digit = character.wholeNumberValue, (0...9).contains(digit), character.isASCII {
+                if instrumentDigitsCell != editor.cursor {
+                    instrumentDigits = ""
+                    instrumentDigitsCell = editor.cursor
+                }
+                // Two digits is enough for every slot: 0-47 samples, 48-63 MIDI,
+                // 64-66 synth.
+                if instrumentDigits.count >= 2 { instrumentDigits = "" }
+                instrumentDigits.append(character)
+                let value = min(Int(instrumentDigits) ?? digit, TrackerFormat.instrumentRange.upperBound)
+                edit("Set Instrument") { editor.setInstrument(value) }
                 return true
             }
         case .fx1:

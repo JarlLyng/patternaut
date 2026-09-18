@@ -13,6 +13,7 @@
 		63DE7C99FCF0276C8E5722D7 /* PatternautDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */; };
 		80F92D9621E2EE83B2DAE3DB /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD13308432A86D508BCEC6D2 /* EditorModel.swift */; };
 		83CABA08652153406E608F41 /* StepFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */; };
+		B52C678ABD35F1DB1BD24CEF /* ShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716914B1B674CA0B9B73A502 /* ShortcutsView.swift */; };
 		B5EB100002C0FB399C479C54 /* PatternautCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B916700499670B44836604C /* PatternautCore */; };
 		BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */; };
 		BDD56922C19834CD5393B862 /* InstrumentsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */; };
@@ -28,6 +29,7 @@
 		3DF648219753A5D350CCCC59 /* PatternGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternGridView.swift; sourceTree = "<group>"; };
 		4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsPanel.swift; sourceTree = "<group>"; };
 		639F39DD1EB442B34815FE7C /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
+		716914B1B674CA0B9B73A502 /* ShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsView.swift; sourceTree = "<group>"; };
 		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96B153C56DD2BF851C7CDB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */,
 				BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */,
 				3DF648219753A5D350CCCC59 /* PatternGridView.swift */,
+				716914B1B674CA0B9B73A502 /* ShortcutsView.swift */,
 				2E78CF7CB601AE88EC2731A4 /* StepFormatting.swift */,
 			);
 			path = Patternaut;
@@ -177,6 +180,7 @@
 				3DD1ED433E95FD68D359840C /* PatternGridView.swift in Sources */,
 				BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */,
 				63DE7C99FCF0276C8E5722D7 /* PatternautDocument.swift in Sources */,
+				B52C678ABD35F1DB1BD24CEF /* ShortcutsView.swift in Sources */,
 				83CABA08652153406E608F41 /* StepFormatting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
