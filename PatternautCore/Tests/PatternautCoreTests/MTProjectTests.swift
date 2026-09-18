@@ -112,8 +112,15 @@ struct ProjectBundleTests {
         // Files exist.
         #expect(FileManager.default.fileExists(atPath: result.projectFile.path))
         #expect(result.patternFiles.count == 2)
-        #expect(result.patternFiles[0].lastPathComponent == "Pattern_01.mtp")
-        #expect(result.patternFiles[1].lastPathComponent == "Pattern_02.mtp")
+        #expect(result.patternFiles[0].lastPathComponent == "pattern_01.mtp")
+        #expect(result.patternFiles[1].lastPathComponent == "pattern_02.mtp")
+        // The names and cases tracker-lib reads back, including the metadata file
+        // it treats as essential.
+        #expect(result.patternFiles[0].deletingLastPathComponent().lastPathComponent == "patterns")
+        #expect(FileManager.default.fileExists(atPath: result.metadataFile.path))
+
+        let metadata = try PatternsMetadata.parse(Data(contentsOf: result.metadataFile))
+        #expect(metadata.patternNames == ["A", "B"])
 
         // project.mt parses with the expected song + tempo.
         let project = try MTProjectImporter.parse(Data(contentsOf: result.projectFile))
@@ -123,13 +130,13 @@ struct ProjectBundleTests {
         #expect(project.playlist[1] == 2)
         #expect(project.playlist[2] == 0)
 
-        // Pattern_01.mtp parses to 16 tracks with the kick on track 0.
+        // pattern_01.mtp parses to 16 tracks with the kick on track 0.
         let pattern = try MTPImporter.parse(Data(contentsOf: result.patternFiles[0]))
         #expect(pattern.tracks.count == 16)
         #expect(pattern.tracks[0].steps[0].note == .pitch(36))
     }
 
-    @Test("Bundle writes .pti instruments into an Instruments folder")
+    @Test("Bundle writes .pti instruments into the instruments folder")
     func writeBundleWithInstruments() throws {
         let pcm = Data([UInt8]([0, 0, 0x10, 0x27, 0xF0, 0xD8])) // 3 mono frames
         let wav = WavFile.make(pcm: pcm, channels: 1)
@@ -149,6 +156,7 @@ struct ProjectBundleTests {
 
         #expect(result.instrumentFiles.count == 1)
         #expect(result.instrumentFiles[0].lastPathComponent == "kick808.pti")
+        #expect(result.instrumentFiles[0].deletingLastPathComponent().lastPathComponent == "instruments")
         let onDisk = try Data(contentsOf: result.instrumentFiles[0])
         #expect(onDisk == instrument.data())
         #expect(String(decoding: [UInt8](onDisk)[0..<2], as: UTF8.self) == "TI")

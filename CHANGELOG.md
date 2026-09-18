@@ -7,6 +7,8 @@ All notable changes to Patternaut are documented here. The format follows
 ## [Unreleased]
 
 ### Changed
+- Project folders now use the names `tracker-lib` reads back: lowercase `patterns/` and
+  `instruments/`, and `pattern_01.mtp` rather than `Pattern_01.mtp`.
 - Sample loading accepts 24-bit, 32-bit and float WAVs, and other sample rates, instead of
   rejecting everything but 16-bit 44.1 kHz. Most sample libraries ship 24-bit, so the old rule
   turned away the majority of a user's own files.
@@ -24,6 +26,9 @@ All notable changes to Patternaut are documented here. The format follows
   selected track only, so the previous whole-pattern send could not work.
 
 ### Added
+- Exported projects now include `patterns/patternsMetadata`, the file that names each pattern
+  slot. `tracker-lib` refuses to load a project without it, so its absence may well have been
+  enough to stop a generated project loading at all. Byte-verified against that library.
 - Pattern length is now editable (8 to 128 steps, or anything the device accepts via the core).
   Changing it resizes the pattern on screen in one undoable step, and is what Generate uses.
 - Key and scale for generation: eleven scales, any root. Generated bass lines stay in the key;

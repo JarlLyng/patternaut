@@ -47,7 +47,8 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   root) are set in the app and drive generation; pitched parts stay in key, drums are unaffected.
 - Mutation: subtle / moderate / strong / chaotic.
 - Byte-exact hardware export verified against the official `polyend/tracker-lib`: `.mtp`
-  patterns, `.mt` projects, `.pti` instruments, written as a loadable SD-card project folder.
+  patterns, `.mt` projects, `.pti` instruments and `patterns/patternsMetadata`, written as a
+  loadable SD-card project folder (`project.mt` + lowercase `patterns/` and `instruments/`).
 - Live MIDI output (CoreMIDI): send **one track at a time** into the Tracker in record mode. The
   Tracker records incoming MIDI into its currently selected track only, so a whole-pattern
   multi-channel send does not work (community-confirmed, matches the manual).
