@@ -53,6 +53,9 @@ struct ContentView: View {
     @Environment(\.undoManager) private var undoManager
     @FocusState private var gridFocused: Bool
     @State private var showingLog = false
+    /// Dismissed once for this window: someone who wants to type their own
+    /// pattern should not have to argue with a panel about it.
+    @State private var dismissedEmptyState = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -68,7 +71,7 @@ struct ContentView: View {
                         .focusEffectDisabled()
                         .onKeyPress { handle($0) }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .overlay { if model.isEmpty { emptyState } }
+                        .overlay { if model.isEmpty && !dismissedEmptyState { emptyState } }
                     if showsStatusBar {
                         Divider()
                         issueBar
@@ -95,6 +98,17 @@ struct ContentView: View {
     /// easily confused with File > Open.
     private var emptyState: some View {
         VStack(spacing: 14) {
+            HStack {
+                Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+                .help("Start blank and write the pattern yourself")
+            }
             Text("Nothing here yet")
                 .font(.title2)
             Text("Make a beat to start from, or bring in patterns you already have on your Tracker's SD card.")
@@ -105,15 +119,22 @@ struct ContentView: View {
                 Button("Generate a Beat") { model.generate() }
                     .buttonStyle(.borderedProminent)
                 Button("Import from Tracker…") { ProjectImport.run(into: model) }
+                Button("Start Blank") { dismiss() }
             }
             Text("Import takes a project folder from the card, the one containing project.mt.\nFile > Open is for documents you saved here.")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
         }
-        .padding(28)
+        .padding(20)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
         .padding()
+    }
+
+    /// Puts the panel away and hands the keyboard back to the grid.
+    private func dismiss() {
+        dismissedEmptyState = true
+        gridFocused = true
     }
 
     /// The patterns in this document, and the one being edited. A Tracker
