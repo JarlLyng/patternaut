@@ -206,13 +206,16 @@ struct ContentView: View {
     // MARK: Export
 
     private func exportBundle() {
-        let panel = NSOpenPanel()
-        panel.canChooseDirectories = true
-        panel.canChooseFiles = false
-        panel.prompt = "Export Here"
-        panel.message = "Choose a folder (e.g. your SD card's Projects directory)"
+        // A save panel rather than a folder picker, so the project gets its name
+        // here: the name becomes the folder on the card and what the Tracker shows.
+        let panel = NSSavePanel()
+        panel.canCreateDirectories = true
+        panel.nameFieldLabel = "Project:"
+        panel.nameFieldStringValue = model.exportProjectName
+        panel.prompt = "Export"
+        panel.message = "Name the project and choose where to put it, e.g. your SD card's Projects/User folder."
         if panel.runModal() == .OK, let url = panel.url {
-            model.export(to: url)
+            model.export(to: url.deletingLastPathComponent(), named: url.lastPathComponent)
         }
     }
 

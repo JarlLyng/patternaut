@@ -117,6 +117,17 @@ public enum ProjectBundleWriter {
         // project.mt with a linear song playlist referencing the patterns.
         var project = MTProject.new(name: projectName, device: device)
         project.globalTempo = tempo
+        // Track names live in the project, not in the pattern files, so carry the
+        // names from the first pattern across. Anything the patterns don't name
+        // keeps the device's default ("Track 6", "Midi 9"…).
+        if let first = patterns.first {
+            var names = project.trackNames
+            for (index, track) in first.tracks.enumerated() where index < names.count {
+                let trimmed = track.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                if !trimmed.isEmpty { names[index] = trimmed }
+            }
+            project.trackNames = names
+        }
         var playlist = [UInt8](repeating: 0, count: TrackerFormat.songSlots)
         for i in 0..<min(patterns.count, TrackerFormat.songSlots) {
             playlist[i] = UInt8(i + 1) // Pattern number is 1-based.

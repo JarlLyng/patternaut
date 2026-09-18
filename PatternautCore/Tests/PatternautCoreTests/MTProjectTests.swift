@@ -128,6 +128,9 @@ struct ProjectBundleTests {
         // project.mt parses with the expected song + tempo.
         let project = try MTProjectImporter.parse(Data(contentsOf: result.projectFile))
         #expect(project.projectName == "Breakbeat")
+        // Track names come from the pattern; unnamed slots keep the device default.
+        #expect(project.trackNames[0] == "Kick")
+        #expect(project.trackNames[1] == DeviceProfile.trackerPlus.defaultTrackNames[1])
         #expect(project.globalTempo == 160)
         #expect(project.playlist[0] == 1)
         #expect(project.playlist[1] == 2)

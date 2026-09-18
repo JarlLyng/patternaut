@@ -221,8 +221,11 @@ final class EditorModel {
     }
 
     /// Validates and writes a project bundle (patterns + loaded instruments) to
-    /// `directory`.
-    func export(to directory: URL) {
+    /// `directory`, under `name` if given.
+    func export(to directory: URL, named name: String? = nil) {
+        if let name, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            projectName = name
+        }
         issues = device.profile.validate(pattern)
         let errorCount = issues.filter { $0.severity == .error }.count
         guard device.profile.isExportable(pattern) else {
