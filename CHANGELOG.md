@@ -6,6 +6,9 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-09-18
+Second TestFlight build. The SD-card route is now confirmed on real hardware.
+
 ### Verified
 - A generated project exported to an SD card loads and plays on a Tracker+, with its patterns,
   FX, track names and sample intact. This was the assumption the whole app rested on.
