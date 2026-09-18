@@ -14,6 +14,9 @@ struct InstrumentsPanel: View {
             HStack {
                 Text("Instruments").font(.headline)
                 Spacer()
+                Text("Number in the grid")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
                 Button(action: onAdd) { Image(systemName: "plus") }
                     .help("Load WAV samples, or drop them here")
             }
@@ -65,7 +68,7 @@ struct InstrumentsPanel: View {
                 .foregroundStyle(.secondary)
             Text("No samples")
                 .foregroundStyle(.secondary)
-            Text("Drop WAVs here, or use +, to build .pti instruments.\n24-bit and other sample rates are converted.\nThe order here is the instrument number in the grid:\nthe first is 00, the next 01.")
+            Text("Drop WAVs here, or use +, to build .pti instruments.\n24-bit and other sample rates are converted.\nEach one gets the number you type in the grid's\ninstrument column: the first is 00, the next 01.")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
@@ -75,10 +78,16 @@ struct InstrumentsPanel: View {
 
     private func row(index: Int, instrument: EditorModel.LoadedInstrument) -> some View {
         HStack(spacing: 8) {
-            Text(String(format: "I%02d", index))
-                .font(.system(.caption, design: .monospaced))
-                .foregroundStyle(.secondary)
-                .help("Instrument \(String(format: "%02d", index)): type this number in a step's instrument column to play this sample. Written to the card as \"\(index + 1) <name>.pti\".")
+            // The bare two-digit number, exactly as it reads in the grid's
+            // instrument column. A letter prefix here was read as part of the
+            // number ("I00" looks like 100 in a monospaced face).
+            Text(String(format: "%02d", index))
+                .font(.system(.body, design: .monospaced))
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 5)
+                .padding(.vertical, 2)
+                .background(Color.secondary.opacity(0.15), in: RoundedRectangle(cornerRadius: 4))
+                .help("Instrument \(String(format: "%02d", index)). Type this number in a step's instrument column to play this sample.")
 
             VStack(alignment: .leading, spacing: 1) {
                 TextField("name", text: nameBinding(for: instrument))
