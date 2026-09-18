@@ -42,7 +42,9 @@ struct MTPExporterTests {
         let tracks = c.tracks.map { spec in
             Track(
                 name: "T",
-                length: spec.length,
+                // The fixture's `length` is the raw on-disk byte, which is the
+                // last step index. Our model counts steps, so it is one more.
+                length: spec.length + 1,
                 steps: spec.steps.map { s in
                     Step(
                         note: Note(rawValue: s.note)!,

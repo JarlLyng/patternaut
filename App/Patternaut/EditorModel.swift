@@ -14,6 +14,10 @@ final class EditorModel {
     var baseOctave: Int = 4
     /// Root and scale used for the pitched parts of generated patterns.
     var key = MusicalKey()
+    /// Name of the exported project: the folder on the card and the name the
+    /// Tracker shows in its project browser.
+    var projectName: String = "Patternaut"
+
     /// Last validation issues from an export attempt.
     var issues: [ValidationIssue] = []
     var lastExportPath: String?
@@ -227,15 +231,21 @@ final class EditorModel {
         }
         do {
             let result = try ProjectBundleWriter.write(
-                patterns: [pattern], projectName: pattern.metadata.name, device: device,
+                patterns: [pattern], projectName: exportProjectName, device: device,
                 tempo: Float(tempo), instruments: namedInstruments(), to: directory
             )
             lastExportPath = result.projectDirectory.path
-            diagnostics.log("Exported \"\(pattern.metadata.name)\" (\(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
+            diagnostics.log("Exported \"\(exportProjectName)\" (\(instruments.count) instruments) to \(result.projectDirectory.path).", category: "export")
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]
             diagnostics.log("Export failed: \(error.localizedDescription)", level: .error, category: "export")
         }
+    }
+
+    /// The project name, cleaned up and never empty, as written to the card.
+    var exportProjectName: String {
+        let cleaned = sanitizedFileName(projectName)
+        return cleaned == "instrument" ? "Patternaut" : cleaned
     }
 
     /// Maps loaded instruments to unique, filesystem-safe `.pti` names.

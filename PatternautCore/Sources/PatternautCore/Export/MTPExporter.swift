@@ -52,7 +52,7 @@ public struct MTPExportOptions: Sendable, Equatable {
 /// ```
 /// Header (14 B): idFile[2] · type(u16LE) · fwVersion[4] · fileStructureVersion[4] · size(u16LE)
 /// Padding (2 B, 0) · Unused (12 B, 0)
-/// Per track: length(u8) · 128 × step(6 B)
+/// Per track: lastStepIndex(u8, = steps - 1) · 128 × step(6 B)
 ///   step: note(i8) · instrument(u8) · fx1Type(u8) · fx1Val(u8) · fx0Type(u8) · fx0Val(u8)
 /// CRC (4 B, u32LE)
 /// ```
@@ -118,7 +118,11 @@ public enum MTPExporter {
     }
 
     private static func writeTrack(_ track: Track, into bytes: inout [UInt8]) {
-        bytes.append(UInt8(clamping: track.length))
+        // On disk this byte is the LAST STEP INDEX, not the step count: every
+        // pattern file on a real card uses 7, 31, 63 or 127 for 8, 32, 64 or 128
+        // steps, and `tracker-lib`'s own `createPattern` stores `numSteps - 1`.
+        // Our model counts steps, so subtract one on the way out.
+        bytes.append(UInt8(clamping: max(0, track.length - 1)))
         for i in 0..<stepsPerTrack {
             if i < track.steps.count {
                 writeStep(track.steps[i], into: &bytes)

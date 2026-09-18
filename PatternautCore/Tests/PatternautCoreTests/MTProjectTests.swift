@@ -133,6 +133,11 @@ struct ProjectBundleTests {
         #expect(project.playlist[1] == 2)
         #expect(project.playlist[2] == 0)
 
+        // The length byte is the last step index, the way every pattern file on a
+        // real card stores it: a 16-step pattern writes 15.
+        let raw = [UInt8](try Data(contentsOf: result.patternFiles[0]))
+        #expect(raw[28] == 15)
+
         // pattern_01.mtp parses to 16 tracks with the kick on track 0.
         let pattern = try MTPImporter.parse(Data(contentsOf: result.patternFiles[0]))
         #expect(pattern.tracks.count == 16)

@@ -65,7 +65,8 @@ public enum MTPImporter {
         var tracks: [Track] = []
         tracks.reserveCapacity(trackCount)
         for i in 0..<trackCount {
-            let length = Int(bytes[cursor]); cursor += 1
+            // The stored byte is the last step index; the model counts steps.
+            let length = Int(bytes[cursor]) + 1; cursor += 1
             var steps: [Step] = []
             steps.reserveCapacity(MTPExporter.stepsPerTrack)
             for _ in 0..<MTPExporter.stepsPerTrack {

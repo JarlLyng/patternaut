@@ -92,6 +92,14 @@ struct ContentView: View {
             .fixedSize()
 
             HStack(spacing: 4) {
+                Text("Project").fixedSize()
+                TextField("Name", text: $model.projectName)
+                    .frame(width: 120)
+                    .textFieldStyle(.roundedBorder)
+                    .help("The folder written to the card, and the name the Tracker shows.")
+            }
+
+            HStack(spacing: 4) {
                 Text("Tempo").fixedSize()
                 TextField("", value: $model.tempo, format: .number)
                     .frame(width: 52)
