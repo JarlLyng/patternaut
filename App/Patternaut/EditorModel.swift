@@ -64,6 +64,13 @@ final class EditorModel: @unchecked Sendable {
         set { editors[min(max(currentPatternIndex, 0), editors.count - 1)] = newValue }
     }
 
+    /// True for a document nothing has been put into yet: one pattern, no notes.
+    var isEmpty: Bool {
+        editors.count == 1 && !editors[0].pattern.tracks.contains { track in
+            track.steps.contains { $0.isActive }
+        }
+    }
+
     /// Every pattern in the document, in playlist order.
     var patterns: [Pattern] { editors.map(\.pattern) }
     var patternCount: Int { editors.count }

@@ -49,6 +49,7 @@ struct ContentView: View {
                         .focusEffectDisabled()
                         .onKeyPress { handle($0) }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .overlay { if model.isEmpty { emptyState } }
                     if showsStatusBar {
                         Divider()
                         issueBar
@@ -68,6 +69,32 @@ struct ContentView: View {
         .sheet(isPresented: $showingLog) {
             DiagnosticsView(diagnostics: model.diagnostics)
         }
+    }
+
+    /// Shown over an untouched grid. The two ways to put something in a
+    /// document are not obvious from an empty tracker grid, and one of them is
+    /// easily confused with File > Open.
+    private var emptyState: some View {
+        VStack(spacing: 14) {
+            Text("Nothing here yet")
+                .font(.title2)
+            Text("Make a beat to start from, or bring in patterns you already have on your Tracker's SD card.")
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 380)
+            HStack(spacing: 10) {
+                Button("Generate a Beat") { model.generate() }
+                    .buttonStyle(.borderedProminent)
+                Button("Import from Tracker…") { ProjectImport.run(into: model) }
+            }
+            Text("Import takes a project folder from the card, the one containing project.mt.\nFile > Open is for documents you saved here.")
+                .font(.caption)
+                .foregroundStyle(.tertiary)
+                .multilineTextAlignment(.center)
+        }
+        .padding(28)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .padding()
     }
 
     /// The patterns in this document, and the one being edited. A Tracker
