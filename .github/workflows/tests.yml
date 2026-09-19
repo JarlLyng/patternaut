@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  core:
+    name: PatternautCore
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show the toolchain
+        run: swift --version
+
+      # The engine is a plain Swift package: no Xcode project, no signing, no
+      # simulator. It carries the file formats and every test that matters.
+      - name: Test
+        working-directory: PatternautCore
+        run: swift test --parallel

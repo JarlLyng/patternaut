@@ -59,3 +59,9 @@ phrase, and emphasis cannot span a newline.
 
 The content is a demo document built for the purpose, with audio synthesised rather than taken
 from a sample pack, so nothing in the posters belongs to anyone else.
+
+## social-preview.png
+
+GitHub's social preview card, 1280x640, cropped from the first poster. It has to be uploaded by
+hand in Settings > General > Social preview: there is no API for it. Without it, a link to the
+repo shares as a grey box with the repo name.
