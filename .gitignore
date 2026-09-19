@@ -21,3 +21,9 @@ Polyend-Tracker-Manual-1.7.0.pdf
 
 # Stray icon candidates at repo root (not wired up)
 /app-icon-*.png
+
+# Local assistant settings
+.claude/
+
+# Test exports
+/Generated/

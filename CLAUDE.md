@@ -12,10 +12,17 @@ generates, mutates and shapes tracker patterns on the Mac, then gets them onto t
 - **Developer:** Jarl / [IAMJARL](https://iamjarl.com). The public identity is IAMJARL; the
   full personal name is not used (see the hub's `BRAND_LEGAL.md`).
 - **Website:** [patternaut.iamjarl.com](https://patternaut.iamjarl.com)
-- **License:** [MIT](LICENSE) — open source (repo currently private during beta).
+- **License:** [MIT](LICENSE). Open source; the repo is public.
 - **Price:** $8.99 one-time, no subscription.
-- **Status:** private TestFlight beta, v0.6.1 (macOS).
+- **Status:** v1.0 submitted to the Mac App Store (macOS 14+). TestFlight builds come from the
+  `release` branch.
 - **Sister apps:** the IAMJARL music tools (It's mono, yo!, It's 404, yo!, Echolume, TonVault).
+
+## This repo is public
+
+Source, docs and the marketing site live here under MIT. Audience, positioning, pricing reasoning,
+analytics and marketing plans do not: see below. Nothing in this repo should contain numbers,
+competitive analysis or draft copy.
 
 ## Strategy lives in the private hub
 
