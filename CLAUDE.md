@@ -68,6 +68,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   log panel with copy (categories: export, samples, app).
 
 ### Features that do NOT exist (common hallucination targets)
+- **No accessibility support.** No `accessibilityLabel` anywhere: VoiceOver reads the grid as
+  loose fragments and seven icon-only buttons are unlabelled. The App Store Connect accessibility
+  section is deliberately left empty rather than claiming something untrue. See
+  [issue #3](https://github.com/JarlLyng/patternaut/issues/3).
 - No audio engine and no in-app sample playback / preview.
 - No whole-pattern live MIDI. Sending is per track, by design of the hardware.
 - No `.mtp`/`.mt` import UI (the core can read `.mtp`, but there is no import flow yet).
