@@ -82,7 +82,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   loadable SD-card project folder (`project.mt` + lowercase `patterns/` and `instruments/`).
 - Sample loading: WAV becomes a `.pti` instrument, by file picker or drag and drop. 8/16/24/32-bit
   integer and 32/64-bit float are converted to the 16-bit 44.1 kHz PCM the device stores;
-  other sample rates are resampled (linear interpolation).
+  other sample rates are resampled (linear interpolation). They are written as
+  `instruments/<slot> <name>.pti`, and that 1-based slot number is what binds a `.pti` to the
+  instrument column on the device, so the order in the app's list is the instrument number in
+  the grid (the first is 00). Verified on a Tracker+.
 - A keyboard reference sheet (Help > Keyboard Shortcuts, ⌘/).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
   log panel with copy (categories: export, samples, app).
@@ -95,8 +98,6 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - No audio engine and no in-app sample playback / preview.
 - No import of a loose `.mtp` or `.mt` file on its own. Import takes a whole project folder
   (File > Import Tracker Project…, ⇧⌘I); single files have no import flow.
-- The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
-  auto-assigned to instrument slots on the device yet.
 - No song/arrangement mode beyond a linear playlist of the document's patterns.
 - Reading a `.pti` the device wrote and writing it back differs in three fields this model does
   not carry (the old extension left after the name's terminator, the reserved bytes at offset 56,
