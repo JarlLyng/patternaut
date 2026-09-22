@@ -4,7 +4,7 @@ A native macOS companion for the Polyend Tracker+ and Tracker Mini. It generates
 patterns, and writes them to your SD card as the real files the machine already reads.
 
 [Mac App Store](https://apps.apple.com/app/id6792365053) · [patternaut.iamjarl.com](https://patternaut.iamjarl.com) ·
-macOS 14 and later · $8.99 once, no subscription
+macOS 14 and later · $7.99 once, no subscription
 
 ![Patternaut editing a generated pattern](docs/screenshot.png)
 

@@ -13,7 +13,7 @@ generates, mutates and shapes tracker patterns on the Mac, then gets them onto t
   full personal name is not used (see the hub's `BRAND_LEGAL.md`).
 - **Website:** [patternaut.iamjarl.com](https://patternaut.iamjarl.com)
 - **License:** [MIT](LICENSE). Open source; the repo is public.
-- **Price:** $8.99 one-time, no subscription.
+- **Price:** $7.99 one-time, no subscription.
 - **Status:** v1.0 live on the Mac App Store since 2026-09-22 (macOS 14+):
   [id6792365053](https://apps.apple.com/app/id6792365053), listed as "Patternaut: Groovebox
   Patterns". TestFlight and App Store builds come from the `release` branch.
