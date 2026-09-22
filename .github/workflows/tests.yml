@@ -21,3 +21,34 @@ jobs:
       - name: Test
         working-directory: PatternautCore
         run: swift test --parallel
+
+  sitemap:
+    name: Sitemap dates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Google read the homepage's lastmod as two months stale after the launch
+      # rewrite, because nothing updated it. Fail when a page was committed after
+      # the date its sitemap entry claims.
+      - name: Every page's lastmod is at least its last commit
+        run: |
+          python3 - <<'PY'
+          import re, subprocess, sys
+          pages = {"/": "docs/index.html", "/support": "docs/support.html", "/privacy": "docs/privacy.html"}
+          xml = open("docs/sitemap.xml").read()
+          entries = dict(re.findall(r"<loc>https://patternaut\.iamjarl\.com([^<]*)</loc>\s*<lastmod>([^<]+)</lastmod>", xml))
+          stale = []
+          for loc, lastmod in entries.items():
+              path = pages.get(loc or "/")
+              committed = subprocess.run(["git", "log", "-1", "--format=%cs", "--", path],
+                                         capture_output=True, text=True).stdout.strip()
+              print(f"{loc or '/'}: lastmod {lastmod}, last commit {committed}")
+              if committed > lastmod:
+                  stale.append(loc or "/")
+          missing = set(pages) - {loc or "/" for loc in entries}
+          if missing: sys.exit(f"No lastmod for: {', '.join(sorted(missing))}")
+          if stale: sys.exit(f"Update lastmod in docs/sitemap.xml for: {', '.join(stale)}")
+          PY
