@@ -1,6 +1,6 @@
-# CLAUDE.md — Patternaut
+# AGENTS.md — Patternaut
 
-Quick-start context for developers and AI assistants. Detailed technical notes in
+Quick-start context for developers and coding agents. Detailed technical notes in
 `PatternautCore/README.md`.
 
 ## What is Patternaut?

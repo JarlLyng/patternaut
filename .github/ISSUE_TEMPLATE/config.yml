@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 Support / general help
-    url: https://iamjarl.com
-    about: For general questions or anything that isn't a bug, feature, or marketing idea.
-  - name: 🔒 Security vulnerability
+  - name: Support
+    url: https://patternaut.iamjarl.com/support
+    about: Questions about using Patternaut, or anything that isn't a bug or a feature request.
+  - name: Security vulnerability
     url: https://github.com/JarlLyng/patternaut/security/policy
     about: Please report security issues privately, not as a public issue.

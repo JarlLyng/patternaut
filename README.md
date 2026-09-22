@@ -71,7 +71,7 @@ from `App/project.yml`. `PatternautCore` builds and tests on its own with no Xco
 - `docs/`: the marketing site, served by GitHub Pages.
 - `appstore/`: the App Store posters, and how they are made.
 
-[CLAUDE.md](CLAUDE.md) is the quick-start for developers and AI assistants, and carries a precise
+[AGENTS.md](AGENTS.md) is the quick-start for developers and coding agents, and carries a precise
 list of what the app does and, just as usefully, what it does not.
 
 ## Contributing
