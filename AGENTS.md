@@ -6,8 +6,8 @@ Quick-start context for developers and coding agents. Detailed technical notes i
 ## What is Patternaut?
 
 Patternaut is a native macOS companion app for the Polyend Tracker+ and Tracker Mini. It
-generates, mutates and shapes tracker patterns on the Mac, then gets them onto the hardware
-(byte-exact SD-card files, or live MIDI). It runs locally: no accounts, no cloud, no tracking.
+generates, mutates and shapes tracker patterns on the Mac, then gets them onto the hardware as
+byte-exact SD-card files. It runs locally: no accounts, no cloud, no tracking.
 
 - **Developer:** Jarl / [IAMJARL](https://iamjarl.com). The public identity is IAMJARL; the
   full personal name is not used (see the hub's `BRAND_LEGAL.md`).
@@ -93,15 +93,16 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   section is deliberately left empty rather than claiming something untrue. See
   [issue #3](https://github.com/JarlLyng/patternaut/issues/3).
 - No audio engine and no in-app sample playback / preview.
-- No whole-pattern live MIDI. Sending is per track, by design of the hardware.
-- No `.mtp`/`.mt` import UI (the core can read `.mtp`, but there is no import flow yet).
+- No import of a loose `.mtp` or `.mt` file on its own. Import takes a whole project folder
+  (File > Import Tracker Project…, ⇧⌘I); single files have no import flow.
 - The `.mt` project's instrument pool comes from a template, so loaded samples are NOT
   auto-assigned to instrument slots on the device yet.
 - No song/arrangement mode beyond a linear playlist of the document's patterns.
 - Reading a `.pti` the device wrote and writing it back differs in three fields this model does
   not carry (the old extension left after the name's terminator, the reserved bytes at offset 56,
   and `FF FF` end padding). `tracker-lib` writes those the same way Patternaut does.
-- No account, cloud, sync, analytics, ads, or subscription.
+- No account, cloud, sync, analytics, ads, or subscription in the app. (The marketing site
+  counts visits with cookieless Umami; see `docs/privacy.html`.)
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.
 - No AI features inside the shipped app.
