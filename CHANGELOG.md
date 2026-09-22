@@ -6,6 +6,13 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.1] — 2026-09-22
+No changes to the app. The version number catches up with the store, where the 0.6.1 build went
+live as 1.0, so the next submission has a version above it.
+
+## [1.0.0] — 2026-09-22
+Live on the [Mac App Store](https://apps.apple.com/app/id6792365053). The same build as 0.6.1.
+
 ## [0.6.1] — 2026-09-19
 
 ### Fixed
