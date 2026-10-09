@@ -1,0 +1,12 @@
+# Version updates for the workflow actions. Each update waits seven days after release before a
+# pull request is opened: malicious package versions are usually caught and pulled within days.
+# The app's one Swift dependency (IAMJARLDesignTokens) is declared in the Xcode project, which
+# Dependabot cannot read, so it is updated by hand.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
