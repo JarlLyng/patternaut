@@ -74,6 +74,13 @@ from `App/project.yml`. `PatternautCore` builds and tests on its own with no Xco
 [AGENTS.md](AGENTS.md) is the quick-start for developers and coding agents, and carries a precise
 list of what the app does and, just as usefully, what it does not.
 
+## Feedback
+
+Write to [support@iamjarl.com](mailto:support@iamjarl.com), or use Help > Send Feedback in the app,
+which fills in the app and macOS versions. The app took shape in a
+[thread on Polyend Backstage](https://backstage.polyend.com/t/thinking-about-a-mac-companion-for-prepping-and-varying-tracker-patterns-worth-building/24944), which is still the best place for ideas other Tracker owners
+can weigh in on. Issues here are welcome too.
+
 ## Contributing
 
 Issues and pull requests are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Audience,

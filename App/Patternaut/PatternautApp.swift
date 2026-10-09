@@ -25,6 +25,7 @@ struct PatternautApp: App {
                 }
                 .keyboardShortcut("/", modifiers: .command)
                 Divider()
+                Link("Send Feedback…", destination: Feedback.mailURL)
                 Link("Patternaut Website", destination: URL(string: "https://patternaut.iamjarl.com")!)
             }
         }
@@ -43,6 +44,28 @@ private struct ImportProjectButton: View {
         }
         .keyboardShortcut("i", modifiers: [.command, .shift])
         .disabled(model == nil)
+    }
+}
+
+/// The app collects nothing, so a mail is how anyone tells me what is wrong. It
+/// opens in the user's mail app with the versions filled in, and they see all of
+/// it before anything is sent.
+enum Feedback {
+    static let address = "support@iamjarl.com"
+
+    static var mailURL: URL {
+        let info = Bundle.main.infoDictionary
+        let version = info?["CFBundleShortVersionString"] as? String ?? "?"
+        let build = info?["CFBundleVersion"] as? String ?? "?"
+        let macOS = ProcessInfo.processInfo.operatingSystemVersionString
+        var components = URLComponents()
+        components.scheme = "mailto"
+        components.path = address
+        components.queryItems = [
+            URLQueryItem(name: "subject", value: "Patternaut \(version) feedback"),
+            URLQueryItem(name: "body", value: "\n\n\nPatternaut \(version) (\(build))\nmacOS \(macOS)\n"),
+        ]
+        return components.url ?? URL(string: "mailto:\(address)")!
     }
 }
 
