@@ -9,6 +9,11 @@
   <meta property="og:description" content="Build the pattern. Break the pattern. Take it to the Tracker. A native Mac companion for the Polyend Tracker+ and Tracker Mini." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://patternaut.iamjarl.com/" />
+  <meta property="og:image" content="https://patternaut.iamjarl.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Patternaut. Build the pattern. Break the pattern. Take it to the Tracker." />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://patternaut.iamjarl.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23111'/%3E%3Cg fill='%235eead4'%3E%3Ccircle cx='4' cy='4' r='1.4'/%3E%3Ccircle cx='12' cy='4' r='1.4'/%3E%3Ccircle cx='8' cy='8' r='1.4'/%3E%3Ccircle cx='4' cy='12' r='1.4'/%3E%3Ccircle cx='12' cy='12' r='1.4'/%3E%3C/g%3E%3C/svg%3E" />
   <script type="application/ld+json">
@@ -21,6 +26,7 @@
     "description": "A native Mac companion for the Polyend Tracker+ and Tracker Mini. Generate and mutate patterns on your Mac, then take them to the hardware.",
     "url": "https://patternaut.iamjarl.com/",
     "downloadUrl": "https://apps.apple.com/app/id6792365053",
+    "image": "https://patternaut.iamjarl.com/og-image.png",
     "author": { "@type": "Organization", "name": "IAMJARL", "url": "https://iamjarl.com" },
     "offers": {
       "@type": "Offer",
@@ -95,6 +101,14 @@
     src="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.9.1/dist/components/ij-footer.js"
     integrity="sha384-avlTqQgXGscVdy3DgtXfWAM1br+CNIZw3n7dC+jVHCHyB/PgYFGZrVxKeidbLxBX"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.17.0/dist/fonts/jetbrains-mono.css"
+    integrity="sha384-w5kegLfMUPB9jNC+JsbshUyHI08UxXBmN9fBKflLxchoEet5nLHnK/Ir7+57fvEk"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.17.0/dist/identity/patternaut.css"
+    integrity="sha384-qAYWyAXp+gL/hlDHTKY+vGWCXIwPmX854CjYW8EL+Cp/2h/rqgPugziBvi0xp+3C"
+    crossorigin="anonymous">
   <style>
     :root {
       /* Mapped to the design system rather than picked again here. */
@@ -106,6 +120,8 @@
       color-scheme: light dark;
     }
     * { box-sizing: border-box; }
+    /* The music family's display face, from the design system: the voice, not the text. */
+    h1, h2, h3, .brand, .eyebrow { font-family: var(--ij-font-display); }
     html { scroll-behavior: smooth; }
     body {
       margin: 0; color: var(--text);
@@ -123,8 +139,11 @@
     .hero { padding: 52px 0 34px; }
     .badge { display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent);
       border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
-    h1 { font-size: clamp(40px, 8vw, 68px); line-height: 1.03; letter-spacing: -0.03em; margin: 0 0 14px; }
-    .tagline { font-size: clamp(18px, 3vw, 23px); font-weight: 600; margin: 0 0 22px; }
+    .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: var(--accent); margin: 0 0 10px; }
+    h1 { font-size: clamp(30px, 5.6vw, 46px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 22px; }
+    /* Most people who follow a store link from the web are on a phone; only they see this. */
+    .phone-note { font-size: 15px; margin: 14px 0 0; }
+    @media (hover: hover) and (pointer: fine) { .phone-note { display: none; } }
     p { font-size: 17px; color: var(--text); }
     .muted { color: var(--muted); }
     .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 22px 0 4px; }
@@ -156,8 +175,8 @@
     <main>
       <section class="hero">
         <span class="badge">macOS</span>
-        <h1>Patternaut</h1>
-        <p class="tagline">Build the pattern. Break the pattern. Take it to the Tracker.</p>
+        <p class="eyebrow">Patternaut</p>
+        <h1>Build the pattern. Break the pattern. Take it to the Tracker.</h1>
         <p>I make music on a Polyend Tracker, and I built Patternaut to do the fiddly parts on my
           Mac first. It generates and varies patterns, and writes them to the SD card as the files
           the machine already reads, so I spend less time programming steps and more time playing.</p>
@@ -171,6 +190,9 @@
              data-umami-event-locale="en">Get it on the Mac App Store</a>
           <a class="btn ghost" href="#what">What it does</a>
         </div>
+        <p class="phone-note muted">Patternaut is a Mac app, so it won't install on a phone.
+          <a href="mailto:?subject=Patternaut%20for%20my%20Mac&amp;body=https%3A%2F%2Fpatternaut.iamjarl.com%2F"
+             data-umami-event="send-to-mac">Mail yourself the link</a> and open it on your Mac.</p>
 
         <figure class="shot">
           <img src="screenshot.png" width="1600" height="1000" loading="lazy"
@@ -220,7 +242,7 @@
              data-umami-event-store="mac-app-store"
              data-umami-event-placement="midpage"
              data-umami-event-locale="en">Get it on the Mac App Store</a>
-          <a class="btn ghost" href="mailto:hello@iamjarl.com">Write to me</a>
+          <a class="btn ghost" href="mailto:support@iamjarl.com">Write to me</a>
         </div>
       </section>
 
