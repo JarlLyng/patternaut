@@ -13,6 +13,8 @@ All notable changes to Patternaut are documented here. The format follows
   in. You see all of it before anything is sent.
 
 ### Changed
+- A new app icon: an SD card carrying a sixteen-step pattern, in the macOS shape. It replaces the
+  cheese, which said nothing about what the app does.
 - The version number catches up with the store, where the 0.6.1 build went live as 1.0.
 
 ## [1.0.0] — 2026-09-22
