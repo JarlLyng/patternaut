@@ -1,29 +1,35 @@
 # App icon
 
-An SD card carrying a sixteen-step pattern: the app makes patterns and puts them on the card. The
-card's cut corner is what keeps it recognisable at Dock sizes.
+An SD card with a step pattern on it: the app makes patterns and puts them on the card. It is
+drawn the way the other IAMJARL Mac apps are: one `#D0FF00` line figure on black, one stroke
+weight, flat, no gradients or glass.
 
-The SVGs here are the source. The PNGs in `../Patternaut/Assets.xcassets/AppIcon.appiconset` are
-rendered from them; nothing in this folder is built into the app.
+## What ships
 
-| File | Use |
-|---|---|
-| `icon-dark.svg` | The app icon, 64 px and up |
-| `icon-dark-small.svg` | 16 and 32 px: the silhouette and a bold two-by-two pattern, since the contacts and sixteen cells turn to noise that small |
-| `icon-light.svg`, `icon-tinted.svg` | Light and tinted appearances, kept for Icon Composer and the design file. The asset catalog ships the dark icon only |
+`../Patternaut/AppIcon.icon` is an Icon Composer document and is what Xcode builds. It has one
+layer, `glyph.svg`, on a solid black fill, with shadow, translucency and specular highlights off so
+it stays flat. The tinted appearance swaps in `glyph-tinted.svg`, a white copy the system colours.
+Light and dark are the same icon, as with the sister apps. Xcode flattens the document into the
+`.icns` that macOS 14 and 15 show, so the asset catalog's `AppIcon.appiconset` is not used by the
+build; it carries the same icon, rendered from `icon.svg` here, for anything that reads the catalog.
 
-The shape follows the macOS template: a 1024 canvas with the rounded square at 824, inset 100,
-transparent outside it. The accent is `#D0FF00`, the same as the site and the App Store posters.
+## Checking a change
 
-## Rendering
+Icon Composer's command-line tool renders any appearance without opening the app:
 
-Any SVG renderer that keeps transparency will do. With Chrome:
+```bash
+ICTOOL="/Applications/Xcode.app/Contents/Applications/Icon Composer.app/Contents/Executables/ictool"
+"$ICTOOL" App/Patternaut/AppIcon.icon --export-image --output-file default.png \
+  --platform macOS --rendition Default --width 512 --height 512 --scale 1
+```
+
+Renditions: `Default`, `Dark`, `TintedLight`, `TintedDark`.
+
+## Rendering `icon.svg` for the asset catalog
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
-  --force-device-scale-factor=1 --window-size=1024,1024 --default-background-color=00000000 \
-  --screenshot=icon-dark.png "file://$PWD/icon-dark.svg"
+  --force-device-scale-factor=1 --window-size=1024,1024 --screenshot=icon.png "file://$PWD/icon.svg"
 ```
 
-Then scale with `sips -z <n> <n>` into the asset catalog: `icon-dark.png` for 64 to 1024,
-`icon-dark-small.png` for 16 and 32.
+Then `sips -z <n> <n> icon.png` for each size in `AppIcon.appiconset`.

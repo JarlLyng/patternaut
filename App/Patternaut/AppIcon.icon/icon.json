@@ -1,0 +1,38 @@
+{
+  "fill": {
+    "solid": "srgb:0.00000,0.00000,0.00000,1.00000"
+  },
+  "groups": [
+    {
+      "name": "Card",
+      "layers": [
+        {
+          "name": "glyph",
+          "image-name-specializations": [
+            {
+              "value": "glyph.svg"
+            },
+            {
+              "appearance": "tinted",
+              "value": "glyph-tinted.svg"
+            }
+          ]
+        }
+      ],
+      "shadow": {
+        "kind": "none",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      },
+      "specular": false
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS"
+    ]
+  }
+}

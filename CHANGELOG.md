@@ -13,8 +13,9 @@ All notable changes to Patternaut are documented here. The format follows
   in. You see all of it before anything is sent.
 
 ### Changed
-- A new app icon: an SD card carrying a sixteen-step pattern, in the macOS shape. It replaces the
-  cheese, which said nothing about what the app does.
+- A new app icon: an SD card with a step pattern on it, drawn in the same line style as the other
+  IAMJARL Mac apps. It replaces the cheese, which said nothing about what the app does. Built with
+  Icon Composer, so macOS 26 can show it tinted.
 - The version number catches up with the store, where the 0.6.1 build went live as 1.0.
 
 ## [1.0.0] — 2026-09-22
