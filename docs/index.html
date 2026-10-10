@@ -109,6 +109,10 @@
     href="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.17.0/dist/identity/patternaut.css"
     integrity="sha384-qAYWyAXp+gL/hlDHTKY+vGWCXIwPmX854CjYW8EL+Cp/2h/rqgPugziBvi0xp+3C"
     crossorigin="anonymous">
+  <script type="module"
+    src="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.20.0/dist/components/ij-store-cta.js"
+    integrity="sha384-391SAPdMLo50kqv+lduYanwVyoUJNU/zTPv/aJRqhjRaGAD5enxycZ5GRzs25s5j"
+    crossorigin="anonymous"></script>
   <style>
     :root {
       /* Mapped to the design system rather than picked again here. */
@@ -148,9 +152,13 @@
     .muted { color: var(--muted); }
     .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 22px 0 4px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 10px; border: 1px solid transparent; }
-    .btn.primary { background: var(--accent); color: #06231f; }
-    @media (prefers-color-scheme: light) { .btn.primary { color: #fff; } }
     .btn.ghost { border-color: var(--border); color: var(--text); }
+    /* The store button comes from the design system (dist/store); only its layout is ours. */
+    .cta { align-items: flex-start; }
+    .ij-store { display: flex; flex-direction: column; gap: 8px; }
+    .ij-store-badge { display: inline-block; line-height: 0; }
+    .ij-store-badge img { height: 46px; width: auto; }
+    .ij-store-facts { margin: 0; font-size: 14px; color: var(--muted); }
     section { padding: 26px 0; }
     h2 { font-size: clamp(22px, 4vw, 28px); letter-spacing: -0.02em; margin: 0 0 12px; }
     .shot { margin: 26px 0 0; }
@@ -180,14 +188,18 @@
         <p>I make music on a Polyend Tracker, and I built Patternaut to do the fiddly parts on my
           Mac first. It generates and varies patterns, and writes them to the SD card as the files
           the machine already reads, so I spend less time programming steps and more time playing.</p>
-        <p class="muted">$7.99 once on the Mac App Store, no subscription. No account, nothing
-          sent to a server.</p>
+        <p class="muted">Paid once, no subscription. No account, nothing sent to a server.</p>
         <div class="cta">
-          <a class="btn primary" href="https://apps.apple.com/app/id6792365053?pt=128512007&amp;ct=site&amp;mt=12"
-             data-umami-event="store-click"
-             data-umami-event-store="mac-app-store"
-             data-umami-event-placement="hero"
-             data-umami-event-locale="en">Get it on the Mac App Store</a>
+          <!-- IAMJARL store button for Patternaut (en) — generated from apps.json, v1.20.0. Do not edit. -->
+          <div class="ij-store" data-ij-store="patternaut" data-ij-store-locale="en">
+            <a class="ij-store-badge" href="https://apps.apple.com/app/id6792365053?pt=128512007&amp;ct=site&amp;mt=12" data-umami-event="store-click" data-umami-event-store="mac-app-store" data-umami-event-placement="hero" data-umami-event-locale="en">
+              <picture>
+                <source srcset="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.20.0/badges/mac-app-store-white-en-us.svg" media="(prefers-color-scheme: dark)">
+                <img src="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.20.0/badges/mac-app-store-black-en-us.svg" alt="Download on the Mac App Store" width="156" height="40">
+              </picture>
+            </a>
+            <p class="ij-store-facts">$7.99 once · macOS 14 or later</p>
+          </div>
           <a class="btn ghost" href="#what">What it does</a>
         </div>
         <p class="phone-note muted">Patternaut is a Mac app, so it won't install on a phone.
@@ -232,16 +244,23 @@
 
       <section id="get">
         <h2>Get it</h2>
-        <p>Patternaut is on the Mac App Store, for macOS 14 and later. It is $7.99, paid once, and
-          that is the whole arrangement: no subscription, no upgrade pricing, no account. If there
+        <p>Patternaut is on the Mac App Store. You pay once, and that is the whole arrangement:
+          no subscription, no upgrade pricing, no account. If there
           is something you want it to do next, write to me. The next things on my list came from
           people who did.</p>
         <div class="cta">
-          <a class="btn primary" href="https://apps.apple.com/app/id6792365053?pt=128512007&amp;ct=site&amp;mt=12"
-             data-umami-event="store-click"
-             data-umami-event-store="mac-app-store"
-             data-umami-event-placement="midpage"
-             data-umami-event-locale="en">Get it on the Mac App Store</a>
+          <ij-store-cta placement="midpage">
+            <!-- IAMJARL store button for Patternaut (en) — generated from apps.json, v1.20.0. Do not edit. -->
+            <div class="ij-store" data-ij-store="patternaut" data-ij-store-locale="en">
+              <a class="ij-store-badge" href="https://apps.apple.com/app/id6792365053?pt=128512007&amp;ct=site&amp;mt=12" data-umami-event="store-click" data-umami-event-store="mac-app-store" data-umami-event-placement="hero" data-umami-event-locale="en">
+                <picture>
+                  <source srcset="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.20.0/badges/mac-app-store-white-en-us.svg" media="(prefers-color-scheme: dark)">
+                  <img src="https://cdn.jsdelivr.net/gh/jarllyng/iamjarl-design@v1.20.0/badges/mac-app-store-black-en-us.svg" alt="Download on the Mac App Store" width="156" height="40">
+                </picture>
+              </a>
+              <p class="ij-store-facts">$7.99 once · macOS 14 or later</p>
+            </div>
+          </ij-store-cta>
           <a class="btn ghost" href="mailto:support@iamjarl.com">Write to me</a>
         </div>
       </section>
