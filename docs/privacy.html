@@ -31,13 +31,13 @@
   <style>
     :root {
       /* Mapped to the design system rather than picked again here. */
-      --bg: var(--ij-color-bg-app); --panel: var(--ij-color-surface);
-      --border: var(--ij-color-border); --text: var(--ij-color-text-primary);
+      --bg: var(--ij-color-bg-app); --panel: var(--ij-color-bg-card);
+      /* The line the design system's kit draws round a frame, a chip or a table. */
+      --border: var(--ij-color-border-default); --text: var(--ij-color-text-primary);
       --muted: var(--ij-color-text-secondary);
       /* Patternaut's own accent, from its identity sheet: --accent fills, and --accent-text
          is for words, held to AA on the ground in both modes. */
       --accent: var(--ij-color-accent); --accent-text: var(--ij-color-accent-text);
-      --accent-2: var(--ij-color-secondary);
       --radius: var(--ij-radius-lg); --maxw: 720px;
       color-scheme: light dark;
     }
@@ -69,13 +69,14 @@
     .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 10px; border: 1px solid transparent; }
     .btn.primary { background: var(--accent); color: #06231f; }
     @media (prefers-color-scheme: light) { .btn.primary { color: #fff; } }
-    .btn.ghost { border-color: var(--border); color: var(--text); }
+    .btn.ghost { background: var(--panel); border-color: var(--border); color: var(--text); }
     .grid-art { margin: 40px 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); overflow-x: auto; }
     .grid-art pre { margin: 0; padding: 20px 22px; font-size: 13px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .grid-art .hit { color: var(--accent-text); } .grid-art .fx { color: var(--accent-2); }
+    .grid-art .hit { color: var(--accent-text); }
     section { padding: 26px 0; }
     h2 { font-size: clamp(22px, 4vw, 28px); letter-spacing: -0.02em; margin: 0 0 12px; }
-    footer { border-top: 1px solid var(--border); margin-top: 30px; padding: 28px 0 52px; color: var(--muted); font-size: 14px; }
+    /* <ij-footer> draws the rule above itself, so the page draws none. */
+    footer { margin-top: 30px; padding: 28px 0 52px; color: var(--muted); font-size: 14px; }
     footer p { margin: 8px 0; font-size: 14px; }
     .disclaimer { font-size: 12.5px; opacity: 0.85; }
   </style>
