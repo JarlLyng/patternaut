@@ -31,9 +31,12 @@
   <style>
     :root {
       /* Mapped to the design system rather than picked again here. */
-      --bg: var(--ij-color-background); --panel: var(--ij-color-surface);
+      --bg: var(--ij-color-bg-app); --panel: var(--ij-color-surface);
       --border: var(--ij-color-border); --text: var(--ij-color-text-primary);
-      --muted: var(--ij-color-text-secondary); --accent: var(--ij-color-primary);
+      --muted: var(--ij-color-text-secondary);
+      /* Patternaut's own accent, from its identity sheet: --accent fills, and --accent-text
+         is for words, held to AA on the ground in both modes. */
+      --accent: var(--ij-color-accent); --accent-text: var(--ij-color-accent-text);
       --accent-2: var(--ij-color-secondary);
       --radius: var(--ij-radius-lg); --maxw: 720px;
       color-scheme: light dark;
@@ -49,14 +52,14 @@
       line-height: 1.62; -webkit-font-smoothing: antialiased;
     }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    a { color: var(--accent); }
+    a { color: var(--accent-text); }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
     header.nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; font-size: 18px; }
     .brand .dot { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
     .nav .tag { color: var(--muted); font-size: 13px; }
     .hero { padding: 52px 0 34px; }
-    .badge { display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent);
+    .badge { display: inline-block; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-text);
       border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
     h1 { font-size: clamp(40px, 8vw, 68px); line-height: 1.03; letter-spacing: -0.03em; margin: 0 0 14px; }
     .tagline { font-size: clamp(18px, 3vw, 23px); font-weight: 600; margin: 0 0 22px; }
@@ -69,7 +72,7 @@
     .btn.ghost { border-color: var(--border); color: var(--text); }
     .grid-art { margin: 40px 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); overflow-x: auto; }
     .grid-art pre { margin: 0; padding: 20px 22px; font-size: 13px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .grid-art .hit { color: var(--accent); } .grid-art .fx { color: var(--accent-2); }
+    .grid-art .hit { color: var(--accent-text); } .grid-art .fx { color: var(--accent-2); }
     section { padding: 26px 0; }
     h2 { font-size: clamp(22px, 4vw, 28px); letter-spacing: -0.02em; margin: 0 0 12px; }
     footer { border-top: 1px solid var(--border); margin-top: 30px; padding: 28px 0 52px; color: var(--muted); font-size: 14px; }
