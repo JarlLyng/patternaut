@@ -45,6 +45,12 @@ struct ShortcutsView: View {
                 .init(keys: "[ ]", what: "Nudge by ten"),
                 .init(keys: "⌦", what: "Clear this lane"),
             ]),
+            Section(title: "Listening", note: "Only sample instruments sound, and not every effect is heard: the Tracker is still where the pattern sounds as it will.", shortcuts: [
+                .init(keys: "Space", what: "Play or stop the pattern, from the top"),
+                .init(keys: "⇧Space", what: "Play from the cursor's row"),
+                .init(keys: "Click a step", what: "Hear that step"),
+                .init(keys: "Click a row number", what: "Hear the whole row"),
+            ]),
             Section(title: "Document", note: nil, shortcuts: [
                 .init(keys: "⌘Z  ⇧⌘Z", what: "Undo and redo, named in the Edit menu"),
                 .init(keys: "⌘S  ⌘O", what: "Save and open a Patternaut document"),

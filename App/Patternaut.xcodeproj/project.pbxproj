@@ -20,6 +20,7 @@
 		B5EB100002C0FB399C479C54 /* PatternautCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B916700499670B44836604C /* PatternautCore */; };
 		BCE31F88CC9693D8D368FA90 /* PatternautApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */; };
 		BDD56922C19834CD5393B862 /* InstrumentsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469AEA3ED1F5962736FE884 /* InstrumentsPanel.swift */; };
+		D72CDC3B1828D60CDA67E93B /* AudioPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D6D2A5DA075B9C557B309 /* AudioPreview.swift */; };
 		D8198E42F82C29D484798BCF /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A6E8E169F3F81FAED8FC0B /* DiagnosticsView.swift */; };
 		F63F92E6C82A23F7A8F97B8D /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F39DD1EB442B34815FE7C /* Diagnostics.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		716914B1B674CA0B9B73A502 /* ShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsView.swift; sourceTree = "<group>"; };
 		8E84D35258A28FFF54312DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96B153C56DD2BF851C7CDB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A32D6D2A5DA075B9C557B309 /* AudioPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreview.swift; sourceTree = "<group>"; };
 		A945B71950A46D5F2CC2FB3C /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		AAC570FB193B90E8FC13AF89 /* PatternautApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautApp.swift; sourceTree = "<group>"; };
 		BA256C621DB81EBE41F7C6E8 /* PatternautDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternautDocument.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				44E68532CD1F3DEB166EFC7C /* AppIcon.icon */,
 				8E84D35258A28FFF54312DCC /* Assets.xcassets */,
+				A32D6D2A5DA075B9C557B309 /* AudioPreview.swift */,
 				F8EDCC653F6211947718B51E /* ContentView.swift */,
 				A945B71950A46D5F2CC2FB3C /* DesignSystem.swift */,
 				639F39DD1EB442B34815FE7C /* Diagnostics.swift */,
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72CDC3B1828D60CDA67E93B /* AudioPreview.swift in Sources */,
 				205FB9685194CC82C468CDE3 /* ContentView.swift in Sources */,
 				51F31F369EE9362C396054FE /* DesignSystem.swift in Sources */,
 				F63F92E6C82A23F7A8F97B8D /* Diagnostics.swift in Sources */,
