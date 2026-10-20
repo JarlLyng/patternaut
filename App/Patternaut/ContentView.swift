@@ -66,7 +66,7 @@ struct ContentView: View {
             Divider()
             HSplitView {
                 VStack(spacing: 0) {
-                    PatternGridView(model: model)
+                    PatternGridView(model: model, onSelect: { gridFocused = true })
                         .focusable()
                         .focused($gridFocused)
                         .focusEffectDisabled()
@@ -89,6 +89,7 @@ struct ContentView: View {
             model.undoManager = undoManager
         }
         .onChange(of: undoManager) { _, new in model.undoManager = new }
+        .onDisappear { model.preview.stop() }
         .sheet(isPresented: $showingLog, onDismiss: { gridFocused = true }) {
             DiagnosticsView(diagnostics: model.diagnostics)
         }
@@ -211,7 +212,22 @@ struct ContentView: View {
 
     private var showsStatusBar: Bool {
         !model.issues.isEmpty || model.lastExportPath != nil || model.importStatus != nil
-            || model.cursorHint != nil || model.lineage != nil
+            || model.cursorHint != nil || model.lineage != nil || model.listeningHint != nil
+    }
+
+    /// Plays the pattern through its samples. A preview of the Tracker's sound,
+    /// so the help says what it leaves out.
+    private var playButton: some View {
+        Button {
+            model.togglePlayback()
+            gridFocused = true
+        } label: {
+            Label(model.preview.isPlaying ? "Stop" : "Play",
+                  systemImage: model.preview.isPlaying ? "stop.fill" : "play.fill")
+                .labelStyle(.iconOnly)
+                .frame(width: 16)
+        }
+        .help("Hear this pattern through its samples (Space, or ⇧Space from the cursor). Click a step to hear just that one. MIDI and synth instruments are silent here, and filters, sends, slides, rolls, arps and LFOs are not heard.")
     }
 
     /// Length and key: what Generate builds, and what the pattern on screen is
@@ -287,6 +303,8 @@ struct ContentView: View {
                     .help("Which octave the note keys play in")
             }
 
+            playButton
+
             Spacer()
 
             Button("Import…") { ProjectImport.run(into: model) }
@@ -308,6 +326,10 @@ struct ContentView: View {
             }
             if let hint = model.cursorHint {
                 Text(hint)
+                    .foregroundStyle(.secondary)
+            }
+            if let hint = model.listeningHint {
+                Label(hint, systemImage: "speaker.slash")
                     .foregroundStyle(.secondary)
             }
             if let status = model.importStatus {
@@ -333,6 +355,9 @@ struct ContentView: View {
 
     private func handle(_ press: KeyPress) -> KeyPress.Result {
         switch press.key {
+        case .space:
+            model.togglePlayback(fromCursor: press.modifiers.contains(.shift))
+            return .handled
         case .upArrow: model.editor.moveUp(); return .handled
         case .downArrow: model.editor.moveDown(); return .handled
         case .leftArrow: model.editor.moveLeft(); return .handled

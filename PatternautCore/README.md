@@ -44,6 +44,11 @@ can be consumed by the macOS app as a local package.
   `NoteKeyMap` (tracker keyboard→pitch) and `FXKeyMap` (effect entry by device
   symbol). Pure, unit-tested logic; the SwiftUI layer is a thin shell over it.
 - `Document/` — `ProjectFile`, the `.patternaut` document format (JSON).
+- `Playback/`: `PlayableSample` (a `.pti`'s audio as floats, with the settings
+  that shape it) and `PreviewRenderer`, which plays a pattern through its
+  samples a block at a time for the app's preview, and renders a clicked step.
+  Notes, instruments, note-offs and seven effects; see its doc comment for
+  what is left out. Timing is on whole frames, so block size never moves a note.
 - `MIDI/` — `MIDISequencer`, tested but unused by the app since live MIDI was
   removed; kept as the basis for a MIDI file export.
 - `Diagnostics/` — `LogBuffer`, behind the app's log panel.

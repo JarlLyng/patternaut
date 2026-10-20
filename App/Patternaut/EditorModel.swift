@@ -365,6 +365,86 @@ final class EditorModel: @unchecked Sendable {
         instruments.removeAll { $0.id == id }
     }
 
+    // MARK: - Listening
+
+    /// Plays the pattern through the loaded samples, and a step when you click it.
+    let preview = AudioPreview()
+    /// Each loaded sample decoded once for listening, by instrument.
+    @ObservationIgnored private var playableCache: [LoadedInstrument.ID: PlayableSample] = [:]
+
+    /// The loaded samples in slot order, ready to play.
+    private var playableSamples: [PlayableSample?] {
+        if playableCache.count > instruments.count + 16 {
+            let current = Set(instruments.map(\.id))
+            playableCache = playableCache.filter { current.contains($0.key) }
+        }
+        return instruments.map { loaded in
+            if let cached = playableCache[loaded.id] { return cached }
+            let sample = PlayableSample(instrument: loaded.instrument)
+            playableCache[loaded.id] = sample
+            return sample
+        }
+    }
+
+    private var previewProgram: AudioPreview.Program {
+        AudioPreview.Program(pattern: pattern, tempo: tempo, samples: playableSamples,
+                             sampleIDs: instruments.map(\.id))
+    }
+
+    /// Starts or stops the pattern on screen, from the top or from the
+    /// cursor's row. It keeps following the document while it plays, including
+    /// a switch to another pattern.
+    func togglePlayback(fromCursor: Bool = false) {
+        if preview.isPlaying {
+            preview.stop()
+            diagnostics.log("Stopped playback.", category: "app")
+            return
+        }
+        let row = fromCursor ? editor.cursor.row : 0
+        do {
+            try preview.play(from: row) { [weak self] in
+                self?.previewProgram
+            }
+            diagnostics.log("Playing \"\(pattern.metadata.name)\" from row \(row) at \(Int(tempo)) BPM, \(instruments.count) sample(s) loaded.", category: "app")
+        } catch {
+            diagnostics.log("Playback failed: \(error.localizedDescription)", level: .error, category: "app")
+        }
+    }
+
+    /// Plays one step, or the whole row when `track` is `nil`.
+    func audition(row: Int, track: Int? = nil) {
+        let tracks = track.map { [$0] } ?? Array(pattern.tracks.indices)
+        let steps = tracks.compactMap { index -> (track: Int, step: Step)? in
+            guard index < pattern.tracks.count, row < pattern.tracks[index].steps.count else { return nil }
+            return (index, pattern.tracks[index].steps[row])
+        }
+        guard !instruments.isEmpty, steps.contains(where: { $0.step.isActive }) else { return }
+        do {
+            try preview.audition(steps, samples: playableSamples)
+        } catch {
+            diagnostics.log("Playback failed: \(error.localizedDescription)", level: .error, category: "app")
+        }
+    }
+
+    /// What a click on a cell does: the cursor goes there and the step plays.
+    func select(track: Int, row: Int, column: PatternEditor.Column) {
+        editor.setCursor(track: track, row: row, column: column)
+        audition(row: row, track: track)
+    }
+
+    /// What a click on a row number does: the cursor moves to that row, in the
+    /// column it was in, and the whole row plays.
+    func selectRow(_ row: Int) {
+        editor.setCursor(track: editor.cursor.track, row: row, column: editor.cursor.column)
+        audition(row: row)
+    }
+
+    /// Shown under the grid while playing with nothing that can sound.
+    var listeningHint: String? {
+        guard preview.isPlaying, instruments.isEmpty else { return nil }
+        return "Nothing to hear yet: load samples in the instruments panel. MIDI and synth instruments are silent here."
+    }
+
     /// Validates and writes a project bundle (patterns + loaded instruments) to
     /// `directory`, under `name` if given.
     func export(to directory: URL, named name: String? = nil) {
@@ -521,7 +601,10 @@ final class EditorModel: @unchecked Sendable {
         switch editor.cursor.column {
         case .note:
             if let note = NoteKeyMap.note(for: character, baseOctave: baseOctave) {
+                let (track, row) = (editor.cursor.track, editor.cursor.row)
                 edit("Set Note") { editor.setNote(note) }
+                // Hear the note as it goes in, as in any tracker.
+                audition(row: row, track: track)
                 editor.moveDown()
                 return true
             }

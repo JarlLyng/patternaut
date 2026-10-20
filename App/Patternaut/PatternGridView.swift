@@ -3,9 +3,12 @@ import PatternautCore
 
 /// The tracker grid: row numbers down the left, one column group per track, the
 /// cursor cell highlighted. Keyboard-first — see `.onKeyPress` handling in
-/// ``ContentView``.
+/// ``ContentView``. A click puts the cursor on a cell and plays its step, and
+/// a click on a row number plays the whole row.
 struct PatternGridView: View {
     @Bindable var model: EditorModel
+    /// Called after a click, so the grid can take the keyboard back.
+    var onSelect: () -> Void = {}
     @Environment(\.colorScheme) private var scheme
 
     private let columns = PatternEditor.Column.allCases
@@ -52,12 +55,23 @@ struct PatternGridView: View {
                 .foregroundStyle(row % 4 == 0 ? .primary : .secondary)
                 .frame(width: 34, alignment: .trailing)
                 .padding(.trailing, 4)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    model.selectRow(row)
+                    onSelect()
+                }
 
             ForEach(Array(model.pattern.tracks.enumerated()), id: \.offset) { trackIndex, track in
                 trackCells(trackIndex: trackIndex, track: track, row: row)
             }
         }
-        .background(row % 4 == 0 ? Color.secondary.opacity(0.06) : Color.clear)
+        .background(rowBackground(row))
+    }
+
+    /// The row being heard stands out while the pattern plays.
+    private func rowBackground(_ row: Int) -> Color {
+        if row == model.preview.playheadRow { return Design.accentSubtle(scheme) }
+        return row % 4 == 0 ? Color.secondary.opacity(0.06) : Color.clear
     }
 
     private func trackCells(trackIndex: Int, track: Track, row: Int) -> some View {
@@ -67,6 +81,11 @@ struct PatternGridView: View {
                 cell(text: text(step: step, column: column),
                      isCursor: isCursor(track: trackIndex, row: row, column: column),
                      active: step?.isActive ?? false)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        model.select(track: trackIndex, row: row, column: column)
+                        onSelect()
+                    }
             }
         }
         .frame(width: cellGroupWidth, alignment: .leading)

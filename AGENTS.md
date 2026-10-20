@@ -113,6 +113,15 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   `instruments/<slot> <name>.pti`, and that 1-based slot number is what binds a `.pti` to the
   instrument column on the device, so the order in the app's list is the instrument number in
   the grid (the first is 00). Verified on a Tracker+.
+- Listening, through the loaded samples: Play/Stop (Space, or ⇧Space from the cursor's row) loops
+  the pattern on screen and highlights the row being heard, and keeps up with edits, tempo and a
+  switch of pattern while it plays. Clicking a step plays it, clicking a row number plays the row,
+  and a typed note sounds as it goes in. It is a preview, not the Tracker's sound engine
+  (`PreviewRenderer`): notes, instruments, OFF/FAD/CUT and the Volume, Chance, Micro-move, Panning,
+  Tune, Micro-tune and Reverse effects, through each instrument's volume, panning, tune, finetune,
+  start and end points. A sample plays at its own pitch on raw note 60, which the Tracker shows as
+  C5 (Patternaut shows C4). How far Micro-move 100 moves a note is an estimate (half a step).
+  Not yet compared by ear against a Tracker.
 - A keyboard reference sheet (Help > Keyboard Shortcuts, ⌘/).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app
   log panel with copy (categories: export, samples, app).
@@ -122,7 +131,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   loose fragments and seven icon-only buttons are unlabelled. The App Store Connect accessibility
   section is deliberately left empty rather than claiming something untrue. See
   [issue #3](https://github.com/JarlLyng/patternaut/issues/3).
-- No audio engine and no in-app sample playback / preview.
+- The preview is not the Tracker's sound engine. Filters, delay and reverb sends, LFOs, slides,
+  glide, rolls, arps, random effects, gate length, overdrive, bit depth, sample loops, slices and
+  granular playback are not heard, and MIDI and synth instruments are silent. No audio export or
+  recording.
 - No import of a loose `.mtp` or `.mt` file on its own. Import takes a whole project folder
   (File > Import Tracker Project…, ⇧⌘I); single files have no import flow.
 - No song/arrangement mode beyond a linear playlist of the document's patterns.

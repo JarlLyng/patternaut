@@ -6,6 +6,14 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Listen to a pattern before it goes to the card. Play (Space) loops the pattern through the
+  loaded samples and shows the row being heard; ⇧Space starts from the cursor's row. Click a step
+  to hear it, or a row number to hear the whole row, and typed notes sound as they go in. It is a
+  preview rather than the Tracker's own sound: notes, instruments, note-offs and the Volume,
+  Chance, Micro-move, Panning, Tune, Micro-tune and Reverse effects are heard, MIDI and synth
+  instruments are silent, and so are filters, sends, slides, rolls, arps and LFOs.
+
 ## [1.0.1] — 2026-10-10
 
 ### Added
