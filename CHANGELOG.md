@@ -6,6 +6,8 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-10-31
+
 ### Added
 - Listen to a pattern before it goes to the card. Play (Space) loops the pattern through the
   loaded samples and shows the row being heard; ⇧Space starts from the cursor's row. Click a step
