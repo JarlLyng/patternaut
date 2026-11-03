@@ -1,41 +1,29 @@
-name: Marketing idea / task
-description: A public-safe marketing idea or task (content, post, screenshot, outreach).
-title: '[Marketing] '
+name: Idea for the site or store page
+description: Something on the website, the App Store page or the screenshots that could be better.
+title: '[Site] '
 labels: ['marketing']
 body:
   - type: markdown
     attributes:
       value: |
-        For **public-safe** marketing work only — a blog post, a community thread, a screenshot to redo, an ASO copy tweak.
-        **Anything competitive-sensitive** (positioning, pricing reasoning, channel plans that reveal an edge, competitor analysis) does **not** belong in a public issue — put it in the private [iamjarl-strategy](https://github.com/JarlLyng/iamjarl-strategy) hub instead.
+        For the website, the App Store page and the screenshots: a sentence that reads wrong, a screenshot that is out of date, something a Tracker owner would want to know first.
 
   - type: textarea
     id: idea
     attributes:
-      label: The idea / task
-      description: What's the marketing move, and what's the goal?
+      label: The idea
+      description: What would you change, and why?
     validations:
       required: true
 
   - type: dropdown
-    id: channel
+    id: where
     attributes:
-      label: Channel
+      label: Where
       options:
-        - App Store / ASO
-        - SEO / content
-        - Reddit / community (Polyend, trackers)
-        - Social
-        - Newsletter / outreach
-        - Website / landing page
+        - App Store page
+        - Website
+        - Screenshots
         - Other
     validations:
       required: true
-
-  - type: checkboxes
-    id: safety
-    attributes:
-      label: Public-safe check
-      options:
-        - label: This contains nothing a competitor reading it could use against us (else it goes in the private strategy hub)
-          required: true
