@@ -30,7 +30,7 @@ body:
     id: alignment
     attributes:
       label: Alignment checks
-      description: These keep requests inside the product DNA (native, pay-once, private, focused).
+      description: These keep requests inside what the app is for, which is native, pay-once, private and focused.
       options:
         - label: This does not require an account, cloud sync, or sending data off-device
           required: true

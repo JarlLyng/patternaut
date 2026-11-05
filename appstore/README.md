@@ -1,18 +1,11 @@
 # App Store posters
 
-Composed with the hub's `tools/appstore_screenshots.py`, which is the portfolio standard: the
-capture goes on the brand ground with a headline, at exact slot sizes, using the accent from
-`iamjarl-design` rather than a copy of it. The standard itself is written up in the hub's
-`DESIGN.md`.
+Each poster is a capture of the app on a dark ground with a short headline above or below it, at
+the Mac App Store's exact size (2560x1600). The ground is near-black and the headline is white, with
+one phrase in the `#D0FF00` accent, the same as the site and the app icon. There is no device
+bezel: the capture already carries the window chrome.
 
 One folder per release. Superseded sets are deleted rather than kept, since git history has them.
-
-## Settings for this app
-
-Dark ground with the `#D0FF00` accent, per the per-app table in `DESIGN.md`: Patternaut sits with
-the other music tools. Mac keeps no device bezel, because the capture already carries window
-chrome. Captions alternate top and bottom across the set, and `--bleed` is used only on the
-top-caption shots, so the crop lands on window chrome rather than on the controls.
 
 ## Capturing
 
@@ -38,15 +31,10 @@ On a Retina display that produces 2560x1600, which is the `mac` slot exactly.
 
 ## Composing
 
-```bash
-<hub>/.venv/bin/python <hub>/tools/appstore_screenshots.py compose \
-  raw/01-grid.png "A beat to start from
-*every time you press it*" appstore/1.0/mac-1.png \
-  --slot mac --mode dark --accent "#D0FF00" --caption-pos top --bleed
-```
-
-`*phrase*` renders in the accent. Break lines by hand: greedy wrapping orphans the emphasised
-phrase, and emphasis cannot span a newline.
+Place the capture on the ground at the slot size and set the headline in two lines, breaking them
+by hand so the accented phrase stays whole. Captions alternate top and bottom across the set. On a
+top-caption shot the capture runs off the bottom edge, so the crop lands on window chrome rather
+than on the controls.
 
 ## The set
 
