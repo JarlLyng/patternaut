@@ -32,8 +32,9 @@ It reads projects back off the card as well, with their patterns, names, tempo a
 you can take something you made on the hardware, change it, and write it back without disturbing
 the instrument assignments, mixer or effects the machine keeps for itself.
 
-There is no audio engine, so it does not play patterns back. It is a companion to the hardware,
-not a replacement for it.
+It plays a pattern back through your loaded samples, so you can hear where it is going before it
+goes on the card. That is a preview rather than the Tracker's sound engine, so filters, sends,
+slides and synth tracks are not heard. It is a companion to the hardware, not a replacement for it.
 
 ## Feedback
 
