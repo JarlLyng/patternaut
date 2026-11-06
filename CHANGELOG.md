@@ -6,6 +6,13 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- Importing a project saved on Tracker CE firmware failed, because CE writes patterns in a new
+  format (version 6) with a Volume and a Micro-move value on every step. Those projects import
+  now. Each step's Volume and Micro-move go into a free effect lane; a step with both lanes in use
+  has no room for them, and the import says how many were left out. Exported projects stay in
+  the format every firmware reads.
+
 ## [1.1.0] — 2026-11-05
 
 ### Added
