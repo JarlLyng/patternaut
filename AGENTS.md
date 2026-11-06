@@ -14,8 +14,8 @@ byte-exact SD-card files. It runs locally: no accounts, no cloud, no tracking.
 - **Website:** [patternaut.iamjarl.com](https://patternaut.iamjarl.com)
 - **License:** [MIT](LICENSE). Open source; the repo is public.
 - **Price:** $7.99 one-time, no subscription.
-- **Status:** on the Mac App Store since 2026-09-22 (macOS 14+), v1.0.1 live since 2026-10-12;
-  v1.1.0 (audio preview) in TestFlight from 2026-10-31:
+- **Status:** on the Mac App Store since 2026-09-22 (macOS 14+); v1.1.0 (audio preview) live
+  since 2026-11-05:
   [id6792365053](https://apps.apple.com/app/id6792365053), listed as "Patternaut: Groovebox
   Patterns". TestFlight and App Store builds come from the `release` branch.
 - **Sister apps:** the IAMJARL music tools (It's mono, yo!, It's 404, yo!, Echolume, TonVault).

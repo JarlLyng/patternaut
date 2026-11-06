@@ -13,7 +13,7 @@ All notable changes to Patternaut are documented here. The format follows
   has no room for them, and the import says how many were left out. Exported projects stay in
   the format every firmware reads.
 
-## [1.1.0] — unreleased, in TestFlight since 2026-10-31
+## [1.1.0] — 2026-11-05
 
 ### Added
 - Listen to a pattern before it goes to the card. Play (Space) loops the pattern through the
