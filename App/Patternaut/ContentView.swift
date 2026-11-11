@@ -16,6 +16,7 @@ extension FocusedValues {
 
 /// Opening a Tracker project folder is separate from opening a Patternaut
 /// document, so it gets its own panel and its own wording everywhere.
+@MainActor
 enum ProjectImport {
     static func run(into model: EditorModel) {
         let panel = NSOpenPanel()
