@@ -92,8 +92,10 @@ public enum ProjectBundleReader {
         guard !patternURLs.isEmpty else { throw ReadError.noPatterns }
 
         let tempo = project.map { Double($0.globalTempo) } ?? defaultTempo
+        var droppedStepValues = 0
         let patterns = try patternURLs.enumerated().map { index, patternURL -> Pattern in
             let document = try MTPImporter.parse(Data(contentsOf: patternURL))
+            droppedStepValues += document.droppedStepValues
             let fallback = patternURL.deletingPathExtension().lastPathComponent
             let slotName = index < names.count && !names[index].isEmpty ? names[index] : fallback
             var pattern = document.makePattern(
@@ -137,6 +139,15 @@ public enum ProjectBundleReader {
                     warnings.append("Could not read the instrument \"\(label)\": \(error.localizedDescription)")
                 }
             }
+        }
+
+        // Tracker CE gives each step its own Volume and Micro-move. Here they go
+        // into the effect lanes, and a step with both lanes in use has no room.
+        if droppedStepValues > 0 {
+            let lost = droppedStepValues == 1
+                ? "1 step Volume or Micro-move value had no free effect lane and was left out."
+                : "\(droppedStepValues) step Volume and Micro-move values had no free effect lane and were left out."
+            warnings.append("It was saved on Tracker CE firmware. " + lost)
         }
 
         // Old projects keep their audio as plain WAVs in a samples folder.
