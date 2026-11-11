@@ -20,9 +20,10 @@ enum ProjectImport {
     static func run(into model: EditorModel) {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
-        // A pattern file is a fine thing to point at; the reader works out which
-        // project it belongs to.
-        panel.canChooseFiles = true
+        // Folders only. The sandbox lets the app read just what is picked, so a
+        // project.mt or pattern file on its own leaves patterns/ and instruments/
+        // beside it out of reach, and the import cannot work.
+        panel.canChooseFiles = false
         panel.prompt = "Import"
         panel.message = "Choose a project on your Tracker's card, e.g. Projects/User/my song."
         if let card = mountedCardProjects() { panel.directoryURL = card }

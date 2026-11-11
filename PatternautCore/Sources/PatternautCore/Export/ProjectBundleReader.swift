@@ -92,8 +92,10 @@ public enum ProjectBundleReader {
         guard !patternURLs.isEmpty else { throw ReadError.noPatterns }
 
         let tempo = project.map { Double($0.globalTempo) } ?? defaultTempo
+        var droppedStepValues = 0
         let patterns = try patternURLs.enumerated().map { index, patternURL -> Pattern in
             let document = try MTPImporter.parse(Data(contentsOf: patternURL))
+            droppedStepValues += document.droppedStepValues
             let fallback = patternURL.deletingPathExtension().lastPathComponent
             let slotName = index < names.count && !names[index].isEmpty ? names[index] : fallback
             var pattern = document.makePattern(
@@ -139,6 +141,15 @@ public enum ProjectBundleReader {
             }
         }
 
+        // Tracker CE gives each step its own Volume and Micro-move. Here they go
+        // into the effect lanes, and a step with both lanes in use has no room.
+        if droppedStepValues > 0 {
+            let lost = droppedStepValues == 1
+                ? "1 step Volume or Micro-move value had no free effect lane and was left out."
+                : "\(droppedStepValues) step Volume and Micro-move values had no free effect lane and were left out."
+            warnings.append("It was saved on Tracker CE firmware. " + lost)
+        }
+
         // Old projects keep their audio as plain WAVs in a samples folder.
         if try directory(named: "samples", in: url, fileManager: fileManager) != nil {
             warnings.append("Its samples are in a samples folder, which Patternaut does not read.")
@@ -167,14 +178,18 @@ public enum ProjectBundleReader {
     /// Finds the project folder from whatever was picked. Landing inside
     /// `patterns` or on a file in it is an easy mistake, and the folder above is
     /// unambiguous, so there is no reason to refuse.
+    ///
+    /// In the sandboxed app only what was picked can be read, so the folder
+    /// above may be off limits. That reads as "not a project", whose message
+    /// asks for the project folder itself, rather than as a permission error.
     private static func projectRoot(for url: URL, fileManager: FileManager) throws -> URL? {
         var isDirectory: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDirectory) else { return nil }
         let directory = isDirectory.boolValue ? url : url.deletingLastPathComponent()
 
-        if try locate("project.mt", in: directory, fileManager: fileManager) != nil { return directory }
+        if (try? locate("project.mt", in: directory, fileManager: fileManager)) != nil { return directory }
         let parent = directory.deletingLastPathComponent()
-        if parent != directory, try locate("project.mt", in: parent, fileManager: fileManager) != nil {
+        if parent != directory, (try? locate("project.mt", in: parent, fileManager: fileManager)) != nil {
             return parent
         }
         return nil

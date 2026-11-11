@@ -89,6 +89,11 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   (`ProjectBundleReader`): patterns, pattern names, track names, tempo and `.pti` instruments
   with their audio. Verified by reading
   every project on a real card: 47 projects, 538 patterns, including ones from older firmware.
+  It also reads patterns saved on Tracker CE firmware (`.mtp` format 6, from
+  [polyend/tracker-ce](https://github.com/polyend/tracker-ce)): each step's own Volume and
+  Micro-move go into a free FX lane, and any that find none are left out with a warning. Built
+  from CE's source, not yet tried on a card saved by CE. Export still writes format 5, which
+  every firmware reads.
 - A document app: work is saved as `.patternaut` (JSON, UTI `com.iamjarl.patternaut.project`),
   holding the pattern, settings, seed and the loaded samples as canonical WAVs. `DocumentGroup`
   + `ReferenceFileDocument`, so Save/Open/recents/autosave are the system's. Editing registers
