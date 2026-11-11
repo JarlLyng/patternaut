@@ -15,7 +15,8 @@ byte-exact SD-card files. It runs locally: no accounts, no cloud, no tracking.
 - **License:** [MIT](LICENSE). Open source; the repo is public.
 - **Price:** $7.99 one-time, no subscription.
 - **Status:** on the Mac App Store since 2026-09-22 (macOS 14+); v1.1.0 (audio preview) live
-  since 2026-11-05:
+  since 2026-11-05; v1.1.1 (Tracker CE import, import panel and Micro-move fixes) in TestFlight
+  from 2026-11-11:
   [id6792365053](https://apps.apple.com/app/id6792365053), listed as "Patternaut: Groovebox
   Patterns". TestFlight and App Store builds come from the `release` branch.
 - **Sister apps:** the IAMJARL music tools (It's mono, yo!, It's 404, yo!, Echolume, TonVault).
@@ -91,9 +92,10 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   every project on a real card: 47 projects, 538 patterns, including ones from older firmware.
   It also reads patterns saved on Tracker CE firmware (`.mtp` format 6, from
   [polyend/tracker-ce](https://github.com/polyend/tracker-ce)): each step's own Volume and
-  Micro-move go into a free FX lane, and any that find none are left out with a warning. Built
-  from CE's source, not yet tried on a card saved by CE. Export still writes format 5, which
-  every firmware reads.
+  Micro-move go into a free FX lane, and any that find none are left out with a warning. Read
+  off a Tracker+ card saved by CE 1.0.0; moving the dedicated `m`/`V` values into lanes is tested
+  in unit tests only so far. Export still writes format 5, which every firmware reads. The import
+  panel takes folders only: the sandbox can read only what is picked.
 - A document app: work is saved as `.patternaut` (JSON, UTI `com.iamjarl.patternaut.project`),
   holding the pattern, settings, seed and the loaded samples as canonical WAVs. `DocumentGroup`
   + `ReferenceFileDocument`, so Save/Open/recents/autosave are the system's. Editing registers

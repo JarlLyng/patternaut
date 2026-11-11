@@ -6,6 +6,8 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.1.1] — unreleased, in TestFlight since 2026-11-11
+
 ### Fixed
 - Importing a project saved on Tracker CE firmware failed, because CE writes patterns in a new
   format (version 6) with a Volume and a Micro-move value on every step. Those projects import
