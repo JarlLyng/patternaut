@@ -25,9 +25,10 @@ public struct StereoAudio: Sendable, Equatable {
 public struct PreviewRenderer: Sendable {
     /// Steps per beat: a step is a sixteenth, as on the device.
     public static let stepsPerBeat = 4.0
-    /// How far Micro-move 100 pushes a note, in steps. The manual describes the
-    /// shift as small without saying how small, so this is an estimate.
-    static let microMoveSpan = 0.5
+    /// How far Micro-move 100 pushes a note, in steps. The firmware splits a step
+    /// into 48 ticks and maps 0...100 onto 1...48 of them, so 100 is a whole step
+    /// (`mtSequencer.cpp` in polyend/tracker-ce).
+    static let microMoveSpan = 1.0
     /// Fades, in seconds: a note giving way to the next one on its track, CUT,
     /// and FAD.
     static let takeoverFade = 0.004
