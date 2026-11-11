@@ -12,6 +12,9 @@ All notable changes to Patternaut are documented here. The format follows
   now. Each step's Volume and Micro-move go into a free effect lane; a step with both lanes in use
   has no room for them, and the import says how many were left out. Exported projects stay in
   the format every firmware reads.
+- Import Tracker Project failed when you picked the project's `project.mt` instead of its folder:
+  the app may only read what is picked, so the patterns beside it were out of reach. The panel now
+  takes folders only, and picking a folder inside a project asks for the project folder itself.
 
 ## [1.1.0] — 2026-11-05
 

@@ -178,14 +178,18 @@ public enum ProjectBundleReader {
     /// Finds the project folder from whatever was picked. Landing inside
     /// `patterns` or on a file in it is an easy mistake, and the folder above is
     /// unambiguous, so there is no reason to refuse.
+    ///
+    /// In the sandboxed app only what was picked can be read, so the folder
+    /// above may be off limits. That reads as "not a project", whose message
+    /// asks for the project folder itself, rather than as a permission error.
     private static func projectRoot(for url: URL, fileManager: FileManager) throws -> URL? {
         var isDirectory: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDirectory) else { return nil }
         let directory = isDirectory.boolValue ? url : url.deletingLastPathComponent()
 
-        if try locate("project.mt", in: directory, fileManager: fileManager) != nil { return directory }
+        if (try? locate("project.mt", in: directory, fileManager: fileManager)) != nil { return directory }
         let parent = directory.deletingLastPathComponent()
-        if parent != directory, try locate("project.mt", in: parent, fileManager: fileManager) != nil {
+        if parent != directory, (try? locate("project.mt", in: parent, fileManager: fileManager)) != nil {
             return parent
         }
         return nil
