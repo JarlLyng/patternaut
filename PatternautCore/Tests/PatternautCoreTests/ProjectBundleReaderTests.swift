@@ -144,6 +144,25 @@ struct ProjectBundleReaderTests {
         #expect(try ProjectBundleReader.read(at: written.projectFile).projectName == "Inside")
     }
 
+    @Test("A folder above that can't be read asks for the project folder")
+    func unreadableParent() throws {
+        // The sandboxed app can read only what was picked. Picking the patterns
+        // folder leaves the project folder unreadable, as a folder without read
+        // permission is here.
+        let root = temporaryRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pattern = BeatGenerator.beat(device: .trackerPlus, name: "P", steps: 16, seed: 3)
+        let written = try ProjectBundleWriter.write(patterns: [pattern], projectName: "Locked", device: .trackerPlus, to: root)
+        let project = root.appendingPathComponent("Locked")
+        let patternsDir = written.patternFiles[0].deletingLastPathComponent()
+        try FileManager.default.setAttributes([.posixPermissions: 0o300], ofItemAtPath: project.path)
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: project.path) }
+
+        #expect(throws: ProjectBundleReader.ReadError.notAProject("patterns")) {
+            try ProjectBundleReader.read(at: patternsDir)
+        }
+    }
+
     @Test("A folder that isn't a project says so")
     func rejectsNonProject() throws {
         let root = temporaryRoot()

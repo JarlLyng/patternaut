@@ -6,6 +6,11 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- Import Tracker Project failed when you picked the project's `project.mt` instead of its folder:
+  the app may only read what is picked, so the patterns beside it were out of reach. The panel now
+  takes folders only, and picking a folder inside a project asks for the project folder itself.
+
 ## [1.1.0] — 2026-11-05
 
 ### Added
