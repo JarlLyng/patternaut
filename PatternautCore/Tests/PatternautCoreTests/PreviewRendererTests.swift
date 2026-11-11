@@ -168,11 +168,15 @@ struct PreviewRendererTests {
         #expect(largest < 1e-4)
     }
 
-    @Test("Micro-move 100 pushes a note half a step late")
+    @Test("Micro-move 100 pushes a note a whole step late, and 50 half a step")
     func microMove() {
         let out = render(pattern([0: note(fx: [FXCommand(type: .microMove, value: 100)])]), frames: 10_000, samples: [flat(100)])
-        #expect(out.left[onset(0.5) - 1] == 0)
-        #expect(out.left[onset(0.5)] > 0)
+        #expect(out.left[onset(1) - 1] == 0)
+        #expect(out.left[onset(1)] > 0)
+
+        let half = render(pattern([0: note(fx: [FXCommand(type: .microMove, value: 50)])]), frames: 10_000, samples: [flat(100)])
+        #expect(half.left[onset(0.5) - 1] == 0)
+        #expect(half.left[onset(0.5)] > 0)
     }
 
     @Test("Panning, Tune and Reverse shape the note")

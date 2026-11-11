@@ -121,7 +121,7 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   (`PreviewRenderer`): notes, instruments, OFF/FAD/CUT and the Volume, Chance, Micro-move, Panning,
   Tune, Micro-tune and Reverse effects, through each instrument's volume, panning, tune, finetune,
   start and end points. A sample plays at its own pitch on raw note 60, which the Tracker shows as
-  C5 (Patternaut shows C4). How far Micro-move 100 moves a note is an estimate (half a step).
+  C5 (Patternaut shows C4). Micro-move 100 moves a note a whole step, as the firmware source does.
   Not yet compared by ear against a Tracker.
 - A keyboard reference sheet (Help > Keyboard Shortcuts, ⌘/).
 - Diagnostics: unified logging (`os.Logger`, subsystem `com.iamjarl.patternaut`) + an in-app

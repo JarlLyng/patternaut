@@ -6,6 +6,10 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- The preview moved a Micro-moved note half as far as the Tracker does. Micro-move 100 is a whole
+  step late, which is what the firmware's source code does.
+
 ## [1.1.0] — 2026-11-05
 
 ### Added
