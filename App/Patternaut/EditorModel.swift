@@ -471,6 +471,7 @@ final class EditorModel: @unchecked Sendable {
                 notes.append("removed \(result.removedFiles.count) leftover pattern file(s)")
             }
             exportNote = notes.isEmpty ? nil : notes.joined(separator: ", ")
+            Telemetry.exported(for: device)
             diagnostics.log("Exported \"\(exportProjectName)\" (\(patterns.count) patterns, \(instruments.count) instruments) to \(result.projectDirectory.path). \(exportNote ?? "")", category: "export")
         } catch {
             issues = [ValidationIssue(severity: .error, message: "Export failed: \(error.localizedDescription)")]

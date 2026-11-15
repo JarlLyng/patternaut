@@ -12,6 +12,11 @@ packages:
   IAMJARLDesign:
     url: https://github.com/jarllyng/iamjarl-design.git
     from: 1.9.1
+  # Pinned: the anonymous sessions rely on how this version keeps its
+  # installation ID, checked against its envelopes (App/SENTRY.md).
+  Sentry:
+    url: https://github.com/getsentry/sentry-cocoa.git
+    exactVersion: 9.32.0
 
 targets:
   Patternaut:
@@ -24,6 +29,24 @@ targets:
         product: PatternautCore
       - package: IAMJARLDesign
         product: IAMJARLDesignTokens
+      - package: Sentry
+        product: Sentry
+    configFiles:
+      Debug: Config.xcconfig
+      Release: Config.xcconfig
+    preBuildScripts:
+      # An archive must carry a DSN, or the release ships with crash reports off
+      # and says so nowhere. This checks the value the build actually resolved,
+      # after the xcconfig, which would turn a plain https://... into "https:".
+      - name: Check the Sentry DSN for archives
+        basedOnDependencyAnalysis: false
+        script: |
+          if [ "$ACTION" = "install" ]; then
+            case "$SENTRY_DSN" in
+              http://?*@?*/?*|https://?*@?*/?*) echo "Sentry DSN present" ;;
+              *) echo "error: SENTRY_DSN is missing or not a DSN (got '${SENTRY_DSN}'), so this archive would ship without crash reports. See App/SENTRY.md."; exit 1 ;;
+            esac
+          fi
     info:
       path: Patternaut/Info.plist
       properties:
@@ -37,6 +60,8 @@ targets:
         ITSAppUsesNonExemptEncryption: false
         LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
         NSHumanReadableCopyright: "© 2026 IAMJARL"
+        # From Sentry.xcconfig; empty means nothing is sent.
+        SentryDSN: "$(SENTRY_DSN)"
         UTExportedTypeDeclarations:
           - UTTypeIdentifier: com.iamjarl.patternaut.project
             UTTypeDescription: Patternaut Project

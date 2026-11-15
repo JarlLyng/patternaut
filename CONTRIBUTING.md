@@ -1,7 +1,7 @@
 # Contributing to Patternaut
 
 Thanks for your interest. Patternaut is a small, focused app: native macOS, pay-once (no
-subscription), private (offline, no accounts, no tracking) and minimal. Contributions that fit
+subscription), private (no accounts, no tracking, only anonymous diagnostics) and minimal. Contributions that fit
 that shape are welcome.
 
 ## Ways to help

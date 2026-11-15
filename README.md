@@ -36,6 +36,14 @@ It plays a pattern back through your loaded samples, so you can hear where it is
 goes on the card. That is a preview rather than the Tracker's sound engine, so filters, sends,
 slides and synth tracks are not heard. It is a companion to the hardware, not a replacement for it.
 
+## Privacy
+
+No account, no ads and nothing that identifies you. The app sends anonymous crash reports,
+performance diagnostics and one count, that a project was exported and for which Tracker, to
+Sentry. Every install reports as the same user, `anonymous`, and nothing you made is sent: no
+pattern, project or instrument name, and no file path. That is the app's only network access.
+[App/SENTRY.md](App/SENTRY.md) has the details and how to check them.
+
 ## Feedback
 
 Write to [support@iamjarl.com](mailto:support@iamjarl.com), or use Help > Send Feedback in the app,
