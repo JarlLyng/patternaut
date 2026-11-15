@@ -49,7 +49,7 @@
 		BD13308432A86D508BCEC6D2 /* EditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModel.swift; sourceTree = "<group>"; };
 		F4A6E8E169F3F81FAED8FC0B /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		F8EDCC653F6211947718B51E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		"TEMP_1EC7FA06-C048-4E54-BB61-DBC0477E0B28" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		"TEMP_CDE21E3B-EC05-4D0E-B599-00C3CE175B95" /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +116,10 @@
 			path = Patternaut;
 			sourceTree = "<group>";
 		};
-		"TEMP_CA5776EB-2394-4E33-8692-BD2CD0B0E98F" /* App */ = {
+		"TEMP_7D5E3142-D803-4AEF-9C8B-08CFCF87354E" /* App */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_1EC7FA06-C048-4E54-BB61-DBC0477E0B28" /* Config.xcconfig */,
+				"TEMP_CDE21E3B-EC05-4D0E-B599-00C3CE175B95" /* Config.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -131,6 +131,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 289C21D70E7E7E8A0923D662 /* Build configuration list for PBXNativeTarget "Patternaut" */;
 			buildPhases = (
+				1108E560387A59CC0F05869C /* Check the Sentry DSN for archives */,
 				A2A8E81232776CB377E52D9E /* Sources */,
 				389ABF97EBDD7F6EA2C2C855 /* Resources */,
 				A539113A10F650867CC9FE86 /* Frameworks */,
@@ -201,6 +202,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1108E560387A59CC0F05869C /* Check the Sentry DSN for archives */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check the Sentry DSN for archives";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$ACTION\" = \"install\" ]; then\n  case \"$SENTRY_DSN\" in\n    http://?*@?*/?*|https://?*@?*/?*) echo \"Sentry DSN present\" ;;\n    *) echo \"error: SENTRY_DSN is missing or not a DSN (got '${SENTRY_DSN}'), so this archive would ship without crash reports. See App/SENTRY.md.\"; exit 1 ;;\n  esac\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A2A8E81232776CB377E52D9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -227,7 +250,7 @@
 /* Begin XCBuildConfiguration section */
 		3EE346692ECFFC66B70374D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_1EC7FA06-C048-4E54-BB61-DBC0477E0B28" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_CDE21E3B-EC05-4D0E-B599-00C3CE175B95" /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Patternaut/Patternaut.entitlements;
@@ -318,7 +341,7 @@
 		};
 		636238DD1DE013F565B4F3DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_1EC7FA06-C048-4E54-BB61-DBC0477E0B28" /* Config.xcconfig */;
+			baseConfigurationReference = "TEMP_CDE21E3B-EC05-4D0E-B599-00C3CE175B95" /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Patternaut/Patternaut.entitlements;

@@ -34,6 +34,19 @@ targets:
     configFiles:
       Debug: Config.xcconfig
       Release: Config.xcconfig
+    preBuildScripts:
+      # An archive must carry a DSN, or the release ships with crash reports off
+      # and says so nowhere. This checks the value the build actually resolved,
+      # after the xcconfig, which would turn a plain https://... into "https:".
+      - name: Check the Sentry DSN for archives
+        basedOnDependencyAnalysis: false
+        script: |
+          if [ "$ACTION" = "install" ]; then
+            case "$SENTRY_DSN" in
+              http://?*@?*/?*|https://?*@?*/?*) echo "Sentry DSN present" ;;
+              *) echo "error: SENTRY_DSN is missing or not a DSN (got '${SENTRY_DSN}'), so this archive would ship without crash reports. See App/SENTRY.md."; exit 1 ;;
+            esac
+          fi
     info:
       path: Patternaut/Info.plist
       properties:

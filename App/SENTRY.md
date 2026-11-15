@@ -69,6 +69,13 @@ native crashes the app's code can't reach.
   escaped.
   - **An archive without a DSN that looks like one fails**, with an error that names the fix.
   - Builds and tests still run without it.
+- **The value the build resolved is checked too.** The target's first build phase, "Check the
+  Sentry DSN for archives", stops any archive whose resolved `SENTRY_DSN` isn't
+  `http(s)://…@…/…`. That covers a hand-written xcconfig and local archives as well. Checked on
+  2026-11-15 with `xcodebuild install`:
+  - no xcconfig fails;
+  - a plain `https://` fails, because it resolves to `https:`;
+  - the escaped form passes and ends up in Info.plist as `https://…`.
 
 ## Readable crashes (dSYMs)
 
