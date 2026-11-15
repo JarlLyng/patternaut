@@ -149,8 +149,9 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
 - Reading a `.pti` the device wrote and writing it back differs in three fields this model does
   not carry (the old extension left after the name's terminator, the reserved bytes at offset 56,
   and `FF FF` end padding). `tracker-lib` writes those the same way Patternaut does.
-- No account, cloud, sync, analytics, ads, or subscription in the app. (The marketing site
-  counts visits with cookieless Umami; see `docs/privacy.html`.)
+- No account, cloud, sync, ads, or subscription in the app, and no behavioral analytics. The
+  only data the app sends is anonymous telemetry to Sentry (see Conventions). The marketing
+  site counts visits with cookieless Umami; see `docs/privacy.html`.
 - Not a full software tracker and not a replacement for the hardware. No song/arrangement mode.
 - macOS only. No iOS/iPad version.
 - No AI features inside the shipped app.
@@ -170,7 +171,16 @@ Before any audience/positioning/pricing/marketing or public-copy work, read that
   regenerate it with xcodegen after changing `App/project.yml` or adding source files.
 
 ## Conventions
-- Privacy-first: the only telemetry permitted is anonymous crash reporting (none today).
+- Privacy-first, under the portfolio's anonymous recipe (#33): `App/Patternaut/Telemetry.swift`
+  sends crash reports, app hangs, crash-free sessions, MetricKit diagnostics and one count,
+  `project.exported` with a `device` attribute, to Sentry. One shared user `anonymous`, no
+  device IDs, the installation ID pinned to `anonymous` so sessions carry none, no breadcrumbs,
+  no paths or user content. What may be sent is `TelemetryRules` in the core, unit-tested.
+  `com.apple.security.network.client` is for Sentry only. sentry-cocoa is pinned to an exact
+  version; after an upgrade, repeat the envelope check in `App/SENTRY.md`. The DSN lives in
+  the gitignored `App/Sentry.xcconfig`, written in Xcode Cloud by `ci_pre_xcodebuild.sh`, which
+  stops an archive without one. Adding a count or an attribute changes the privacy manifest,
+  the policy and the store label.
 - Design: `iamjarl-design` is adopted. The app depends on `IAMJARLDesignTokens` (SPM, from
   1.9.1) and uses it for accent, spacing and radius; the site serves its own copy of the design
   system from `docs/assets/iamjarl-design@<version>/`, pinned with subresource integrity, and uses

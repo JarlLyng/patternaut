@@ -13,7 +13,8 @@ fix or mitigation will be prioritized according to severity.
 
 ## Scope
 
-Patternaut runs locally on macOS with no accounts, no network backend, and no data sent off
-the device, so most classes of remote/server vulnerability do not apply. Relevant reports
+Patternaut runs locally on macOS with no accounts and no network backend of its own. The only
+data that leaves the device is anonymous crash reports, diagnostics and one usage count, sent to
+Sentry (see `App/SENTRY.md`), so most classes of remote/server vulnerability do not apply. Relevant reports
 would typically concern local file handling (parsing/writing `.mtp`/`.mt`/`.pti`/WAV files) or
 the app's handling of untrusted input.

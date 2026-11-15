@@ -45,6 +45,8 @@
 	<string>© 2026 IAMJARL</string>
 	<key>NSShowAppCentricOpenPanelInsteadOfUntitledFile</key>
 	<false/>
+	<key>SentryDSN</key>
+	<string>$(SENTRY_DSN)</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

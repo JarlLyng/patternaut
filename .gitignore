@@ -38,5 +38,8 @@ CLAUDE.local.md
 GEMINI.md
 .github/copilot-instructions.md
 
+# The Sentry DSN, written by ci_scripts/ci_pre_xcodebuild.sh or copied from the example
+App/Sentry.xcconfig
+
 # Test exports
 /Generated/

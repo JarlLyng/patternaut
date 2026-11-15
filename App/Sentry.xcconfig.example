@@ -1,0 +1,6 @@
+// Copy to Sentry.xcconfig (gitignored) and put in the DSN from Sentry, Settings,
+// Projects, patternaut, Client Keys.
+//
+// Write "//" as "/$()/": in an xcconfig, "//" starts a comment, so a plain
+// https://... would leave only "https:".
+SENTRY_DSN = https:/$()/examplePublicKey@o0.ingest.sentry.io/0

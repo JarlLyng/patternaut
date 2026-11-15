@@ -1,0 +1,7 @@
+// Build settings shared by every configuration.
+//
+// The Sentry DSN comes from Sentry.xcconfig, which is gitignored. Xcode Cloud
+// writes it from the SENTRY_DSN environment variable (ci_scripts/ci_pre_xcodebuild.sh);
+// locally, copy Sentry.xcconfig.example. Without it the DSN is empty and the app
+// sends nothing. An archive in Xcode Cloud without it is stopped.
+#include? "Sentry.xcconfig"

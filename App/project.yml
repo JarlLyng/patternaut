@@ -12,6 +12,11 @@ packages:
   IAMJARLDesign:
     url: https://github.com/jarllyng/iamjarl-design.git
     from: 1.9.1
+  # Pinned: the anonymous sessions rely on how this version keeps its
+  # installation ID, checked against its envelopes (App/SENTRY.md).
+  Sentry:
+    url: https://github.com/getsentry/sentry-cocoa.git
+    exactVersion: 9.32.0
 
 targets:
   Patternaut:
@@ -24,6 +29,11 @@ targets:
         product: PatternautCore
       - package: IAMJARLDesign
         product: IAMJARLDesignTokens
+      - package: Sentry
+        product: Sentry
+    configFiles:
+      Debug: Config.xcconfig
+      Release: Config.xcconfig
     info:
       path: Patternaut/Info.plist
       properties:
@@ -37,6 +47,8 @@ targets:
         ITSAppUsesNonExemptEncryption: false
         LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
         NSHumanReadableCopyright: "© 2026 IAMJARL"
+        # From Sentry.xcconfig; empty means nothing is sent.
+        SentryDSN: "$(SENTRY_DSN)"
         UTExportedTypeDeclarations:
           - UTTypeIdentifier: com.iamjarl.patternaut.project
             UTTypeDescription: Patternaut Project

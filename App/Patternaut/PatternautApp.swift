@@ -9,6 +9,7 @@ struct PatternautApp: App {
         // for that is read as a user default, not from the bundle, so it has to
         // be set here to have any effect.
         UserDefaults.standard.register(defaults: ["NSShowAppCentricOpenPanelInsteadOfUntitledFile": false])
+        Telemetry.start()
     }
 
     var body: some Scene {

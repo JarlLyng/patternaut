@@ -6,6 +6,12 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Anonymous crash reports, performance diagnostics and one count, a project exported and for
+  which Tracker, sent to Sentry. Every install reports as the same user, and nothing you made is
+  sent: no pattern, no project or instrument name, no file path. This is the app's first network
+  access, and it is used for nothing else.
+
 ## [1.1.1] — unreleased, in TestFlight since 2026-11-11
 
 ### Fixed
