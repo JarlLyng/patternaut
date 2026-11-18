@@ -62,8 +62,6 @@ public extension DeviceProfile {
                 ))
             }
 
-            let role = role(forTrack: trackIndex)
-
             for (stepIndex, step) in track.steps.enumerated() {
                 if step.fx.count > maxFXPerStep {
                     issues.append(ValidationIssue(

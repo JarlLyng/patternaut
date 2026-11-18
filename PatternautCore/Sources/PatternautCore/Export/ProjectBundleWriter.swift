@@ -61,7 +61,7 @@ public enum ProjectBundleWriter {
             guard length > 0 else { return }
             var buffer = [CChar](repeating: 0, count: length)
             guard listxattr(pointer, &buffer, length, XATTR_NOFOLLOW) > 0 else { return }
-            for name in buffer.split(separator: 0).map({ String(cString: Array($0) + [0]) }) {
+            for name in buffer.split(separator: 0).map({ String(decoding: $0.map { UInt8(bitPattern: $0) }, as: UTF8.self) }) {
                 _ = removexattr(pointer, name, XATTR_NOFOLLOW)
             }
         }

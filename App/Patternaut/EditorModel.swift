@@ -181,22 +181,30 @@ final class EditorModel: @unchecked Sendable {
         registerEditorUndo(name)
     }
 
+    // The undo manager belongs to the main actor. Every edit comes from the UI
+    // on the main thread, so these say so rather than mark the whole model,
+    // which SwiftUI may create off the main thread when it opens a document.
+
     private func registerEditorUndo(_ name: String) {
         guard let undoManager else { return }
-        undoManager.registerUndo(withTarget: self) { model in
-            model.editor.undo()
-            model.registerEditorRedo(name)
+        MainActor.assumeIsolated {
+            undoManager.registerUndo(withTarget: self) { model in
+                model.editor.undo()
+                model.registerEditorRedo(name)
+            }
+            undoManager.setActionName(name)
         }
-        undoManager.setActionName(name)
     }
 
     private func registerEditorRedo(_ name: String) {
         guard let undoManager else { return }
-        undoManager.registerUndo(withTarget: self) { model in
-            model.editor.redo()
-            model.registerEditorUndo(name)
+        MainActor.assumeIsolated {
+            undoManager.registerUndo(withTarget: self) { model in
+                model.editor.redo()
+                model.registerEditorUndo(name)
+            }
+            undoManager.setActionName(name)
         }
-        undoManager.setActionName(name)
     }
 
     /// Undo for a plain value: put the old one back. Restoring fires the same
@@ -204,8 +212,10 @@ final class EditorModel: @unchecked Sendable {
     private func registerValueUndo<Value: Sendable>(_ oldValue: Value, _ name: String,
                                                     _ apply: @escaping @Sendable (EditorModel, Value) -> Void) {
         guard let undoManager else { return }
-        undoManager.registerUndo(withTarget: self) { model in apply(model, oldValue) }
-        undoManager.setActionName(name)
+        MainActor.assumeIsolated {
+            undoManager.registerUndo(withTarget: self) { model in apply(model, oldValue) }
+            undoManager.setActionName(name)
+        }
     }
 
     // MARK: - Actions
