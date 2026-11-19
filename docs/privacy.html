@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy, Patternaut</title>
-  <meta name="description" content="Patternaut collects nothing. It has no account, makes no network requests, and keeps your work on your own Mac." />
+  <meta name="description" content="Patternaut has no account and sends nothing that identifies you. It sends anonymous crash reports and one usage count, and your work stays on your own Mac." />
   <link rel="canonical" href="https://patternaut.iamjarl.com/privacy" />
   <meta property="og:title" content="Patternaut privacy" />
   <meta property="og:type" content="website" />
@@ -87,24 +87,35 @@
     <main>
       <p><a href="/">Patternaut</a></p>
       <h1>Privacy</h1>
-      <p><strong>Patternaut collects nothing.</strong> There is no account, no analytics, no
-        crash reporting, no advertising and no tracking of any kind.</p>
-      <p>The app makes no network requests. It has never needed to, so it does not ask for the
-        permission and would have nowhere to send anything if it did.</p>
+      <p><strong>Patternaut sends nothing that identifies you.</strong> There is no account, no
+        advertising and no tracking of any kind.</p>
+      <p>It does send me a little, so I find out when a release breaks something and whether the
+        app does its job. When it crashes or hangs, it sends a crash report: where in the code it
+        happened, the app and macOS version, and the kind of Mac. It sends performance
+        diagnostics from macOS in the same way. And each time you export a project, it counts one
+        export and notes whether it was for a Tracker+ or a Tracker Mini. That is all.</p>
+      <p>None of it says who you are. Every copy of the app reports as the same user, called
+        "anonymous", with no device ID, no installation ID and no IP address kept, and nothing is
+        stored on your Mac to measure you. Nothing you made goes with it: no pattern, no project
+        or instrument name, no file name or path.</p>
+      <p>The reports go to Sentry, a crash-reporting service, and that is the only thing the app
+        uses the network for. The code that sends them is open source, so you can read exactly
+        what goes out.</p>
       <p>Your work stays where you put it. Documents are ordinary files on your Mac, and exported
         projects are written to the folder or SD card you choose. Patternaut reads a folder only
         when you point it at one, and it writes only where you say.</p>
       <p>If you buy the app from the App Store, Apple handles the purchase and tells me nothing
         about you beyond the anonymous sales figures every developer sees. Apple's own privacy
         terms cover that part.</p>
-      <p>There is no data to request, correct or delete, because none is held.</p>
+      <p>Because none of it can be tied to you, there is nothing I could find to show, correct or
+        delete for a particular person.</p>
       <h2>This website</h2>
       <p>The website is a different matter from the app, so it gets its own paragraph. It counts
         visits with Umami, a cookieless analytics tool: which pages are read, where visitors came
         from, and whether they clicked through to the App Store. It sets no cookies, stores no
-        personal data and cannot follow you to other sites. None of this touches the app.</p>
+        personal data and cannot follow you to other sites. The website and the app don't share any of it.</p>
       <p>Questions are welcome at <a href="mailto:support@iamjarl.com">support@iamjarl.com</a>.</p>
-      <p class="muted">Last updated 22 September 2026.</p>
+      <p class="muted">Last updated 15 November 2026.</p>
     </main>
     <footer>
       <ij-footer app="patternaut" tagline="An IAMJARL app. Pay once, own it.">
