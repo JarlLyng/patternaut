@@ -12,7 +12,7 @@ All notable changes to Patternaut are documented here. The format follows
   sent: no pattern, no project or instrument name, no file path. This is the app's first network
   access, and it is used for nothing else.
 
-## [1.1.1] — unreleased, in TestFlight since 2026-11-11
+## [1.1.1] — 2026-11-19
 
 ### Fixed
 - Importing a project saved on Tracker CE firmware failed, because CE writes patterns in a new
