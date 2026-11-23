@@ -12,6 +12,11 @@ All notable changes to Patternaut are documented here. The format follows
   sent: no pattern, no project or instrument name, no file path. This is the app's first network
   access, and it is used for nothing else.
 
+### Fixed
+- Generate wrote notes that played your samples a few octaves down: the drums two octaves below
+  the sample's own pitch, the bass line three. The drums now play every sample at its own pitch,
+  and the bass line starts on the key's root nearest that pitch.
+
 ## [1.1.1] — 2026-11-19
 
 ### Fixed

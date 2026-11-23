@@ -38,12 +38,17 @@ public enum BeatGenerator {
 
         var tracks: [Track] = []
 
+        // Every drum plays its sample at the sample's own pitch. These used to be
+        // General MIDI drum numbers (kick 36 and so on), left from live MIDI
+        // output, which put every sample two octaves down (#37).
+        let drumNote = Note.pitch(UInt8(PlayableSample.rootNote))
+
         // Kick: sparse and usually on the downbeat.
         let kickPulses = Int.random(in: 3...6, using: &rng) * scale
         var kick = RhythmGenerator.euclidean(
             pulses: kickPulses, steps: length,
             rotation: Bool.random(using: &rng) ? 0 : Int.random(in: 0...2, using: &rng),
-            note: .pitch(36), instrument: 0, velocity: Int.random(in: 92...100, using: &rng),
+            note: drumNote, instrument: 0, velocity: Int.random(in: 92...100, using: &rng),
             name: "Kick"
         )
 
@@ -52,7 +57,7 @@ public enum BeatGenerator {
         var snare = RhythmGenerator.euclidean(
             pulses: snarePulses, steps: length,
             rotation: [4, 4, 8, 6].randomElement(using: &rng)! * scale,
-            note: .pitch(38), instrument: 1, velocity: Int.random(in: 84...98, using: &rng),
+            note: drumNote, instrument: 1, velocity: Int.random(in: 84...98, using: &rng),
             name: "Snare"
         )
 
@@ -61,7 +66,7 @@ public enum BeatGenerator {
         var hat = RhythmGenerator.euclidean(
             pulses: hatPulses, steps: length,
             rotation: Int.random(in: 0...3, using: &rng),
-            note: .pitch(42), instrument: 2, velocity: Int.random(in: 55...80, using: &rng),
+            note: drumNote, instrument: 2, velocity: Int.random(in: 55...80, using: &rng),
             name: "Hat"
         )
 
@@ -84,7 +89,7 @@ public enum BeatGenerator {
             let perc = RhythmGenerator.probability(
                 steps: length,
                 density: Double.random(in: 0.15...0.4, using: &rng),
-                note: .pitch(39), instrument: 3,
+                note: drumNote, instrument: 3,
                 velocity: Int.random(in: 60...90, using: &rng),
                 chance: [40, 50, 60, 75].randomElement(using: &rng)!,
                 name: "Perc",
@@ -95,13 +100,16 @@ public enum BeatGenerator {
 
         // Bass, half the time: the same euclidean idea, moving through the key.
         if Bool.random(using: &rng) {
-            // Two octaves of the key from C1, so the line has somewhere to go.
-            let available = key.pitches(from: 24, count: key.scale.intervals.count * 2)
+            // Two octaves of the key, starting on the root nearest the sample's own
+            // pitch (no more than six semitones below it, five above), so a bass
+            // sample sounds near where it was recorded and the line has an octave
+            // above the root to go to.
+            let available = key.pitches(from: PlayableSample.rootNote - 6, count: key.scale.intervals.count * 2)
             let bassPulses = Int.random(in: 3...5, using: &rng) * scale
             var bass = RhythmGenerator.euclidean(
                 pulses: bassPulses, steps: length,
                 rotation: Int.random(in: 0...3, using: &rng),
-                note: .pitch(UInt8(available.first ?? 36)), instrument: 4,
+                note: .pitch(UInt8(available.first ?? PlayableSample.rootNote)), instrument: 4,
                 velocity: Int.random(in: 82...96, using: &rng),
                 name: "Bass"
             )

@@ -44,9 +44,37 @@ struct KeyAndLengthTests {
                 let pitchClass = ((Int(pitch) % 12) - key.root + 12) % 12
                 #expect(key.scale.intervals.contains(pitchClass), "seed \(seed): \(pitch) is out of key")
             }
-            // Drum tracks keep their sample-trigger pitches whatever the key is.
+            // Drum tracks play their samples at their own pitch whatever the key is.
             let kick = pattern.tracks[0].steps.first { $0.isActive }
-            #expect(kick?.note == .pitch(36))
+            #expect(kick?.note == .pitch(UInt8(PlayableSample.rootNote)))
+        }
+        #expect(checkedABass)
+    }
+
+    @Test("Generated parts sound near the samples' own pitch, in every key (#37)")
+    func generatedPitchNearSamples() {
+        let root = PlayableSample.rootNote
+        var checkedABass = false
+        for keyRoot in 0..<12 {
+            let key = MusicalKey(root: keyRoot, scale: .minor)
+            for seed in UInt64(1)...20 {
+                let pattern = BeatGenerator.beat(device: .trackerPlus, key: key, seed: seed)
+                for track in pattern.tracks {
+                    let pitches = track.steps.filter(\.isActive).compactMap { step -> Int? in
+                        if case .pitch(let pitch) = step.note { return Int(pitch) }
+                        return nil
+                    }
+                    if track.name == "Bass" {
+                        checkedABass = true
+                        // The line's root is the one nearest the sample's pitch, and
+                        // it climbs no more than an octave above that root.
+                        #expect(pitches.allSatisfy { (root - 6)...(root + 5 + 12) ~= $0 },
+                                "key \(keyRoot), seed \(seed): \(pitches)")
+                    } else {
+                        #expect(pitches.allSatisfy { $0 == root }, "\(track.name): \(pitches)")
+                    }
+                }
+            }
         }
         #expect(checkedABass)
     }
