@@ -6,6 +6,8 @@ All notable changes to Patternaut are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.2.0] — unreleased
+
 ### Added
 - Anonymous crash reports, performance diagnostics and one count, a project exported and for
   which Tracker, sent to Sentry. Every install reports as the same user, and nothing you made is
