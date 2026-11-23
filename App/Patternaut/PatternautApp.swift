@@ -48,9 +48,9 @@ private struct ImportProjectButton: View {
     }
 }
 
-/// The app collects nothing, so a mail is how anyone tells me what is wrong. It
-/// opens in the user's mail app with the versions filled in, and they see all of
-/// it before anything is sent.
+/// Crash reports say that something broke, not what the user was doing, so a
+/// mail is how anyone tells me what is wrong. It opens in the user's mail app with
+/// the versions filled in, and they see all of it before anything is sent.
 enum Feedback {
     static let address = "support@iamjarl.com"
 
