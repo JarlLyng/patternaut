@@ -1,4 +1,4 @@
-// IAMJARL <ij-store-cta> v1.32.2: generated, do not edit
+// IAMJARL <ij-store-cta> v1.38.2: generated, do not edit
 // Sources: components/store.js, components/ij-store-cta.js, apps.json, badges/
 
 const REGISTRY = {
@@ -11,7 +11,7 @@ const REGISTRY = {
         "id": "6758866918",
         "minOS": "12.0",
         "price": {
-          "us": "$0.99"
+          "us": "$1.99"
         },
         "locales": [
           "en"
@@ -55,7 +55,7 @@ const REGISTRY = {
       "store": {
         "platform": "app-store",
         "id": "6759229877",
-        "minOS": "16.0",
+        "minOS": "17.0",
         "price": {
           "us": "$2.99",
           "dk": "29,00 kr",
@@ -197,7 +197,7 @@ const REGISTRY = {
         "id": "6792136657",
         "minOS": "14.0",
         "price": {
-          "us": "$1.99"
+          "us": "$4.99"
         },
         "locales": [
           "en"
@@ -216,6 +216,30 @@ const REGISTRY = {
         },
         "locales": [
           "en"
+        ]
+      }
+    },
+    {
+      "id": "edwell",
+      "name": "Edwell",
+      "store": {
+        "platform": "mac-app-store",
+        "id": "6825963733",
+        "minOS": "14.0",
+        "price": {
+          "us": "Free",
+          "dk": "Free"
+        },
+        "trial": {
+          "days": 14,
+          "then": {
+            "us": "$9.99",
+            "dk": "89,00 kr"
+          }
+        },
+        "locales": [
+          "en",
+          "da"
         ]
       }
     }
@@ -256,6 +280,7 @@ const BADGE_WIDTHS = {
 // rather than per page: Apple only reports a campaign after five first-time
 // downloads, so splitting it per page would hide every number.
 const CAMPAIGN = { pt: '128512007', ct: 'site' };
+const README_CT = 'github';
 const MEDIA_TYPE = { 'app-store': '8', 'mac-app-store': '12' };
 const OS_NAME = { 'app-store': 'iOS', 'mac-app-store': 'macOS' };
 
@@ -264,8 +289,10 @@ const OS_NAME = { 'app-store': 'iOS', 'mac-app-store': 'macOS' };
 // US store; a translated page quotes its own country's (owner, #58).
 const LOCALES = {
   en: { front: 'us', badge: 'en-us', free: 'Free', once: 'once', orLater: 'or later', download: 'Download',
+        trial: (days, price) => `Free to try for ${days} days, then ${price} once`,
         alt: { 'app-store': 'Download on the App Store', 'mac-app-store': 'Download on the Mac App Store', 'chrome-web-store': 'Available in the Chrome Web Store' } },
   da: { front: 'dk', badge: 'da-dk', free: 'Gratis', once: 'engangskøb', orLater: 'eller nyere', download: 'Hent',
+        trial: (days, price) => `Gratis at prøve i ${days} dage, derefter ${price} som engangskøb`,
         alt: { 'app-store': 'Hent i App Store' } },
   de: { front: 'de', badge: 'de-de', free: 'Kostenlos', once: 'einmalig', orLater: 'oder neuer', download: 'Laden',
         alt: { 'app-store': 'Laden im App Store' } },
@@ -302,15 +329,36 @@ function locale(code) {
   return l;
 }
 
-// The store page, with the campaign. The Chrome Web Store has no campaign
-// parameters, so its link is the listing itself.
-function storeLink(store) {
+// The store page, with the campaign. ct says where the link sits: 'site' on
+// the app's own site, 'github' in its README (#107). The Chrome Web Store has
+// no campaign of Apple's kind, so the site's link is the listing itself; the
+// README's carries utm_source, which the Web Store's dashboard reads.
+function storeLink(store, ct = CAMPAIGN.ct) {
   if (store.platform === 'chrome-web-store') {
-    return `https://chromewebstore.google.com/detail/${store.slug}/${store.id}`;
+    const listing = `https://chromewebstore.google.com/detail/${store.slug}/${store.id}`;
+    return ct === CAMPAIGN.ct ? listing : `${listing}?utm_source=${ct}`;
   }
   const mt = MEDIA_TYPE[store.platform];
   if (!mt) throw new Error(`Unknown store platform "${store.platform}"`);
-  return `https://apps.apple.com/app/id${store.id}?pt=${CAMPAIGN.pt}&ct=${CAMPAIGN.ct}&mt=${mt}`;
+  return `https://apps.apple.com/app/id${store.id}?pt=${CAMPAIGN.pt}&ct=${ct}&mt=${mt}`;
+}
+
+// A free download that unlocks with a one-time in-app purchase after a trial
+// (#114). price stays the store's own word, "Free", so check-store-facts can
+// still compare it with Apple's lookup; trial holds what the lookup cannot see:
+//   "price": { "us": "Free" },
+//   "trial": { "days": 14, "then": { "us": "$9.99" } }
+// The facts line names the trial and the unlock, and the Offer carries the
+// unlock's price, so neither tells a visitor the app is simply free.
+function unlock(store, l, code) {
+  const t = store.trial;
+  if (!t) return null;
+  if (store.price?.[l.front] !== 'Free') throw new Error(`"${store.id}" has a trial, so its ${l.front} price must be "Free"`);
+  if (!Number.isInteger(t.days) || t.days < 1) throw new Error(`"${store.id}" trial.days must be a whole number of days`);
+  const then = t.then?.[l.front];
+  if (typeof then !== 'string' || !/\d/.test(then)) throw new Error(`No ${l.front} unlock price for "${store.id}"'s trial (locale ${code})`);
+  if (!l.trial) throw new Error(`No trial wording for locale ${code}`);
+  return { days: t.days, then };
 }
 
 // "$2.99 once · iOS 16 or later". The price is the store's own wording for that
@@ -319,7 +367,8 @@ function factsLine(store, code) {
   const l = locale(code);
   const raw = store.price?.[l.front];
   if (raw === undefined) throw new Error(`No ${l.front} price for "${store.id}" (locale ${code})`);
-  const price = raw === 'Free' ? l.free : `${raw} ${l.once}`;
+  const u = unlock(store, l, code);
+  const price = u ? l.trial(u.days, u.then) : raw === 'Free' ? l.free : `${raw} ${l.once}`;
   if (!OS_NAME[store.platform]) return price;
   const version = String(store.minOS).replace(/(\.0)+$/, '');
   return `${price} · ${OS_NAME[store.platform]} ${version} ${l.orLater}`;
@@ -382,14 +431,40 @@ function badgeHtml(app, code, { placement = 'hero', tone, badges }) {
   ].join('\n');
 }
 
+// A README's store block (#107): the hero's badge, link and facts line, for a
+// repo's README on GitHub, followed by the app's site. GitHub keeps <picture>
+// and follows its own light or dark theme with it, but strips class, data-*
+// and scripts, so the block carries no click event; ct=github tells the
+// README's visitors apart instead. The badge URL is absolute, because the block
+// is pasted into other repos. A blank line would end GitHub's HTML block and
+// turn the rest into Markdown, so there is none.
+//   badges = { base: 'https://…/badges/', width: file => width at 40 px tall }
+function readmeHtml(app, code, { badges }) {
+  const s = app.store;
+  const src = t => esc(badges.base + badgeFile(s.platform, code, t));
+  const height = badgeHeight(s.platform);
+  const width = Math.round(badges.width(badgeFile(s.platform, code, 'black')) * height / 40);
+  return [
+    `<p>`,
+    `  <a href="${esc(storeLink(s, README_CT))}"><picture>`,
+    `    <source media="(prefers-color-scheme: dark)" srcset="${src('white')}">`,
+    `    <img src="${src('black')}" alt="${esc(badgeAlt(s.platform, code))}" width="${width}" height="${height}">`,
+    `  </picture></a>`,
+    `  <br>`,
+    `  ${esc(factsLine(s, code))} · <a href="${esc(app.url)}">${esc(new URL(app.url).host)}</a>`,
+    `</p>`,
+  ].join('\n');
+}
+
 // The JSON-LD Offer for the page's storefront: the value of a SoftwareApplication's
-// "offers", so the structured data quotes the same price as the facts line. The
-// url is the plain store page; the campaign is for visitors who click, and a
-// search engine reading the markup is not one.
+// "offers", so the structured data quotes the same price as the facts line, and
+// for an app with a trial, the unlock's. The url is the plain store page; the
+// campaign is for visitors who click, and a search engine reading the markup is
+// not one.
 function offer(store, code) {
   const l = locale(code);
-  const raw = store.price?.[l.front];
-  if (raw === undefined) throw new Error(`No ${l.front} price for "${store.id}" (locale ${code})`);
+  if (store.price?.[l.front] === undefined) throw new Error(`No ${l.front} price for "${store.id}" (locale ${code})`);
+  const raw = unlock(store, l, code)?.then ?? store.price[l.front];
   let price = '0';
   if (raw !== 'Free') {
     const digits = raw.replace(/[^\d.,]/g, '');
